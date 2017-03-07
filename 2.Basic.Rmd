@@ -1,0 +1,52 @@
+---
+title: "R Basic Programming"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+### Branching with if
+
+```R
+if (logical_expression) {  
+    expression_1	
+    …  
+}
+```
+
+```R
+if (logical_expression) {  
+    expression_1	
+    …  
+} else {	
+    expression_2 	
+    … 
+}
+```
+
+If logical_expression is TRUE then the first group of expression is executed and the second group of expression is not executed.
+
+Conversely if logical_expression is FALSE then only the second group expression is executed.
+
+
+If you type  
+
+```R
+if (logical_expression) {	 
+  expression_1  
+  …}  
+  else {  
+  expression_2  
+  …}  
+```
+then you get an error.
+
+This is because R is believes the if statement is finished before it sees the else part.  
+That is, R treats the else as the start of a new command, but there is no command that starts with an else.
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
