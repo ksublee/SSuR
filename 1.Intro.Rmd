@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R"
-output: html_notebook
+output: github_document
 ---
 
 ### R as a calculating environment
@@ -32,7 +32,7 @@ symbol | meaning
 ### Built-in function in R
 
 R has a number of built in functions:  
-sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x), â€¦
+sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x), ?€?
 
 ```{r}
 exp(1)
@@ -184,7 +184,7 @@ mean(1:6)
 sort(c(5, 1, 3, 4, 2))
 ```
 
-Example â€“ mean and variance
+Example ?€? mean and variance
 
 compare computed mean and variance with built-in functions
 
@@ -201,7 +201,7 @@ x.var - var(x)
 ```
 
 
-Example â€“ simple numerical integration
+Example ?€? simple numerical integration
 
 ```{r}
 dt <- 0.005
@@ -331,9 +331,9 @@ all.equal(sqrt(2)*sqrt(2), 2)
 ### Matrix
 
 Matrix is created from a vector using the function matrix:
-```{r}
+
 matrix(data, nrow =1, ncol=1, byrow=TRUE)
-```
+
 * data : vector of length at most nrow*ncol
   * if length of vector< nrow*ncol, then data is reused as many times as is needed
 * nrow : number of rows
@@ -342,8 +342,8 @@ matrix(data, nrow =1, ncol=1, byrow=TRUE)
 * byrow = FALSE : fill the matrix up column-by-column, default
 
 diag(x) : create diagonal matrix
-rbind(â€¦) : join matrices with rows of the same length
-cbind(â€¦) : join matrices with columns of the same length
+rbind(?€?) : join matrices with rows of the same length
+cbind(?€?) : join matrices with columns of the same length
 
 Exampe:
 ```{r}
@@ -406,9 +406,9 @@ getwd()
 ```
 
 Change the working directory to "dir"
-```{r}
+
 setwd("dir")
-```
+
 / is for directory and file address, . refers current directory, .. refers parent directory
 
 ### Writing script
