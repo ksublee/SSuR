@@ -3,6 +3,7 @@ title: "Introduction to R"
 output: github_document
 ---
 
+
 ### R as a calculating environment
 
 R can be used as a powerful calculator.
@@ -32,7 +33,7 @@ symbol | meaning
 ### Built-in function in R
 
 R has a number of built in functions:  
-sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x), ?€?
+sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x), ???
 
 ```{r}
 exp(1)
@@ -284,7 +285,7 @@ The value of a logical expression is either TRUE or FALSE.
 c(0, 0, 1, 1) | c(0, 1, 0, 1)
 ```
 
-x[subset]
+### x[subset]
 
 We can extract a subvector using a subset as a vector of TRUE/FALSE.
 
@@ -401,13 +402,15 @@ When you run R, it uses one of the directories on your hard drive as a working d
 * where it looks for user-written programs and data files.
 
 Check the working directory.
-```{r}
+```{r, eval=FALSE}
 getwd()
 ```
 
 Change the working directory to "dir"
 
+```{r, eval=FALSE}
 setwd("dir")
+```
 
 / is for directory and file address, . refers current directory, .. refers parent directory
 

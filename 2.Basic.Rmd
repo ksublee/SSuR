@@ -7,30 +7,19 @@ output: github_document
 
 ### Branching with if
 
-
+```{r, eval=FALSE}
 if ( logical_expression ) {  
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1	
-
-&nbsp;&nbsp;&nbsp;&nbsp;...   
-
+  expression_1	
 }  
+```
 
-
-
+```{r, eval=FALSE}
 if (logical_expression) {   
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1   	
-
-&nbsp;&nbsp;&nbsp;&nbsp;...   
-
+  expression_1   	
 } else {   	
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_2 	
-
-&nbsp;&nbsp;&nbsp;&nbsp;...  
-
+  expression_2 	
 }  
+```
 
 If logical_expression is TRUE then the first group of expression is executed and the second group of expression is not executed.
 
@@ -39,19 +28,13 @@ Conversely if logical_expression is FALSE then only the second group expression 
 
 If you type:   
 
-
+```{r, eval=FALSE}
 if (logical_expression) {	 
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1  
-
-&nbsp;&nbsp;&nbsp;&nbsp;...}  
-
+  expression_1  
 else {  
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_2  
-
-&nbsp;&nbsp;&nbsp;&nbsp;...}  
-
+  expression_2  
+}  
+```
 
 then you get an error.
 
@@ -61,40 +44,26 @@ That is, R treats the else as the start of a new command, but there is no comman
 The followings are equivalent.
 
 
-
+```{r, eval=FALSE}
 if (logical_expression_1){    
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1    
-
+  expression_1    
 } else {   
-
-&nbsp;&nbsp;&nbsp;&nbsp;if (logical_expression_2){   
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expression_2  
-
-&nbsp;&nbsp;&nbsp;&nbsp;} else {   
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expression_3  
-
-&nbsp;&nbsp;&nbsp;&nbsp;}      
-
+    if (logical_expression_2){   
+      expression_2  
+    } else {   
+      expression_3  
+    }      
 }
-
-
+```
+```{r, eval=FALSE}
 if (logical_expression_1){   
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1   
-
+  expression_1   
 } elseif (logical_expression_2){   
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_2   
-
+  expression_2   
 } else {   
-
-&nbsp;&nbsp;&nbsp;&nbsp;expression_3   
-
+  expression_3   
 }
-
+```
 
 
 Example : root of quadratic
@@ -117,12 +86,12 @@ show(roots)
 
 ### Looping with for
 
-
+```{r, eval=FALSE}
 for (x in vector) {  
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...   
+  expression_1   
+  ...   
 }
-
+```
 
 where x is a simple variable.
 
@@ -142,7 +111,7 @@ for (x in x_list) {
 * cat() : for concatenate
 * \n : new line
 
-#### Example : n factorial 1
+#### Example : n factorial
 
 ```{r}
 n <- 6
@@ -178,13 +147,13 @@ plot(time, pension)
 
 
 Program 1 and 2 produce the same result but 1 is faster.
-```{r}
+```{r, eval=FALSE}
 #Program1
 n <- 100000
 x <- rep(0, n)
 for (i in 1:n) x[i] <- i
 ```
-```{r}
+```{r, eval=FALSE}
 #Program2
 n <- 100000
 x <- 1
@@ -194,11 +163,12 @@ Program1 of preallocation is faster than Program2 of redimensioning.
 
 ### Looping with while
 
+```{r, eval=FALSE}
 while (logical_expression) {   
-&nbsp;&nbsp;&nbsp;&nbsp;expression_1   
-&nbsp;&nbsp;&nbsp;&nbsp;??   
+  expression_1   
+  ...   
 }
-
+```
 * logical_expression is evaluated first.
 * If it is TRUE, then the expression in { } is executed.
   * back to the start of the command.
@@ -293,7 +263,7 @@ show(x)
 ```
 
 
-### Basic debugging ??? correcting errors
+### Basic debugging : correcting errors
 
 * To find an error or bug, you need to see how your variables change.
   * include statements like cat("var=", var, "\n")
