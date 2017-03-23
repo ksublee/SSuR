@@ -1,0 +1,295 @@
+---
+title: "1.Introduction to R"
+output: 
+  ioslides_presentation:
+    css: custom.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## R 
+
+* R is an implementation of a functional programming language S.
+* R has been developed and maintained by a core of statistical programmers, with the support of a large community.
+* R is free.
+* R is most widely used for statistical computing and graphics.
+* R is also a fully programming language well suited to scientific programming in general.
+
+
+## R: pro and cons {.smaller}
+
+* Pro: A picture says more than a thousands words  
+     + R and visualization are a perfect match. (ggplot2, ggvis, googleVis and rCharts.)
+* Pro: R ecosystem
+     + R has a rich ecosystem of cutting-edge packages and active community. 
+* Pro: R lingua franca of data science
+     + R is developed by statisticians for statisticians who communicate ideas and concepts through R code and packages
+* Pro/Con: R is slow
+     + Although R can be experienced as slow due to poorly written code, there are multiple packages to improve R?€™s performance: pqR, renjin and FastR, Riposte and many more.
+* Con: R has a steep learning curve
+
+<http://www.kdnuggets.com/2015/05/r-vs-python-data-science.html>
+
+## R as a calculating environment {.smaller}
+<div class="columns-2">
+
+R can be used as a powerful calculator.  
+Arithmetic operations: 
+
+```{r, echo = TRUE}
+(1+1/100)^100
+```
+```{r, echo = TRUE}
+17%%5
+```
+```{r, echo = TRUE}
+17%/%5
+```
+
+symbol | meaning
+-------|---------
++ | addition
+- | subraction
+* | multiplication
+/ | division
+^ | exponential
+%% | modulus
+%/% | integer division
+</div>
+
+
+## R has a number of built in functions {.smaller}
+
+sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x), ...
+
+```{r echo=TRUE}
+exp(1)
+```
+```{r echo=TRUE}
+options(digits = 16)
+exp(1)
+```
+```{r echo=TRUE}
+pi
+sin(pi/6)
+```
+
+## Variable
+
+* We can assign a value to a variable and use the variable.
+* For the assignment, we use command <-.
+* Variable names made up of letters, numbers, . or _
+    * provided it starts with a letter, or . then a letter.
+    * names are case sensitive.
+    * for example,
+         * x, y, my_variable, a1, a2, .important_variable, x.input
+    * wrong name:
+         * 2016_income, .1grade, _x, y@gmail.com
+
+
+## Variable {.smaller}
+<div class="columns-2">
+To display the value of a variable x, we type x 
+* or print(x) or show(x).
+    
+```{r}
+x <- 100
+x
+```
+
+We can show the outcome of assignment by parentheses.
+
+```{r}
+(y <- (1+1/x)^x)
+```
+When assigning, the right-hand side is evaluated first, then that value is placed in the variable on the left-hand side.
+```{r}
+n <- 1
+n <- n+1
+n
+```
+
+R allows the use of = for variable assignment, in common with most programming languages.
+</div>
+
+
+## Functions {.smaller}
+
+Takes one or more argument (inputs) and produces one or more outputs (return values).
+
+```{r}
+seq(from = 1, to = 9, by =2)
+```
+```{r}
+seq(from = 1, to = 9)
+```
+
+You can access the built-in help by 
+```{r, eval=FALSE}
+help(function_name)
+```
+or 
+```{r, eval=FALSE}
+?function_name
+```
+
+----
+
+Every function has a default order for arguments.  
+If you provide arguments in this order, then they do not need to be named.
+```{r}
+seq(1, 9, 2)
+```
+```{r}
+seq(to = 9, from = 1)
+```
+```{r}
+seq(by=-2, 9, 1)
+```
+
+## Vectors
+
+* indexed list of variables
+* the name of the i-th element of vector x is x[i]
+* three basic functions for constructing vectors
+
+```{r}
+(x <- seq(1, 20, by = 2))
+```
+
+```{r}
+(y <- rep(3, 4))
+```
+
+```{r}
+(z <- c(y, x))
+```
+
+* another method for sequence
+```{r}
+(x <- 100:110)
+```
+```{r}
+(y <- 110:100)
+```
+
+* vector and index
+```{r}
+(x<- 100:110)
+
+i <- c(1, 3, 2)
+
+x[i]
+```
+
+minus index:
+```{r}
+j <- c(-1, -2, -3)
+x[j]
+```
+
+empty vetor:
+```{r}
+x <- c()
+```
+
+elementwise algebraic operation:
+```{r}
+x <- c(1, 2, 3)
+y <- c(4, 5, 6)
+x*y
+y^x
+```
+
+with unequal length of vectors:
+```{r}
+c(1, 2, 3, 4) + c(1, 2)
+
+2 * c(1, 2, 3)
+
+(1:3)^2
+```
+
+This works but with warning message:
+```{r}
+c(1, 2, 3) + c(1, 2)
+```
+
+functions taking vectors
+```{r}
+sqrt(1:3)
+
+mean(1:6)
+
+sort(c(5, 1, 3, 4, 2))
+```
+
+Example : mean and variance
+
+compare computed mean and variance with built-in functions
+
+```{r}
+x <- c(1.2, 0.9, 0.8, 1, 1.2)
+
+x.mean <- sum(x)/length(x)
+
+x.mean - mean(x) 
+```
+```{r}
+x.var <- sum((x-x.mean)^2)/(length(x)-1)
+x.var - var(x)
+```
+
+
+Example : simple numerical integration
+
+```{r}
+dt <- 0.005
+t <- seq(0, pi/6, by = dt)
+ft <- cos(t)
+(I <- sum(ft) * dt)
+```
+t is a vector and ft is also a vector.
+```{r}
+I - sin(pi/6)
+```
+Note the difference between the numerical integration and theoretical value.
+
+
+Example : exponential limit
+```{r}
+x <- seq(10, 200, by = 10)
+
+y <- (1 + 1/x)^x
+
+exp(1) - y
+```
+```{r}
+plot(x, y)
+```
+
+
+## Matrix example {.smaller}
+
+
+```{r}
+(A <- matrix(1:6, nrow=2, ncol=3, byrow=TRUE))
+```
+```{r}
+A[1, 3] <- 0
+A
+```
+```{r}
+A[, 2:3]
+```
+
+---- 
+
+```{r}
+(B <- diag(c(1,2,3)))
+```
+
+
