@@ -1,6 +1,9 @@
 ---
 title: "Introduction to R"
-output: github_document
+output:
+  pdf_document: default
+  html_document: default
+  github_document: default
 ---
 
 
@@ -172,7 +175,7 @@ c(1, 2, 3, 4) + c(1, 2)
 ```
 
 This works but with warning message:
-```{r}
+```{r, eval=FALSE}
 c(1, 2, 3) + c(1, 2)
 ```
 
@@ -184,8 +187,7 @@ mean(1:6)
 
 sort(c(5, 1, 3, 4, 2))
 ```
-
-Example : mean and variance
+#### Example : mean and variance
 
 compare computed mean and variance with built-in functions
 
@@ -364,13 +366,13 @@ A[, 2:3]
 ```
 
 Matrix operation
-* Usual algebraic operations, including *, act elementwise.
-* To perform matrix operation, we use %*%.
-* nrow(x), ncol(x)
-* det(x) : determinant of x
-* t(x) : transpose of x
-* solve(A, B) : returns x such that A %*% x = B
-* If A is invertable, the solve(A) is the inverse of A.
+* Usual algebraic operations, including ```*```, act elementwise.
+* To perform matrix operation, we use ```%*%```.
+* ```nrow(x)```, ```ncol(x)```
+* ```det(x)``` : determinant of ```x```
+* ```t(x)``` : transpose of ```x```
+* ```solve(A, B)``` : returns ```x``` such that ```A %*% x = B```
+* If ```A``` is invertable, the ```solve(A)``` is the inverse of ```A```.
 
 ```{r}
 A <- matrix(c(3,5,2,3), nrow=2, ncol=2)
@@ -392,8 +394,8 @@ A^(-1)   #This is not an inverse. ^(-1) applies elementwise.
 
 The objects that you create using R remain in existence until you explicitly delete them.
 
-* rm(x) : remove object x
-* rm(list=ls()) : remove all objects
+* ```rm(x)``` : remove object x
+* ```rm(list=ls())``` : remove all objects
 
 
 ### Working directory
@@ -424,11 +426,11 @@ You can use built-in editor in Rgui or Rstudio.
 
 ### Help
 
-To find out more about an R command or function x, you can type help(x) or just ?x.
+To find out more about an R command or function x, you can type ```help(x)``` or just ```?x```.
 
-If you cannot remember the exact name, then help.search("x").
+If you cannot remember the exact name, then ```help.search("x")```.
 
-HTML help command : help.start()
+HTML help command : ```help.start()```
 
 ### package
 
@@ -436,8 +438,9 @@ R provides various useful packages to help you.
 https://cran.r-project.org/web/packages/
 
 To install a package:  
-install.packages("packagename")  
+```install.packages("packagename")```  
 To access the package:  
-library("packagename")
+```library("packagename")```
 
 Or use package menu.
+

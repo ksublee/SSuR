@@ -1,6 +1,9 @@
 ---
 title: "Input and Output"
-output: github_document
+output:
+  github_document: default
+  html_document: default
+  pdf_document: default
 ---
 
 
@@ -9,7 +12,7 @@ output: github_document
 * A string of characters is said to be of mode character.
 * Character strings are denoted by either double quotes " " or single quotes ' '.
 * Strings can be arranged into vectors and matrices just like numbers.
-* We can paste string using ```paste(?€?, sep)```.
+* We can paste string using ```paste(???, sep)```.
 
 ```{r}
 x <- "Citroen SM"
@@ -135,8 +138,8 @@ write(t(x), file = "out.txt", ncolumn=6)
 ### cat for writing to a file
 
 * ```cat``` is more flexible command.
-* ```cat(?€?, file="", sep="", append=FALSE)```
-   * ```?€?``` is a list of expressions (separated by commas) that are coerced into character strings, concatenated, and then written.
+* ```cat(???, file="", sep="", append=FALSE)```
+   * ```???``` is a list of expressions (separated by commas) that are coerced into character strings, concatenated, and then written.
    * ```file``` gives the file to write or append to as a character string.
       * the default ```""``` writes to the screen.
    * ```sep``` is character string that is inserted between objects.

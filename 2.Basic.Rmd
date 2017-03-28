@@ -1,6 +1,9 @@
 ---
 title: "R Basic Programming"
-output: github_document
+output:
+  pdf_document: default
+  html_document: default
+  github_document: default
 ---
 
 
@@ -65,7 +68,6 @@ if (logical_expression_1){
 }
 ```
 
-
 Example : root of quadratic
 ```{r}
 rm(list=ls())
@@ -108,8 +110,8 @@ for (x in x_list) {
   cat("The cumulative total is", sum_x, "\n")
 }
 ```
-* cat() : for concatenate
-* \n : new line
+* ```cat()``` : for concatenate
+* ```\n``` : new line
 
 #### Example : n factorial
 
@@ -121,6 +123,16 @@ for (i in 1:n) {
 }
 show(n_factorial)
 ```
+
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+
+
 
 #### Example : pension	
 
@@ -266,7 +278,7 @@ show(x)
 ### Basic debugging : correcting errors
 
 * To find an error or bug, you need to see how your variables change.
-  * include statements like cat("var=", var, "\n")
+  * include statements like ```cat("var=", var, "\n")```
 
 * dry run : using simple starting conditions for which you know what the answer should be.
   * use short and simple versions of the final program
@@ -301,6 +313,5 @@ show(x)
 * Variable name should be descriptive.
   * Avoid using reserved names of functions
     * for example, t, c and q are all function names in R
-    * check with exists() function
+    * check with ```exists()``` function
 * Use black line to separate sections.
-
