@@ -106,7 +106,6 @@ p2  x[1:2] <- swap(x[1:2])
 p3  x[2:3] <- swap(x[2:3])
 ```
 
-![alt tag]()
 
 ### Scope and its consequences
 
@@ -121,7 +120,18 @@ test <- function(x) {
   return(y)
 }
 test(1)
-y
 ```
+
+```{r}
+test2 <- function(x) {
+  y <- x + z
+  return(y)
+}
+z <- 1
+test2(1)
+z<-2
+test2(1)
+```
+
 
 
