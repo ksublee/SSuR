@@ -72,7 +72,7 @@
 
   </style>
 
-  <link href="data:text/css;charset=utf-8,%2Ecodefont%20pre%20%7B%0Afont%2Dsize%3A%2012px%3B%0Aline%2Dheight%3A%2010px%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
+  <link href="data:text/css;charset=utf-8,%3Cstyle%3E%0A%2Ecolumn%2Dleft%7B%0Afloat%3A%20left%3B%0Awidth%3A%2050%25%3B%0Atext%2Dalign%3A%20left%3B%0A%7D%0A%2Ecolumn%2Dright%7B%0Afloat%3A%20right%3B%0Awidth%3A%2050%25%3B%0Atext%2Dalign%3A%20left%3B%0A%7D%0A%3C%2Fstyle%3E%0A%2Ecodefont%20pre%20%7B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -120,7 +120,7 @@
 <li>Pro/Con: R is slow
 
 <ul>
-<li>Although R can be experienced as slow due to poorly written code, there are multiple packages to improve R?셲 performance: pqR, renjin and FastR, Riposte and many more.</li>
+<li>Although R can be experienced as slow due to poorly written code, there are multiple packages to improve R performance: pqR, renjin and FastR, Riposte and many more.</li>
 </ul></li>
 <li>Con: R has a steep learning curve</li>
 </ul>
@@ -204,7 +204,7 @@ exp(1)</pre>
 
 <ul>
 <li>We can assign a value to a variable and use the variable.</li>
-<li>For the assignment, we use command &lt;-.</li>
+<li>For the assignment, we use command <code>&lt;-</code>.</li>
 <li>Variable names made up of letters, numbers, . or _
 
 <ul>
@@ -226,7 +226,7 @@ exp(1)</pre>
 </article></slide><slide class=''><hgroup><h2>Variable</h2></hgroup><article  id="variable-1" class="smaller">
 
 <div class="columns-2">
-<p>To display the value of a variable x, we type x * or print(x) or show(x).</p>
+<p>To display the value of a variable <code>x</code>, we type <code>x</code> or <code>print(x)</code> or <code>show(x)</code>.</p>
 
 <pre class = 'prettyprint lang-r'>x &lt;- 100
 x</pre>
@@ -269,7 +269,7 @@ n</pre>
 
 <pre class = 'prettyprint lang-r'>?function_name</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+</article></slide><slide class=''><hgroup><h2>Functions(2)</h2></hgroup><article  id="functions2" class="smaller">
 
 <p>Every function has a default order for arguments.<br/>If you provide arguments in this order, then they do not need to be named.</p>
 
@@ -285,11 +285,11 @@ n</pre>
 
 <pre >## [1] 9 7 5 3 1</pre>
 
-</article></slide><slide class=''><hgroup><h2>Vectors</h2></hgroup><article  id="vectors">
+</article></slide><slide class=''><hgroup><h2>Vectors</h2></hgroup><article  id="vectors" class="smaller">
 
 <ul>
-<li>indexed list of variables</li>
-<li>the name of the i-th element of vector x is x[i]</li>
+<li>Vector is an indexed list of variables</li>
+<li>the name of the i-th element of vector <code>x</code> is <code>x[i]</code></li>
 <li>three basic functions for constructing vectors</li>
 </ul>
 
@@ -305,6 +305,9 @@ n</pre>
 
 <pre >##  [1]  3  3  3  3  1  3  5  7  9 11 13 15 17 19</pre>
 
+</article></slide><slide class=''><hgroup><h2>Vectors(2)</h2></hgroup><article  id="vectors2" class="smaller">
+
+<div class="column-left">
 <ul>
 <li>another method for sequence</li>
 </ul>
@@ -329,8 +332,9 @@ n</pre>
 
 x[i]</pre>
 
-<pre >## [1] 100 102 101</pre>
+<pre >## [1] 100 102 101</pre></div>
 
+<div class="column-right">
 <p>minus index:</p>
 
 <pre class = 'prettyprint lang-r'>j &lt;- c(-1, -2, -3)
@@ -340,8 +344,11 @@ x[j]</pre>
 
 <p>empty vetor:</p>
 
-<pre class = 'prettyprint lang-r'>x &lt;- c()</pre>
+<pre class = 'prettyprint lang-r'>x &lt;- c()</pre></div>
 
+</article></slide><slide class=''><hgroup><h2>Vector opreation</h2></hgroup><article  id="vector-opreation" class="smaller">
+
+<div class="columns-2">
 <p>elementwise algebraic operation:</p>
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(1, 2, 3)
@@ -389,16 +396,14 @@ x*y</pre>
 
 <pre class = 'prettyprint lang-r'>sort(c(5, 1, 3, 4, 2))</pre>
 
-<pre >## [1] 1 2 3 4 5</pre>
+<pre >## [1] 1 2 3 4 5</pre></div>
 
-<p>Example : mean and variance</p>
+</article></slide><slide class=''><hgroup><h2>Examples : mean and variance</h2></hgroup><article  id="examples-mean-and-variance" class="smaller">
 
 <p>compare computed mean and variance with built-in functions</p>
 
 <pre class = 'prettyprint lang-r'>x &lt;- c(1.2, 0.9, 0.8, 1, 1.2)
-
 x.mean &lt;- sum(x)/length(x)
-
 x.mean - mean(x) </pre>
 
 <pre >## [1] 0</pre>
@@ -408,7 +413,7 @@ x.var - var(x)</pre>
 
 <pre >## [1] 0</pre>
 
-<p>Example : simple numerical integration</p>
+</article></slide><slide class=''><hgroup><h2>Example : simple numerical integration</h2></hgroup><article  id="example-simple-numerical-integration" class="smaller">
 
 <pre class = 'prettyprint lang-r'>dt &lt;- 0.005
 t &lt;- seq(0, pi/6, by = dt)
@@ -417,7 +422,7 @@ ft &lt;- cos(t)
 
 <pre >## [1] 0.5015486506255458</pre>
 
-<p>t is a vector and ft is also a vector.</p>
+<p><code>t</code> is a vector and <code>ft</code> is also a vector.</p>
 
 <pre class = 'prettyprint lang-r'>I - sin(pi/6)</pre>
 
@@ -425,12 +430,10 @@ ft &lt;- cos(t)
 
 <p>Note the difference between the numerical integration and theoretical value.</p>
 
-<p>Example : exponential limit</p>
+</article></slide><slide class=''><hgroup><h2>Example : exponential limit</h2></hgroup><article  id="example-exponential-limit" class="smaller">
 
 <pre class = 'prettyprint lang-r'>x &lt;- seq(10, 200, by = 10)
-
 y &lt;- (1 + 1/x)^x
-
 exp(1) - y</pre>
 
 <pre >##  [1] 0.124539368359042779 0.064984123314622888 0.043963052588742446
@@ -447,7 +450,9 @@ exp(1) - y</pre>
 
 </article></slide><slide class=''><hgroup><h2>Matrix example</h2></hgroup><article  id="matrix-example" class="smaller">
 
-<pre class = 'prettyprint lang-r'>(A &lt;- matrix(1:6, nrow=2, ncol=3, byrow=TRUE))</pre>
+<div class="columns-2">
+<pre class = 'prettyprint lang-r'>(A &lt;- matrix(1:6, nrow=2, ncol=3, 
+             byrow=TRUE))</pre>
 
 <pre >##      [,1] [,2] [,3]
 ## [1,]    1    2    3
@@ -466,14 +471,12 @@ A</pre>
 ## [1,]    2    0
 ## [2,]    5    6</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
-
 <pre class = 'prettyprint lang-r'>(B &lt;- diag(c(1,2,3)))</pre>
 
 <pre >##      [,1] [,2] [,3]
 ## [1,]    1    0    0
 ## [2,]    0    2    0
-## [3,]    0    0    3</pre></article></slide>
+## [3,]    0    0    3</pre></div></article></slide>
 
 
   <slide class="backdrop"></slide>

@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * Pro: R lingua franca of data science
      + R is developed by statisticians for statisticians who communicate ideas and concepts through R code and packages
 * Pro/Con: R is slow
-     + Although R can be experienced as slow due to poorly written code, there are multiple packages to improve R?€™s performance: pqR, renjin and FastR, Riposte and many more.
+     + Although R can be experienced as slow due to poorly written code, there are multiple packages to improve R performance: pqR, renjin and FastR, Riposte and many more.
 * Con: R has a steep learning curve
 
 <http://www.kdnuggets.com/2015/05/r-vs-python-data-science.html>
@@ -80,7 +80,7 @@ sin(pi/6)
 ## Variable
 
 * We can assign a value to a variable and use the variable.
-* For the assignment, we use command <-.
+* For the assignment, we use command ```<-```.
 * Variable names made up of letters, numbers, . or _
     * provided it starts with a letter, or . then a letter.
     * names are case sensitive.
@@ -92,8 +92,7 @@ sin(pi/6)
 
 ## Variable {.smaller}
 <div class="columns-2">
-To display the value of a variable x, we type x 
-* or print(x) or show(x).
+To display the value of a variable ```x```, we type ```x``` or ```print(x)``` or ```show(x)```.
     
 ```{r}
 x <- 100
@@ -105,6 +104,7 @@ We can show the outcome of assignment by parentheses.
 ```{r}
 (y <- (1+1/x)^x)
 ```
+
 When assigning, the right-hand side is evaluated first, then that value is placed in the variable on the left-hand side.
 ```{r}
 n <- 1
@@ -136,7 +136,7 @@ or
 ?function_name
 ```
 
-----
+## Functions(2) {.smaller}
 
 Every function has a default order for arguments.  
 If you provide arguments in this order, then they do not need to be named.
@@ -150,10 +150,11 @@ seq(to = 9, from = 1)
 seq(by=-2, 9, 1)
 ```
 
-## Vectors
+## Vectors {.smaller}
 
-* indexed list of variables
-* the name of the i-th element of vector x is x[i]
+
+* Vector is an indexed list of variables
+* the name of the i-th element of vector ```x``` is ```x[i]```
 * three basic functions for constructing vectors
 
 ```{r}
@@ -168,6 +169,8 @@ seq(by=-2, 9, 1)
 (z <- c(y, x))
 ```
 
+## Vectors(2) {.smaller}
+<div class="column-left">
 * another method for sequence
 ```{r}
 (x <- 100:110)
@@ -184,7 +187,9 @@ i <- c(1, 3, 2)
 
 x[i]
 ```
+</div>
 
+<div class="column-right">
 minus index:
 ```{r}
 j <- c(-1, -2, -3)
@@ -195,7 +200,12 @@ empty vetor:
 ```{r}
 x <- c()
 ```
+</div>
 
+
+
+## Vector opreation {.smaller}
+<div class="columns-2">
 elementwise algebraic operation:
 ```{r}
 x <- c(1, 2, 3)
@@ -207,11 +217,11 @@ y^x
 with unequal length of vectors:
 ```{r}
 c(1, 2, 3, 4) + c(1, 2)
-
 2 * c(1, 2, 3)
-
 (1:3)^2
 ```
+
+
 
 This works but with warning message:
 ```{r}
@@ -221,21 +231,19 @@ c(1, 2, 3) + c(1, 2)
 functions taking vectors
 ```{r}
 sqrt(1:3)
-
 mean(1:6)
-
 sort(c(5, 1, 3, 4, 2))
 ```
 
-Example : mean and variance
+</div>
+
+## Examples : mean and variance {.smaller}
 
 compare computed mean and variance with built-in functions
 
 ```{r}
 x <- c(1.2, 0.9, 0.8, 1, 1.2)
-
 x.mean <- sum(x)/length(x)
-
 x.mean - mean(x) 
 ```
 ```{r}
@@ -244,7 +252,7 @@ x.var - var(x)
 ```
 
 
-Example : simple numerical integration
+## Example : simple numerical integration {.smaller}
 
 ```{r}
 dt <- 0.005
@@ -252,31 +260,29 @@ t <- seq(0, pi/6, by = dt)
 ft <- cos(t)
 (I <- sum(ft) * dt)
 ```
-t is a vector and ft is also a vector.
+```t``` is a vector and ```ft``` is also a vector.
 ```{r}
 I - sin(pi/6)
 ```
 Note the difference between the numerical integration and theoretical value.
 
 
-Example : exponential limit
+## Example : exponential limit {.smaller}
 ```{r}
 x <- seq(10, 200, by = 10)
-
 y <- (1 + 1/x)^x
-
 exp(1) - y
 ```
 ```{r}
 plot(x, y)
 ```
 
-
 ## Matrix example {.smaller}
 
-
+<div class = "columns-2">
 ```{r}
-(A <- matrix(1:6, nrow=2, ncol=3, byrow=TRUE))
+(A <- matrix(1:6, nrow=2, ncol=3, 
+             byrow=TRUE))
 ```
 ```{r}
 A[1, 3] <- 0
@@ -286,10 +292,8 @@ A
 A[, 2:3]
 ```
 
----- 
-
 ```{r}
 (B <- diag(c(1,2,3)))
 ```
 
-
+</div>
