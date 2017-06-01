@@ -1,9 +1,9 @@
 ---
 title: "More on simulation"
 output:
-  github_document : default
   html_document: default
-  html_notebook: default
+  github_document: default
+  pdf_document: default
 ---
 
 ## Uncorrelated but dependent variables
