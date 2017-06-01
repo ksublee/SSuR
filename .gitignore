@@ -2,5 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-./hw/hw4.nb.html
-./hw/hw4.Rmd
+
+hw/hw4.nb.html
+hw/hw4.Rmd

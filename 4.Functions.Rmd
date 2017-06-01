@@ -27,7 +27,7 @@ name(x1, x2, …)
 the value of this expression is the value of output.
 
 * A function may have more than one ```return``` statement, in which case it stops after executing the first one it reaches.
-* If there is no statement ```return(output)`` then the value returned by the function is the value of the last expression in the braces.
+* If there is no statement ```return(output)``` then the value returned by the function is the value of the last expression in the braces.
 
 * A function always returns a value.
   * For some functions the value returned is unimportant.
