@@ -1,8 +1,8 @@
 ---
 title: "More on simulation"
 output:
-  html_document: default
   github_document: default
+  html_document: default
   pdf_document: default
 ---
 
@@ -42,6 +42,11 @@ x <- seq(-5,5,0.1)
 lines(x, dnorm(x))
 ```
 
+QQ-plot
+
+```{r}
+qqnorm(my_norm_rv)
+```
 
 ## Generate exponential distribution from uniform random variables
 
@@ -79,6 +84,32 @@ larger_12 <- y[y > 12]
 
 (ratio2 <- length(larger_12)/length(larger_8))
 
+```
+
+## t statistics
+
+```{r}
+mu <- 5
+sigma <- 3
+n <- 7     # sample size
+N <- 10000   # simulation number
+t_statistic <- numeric(N)
+
+for (i in 1:N){
+  sample_data <- rnorm(n, mu, sigma)
+  t_statistic[i] <- (mean(sample_data) - mu)/(sd(sample_data)/sqrt(n))
+}
+
+hist(t_statistic, breaks = seq(min(t_statistic),max(t_statistic)+0.2,0.2), probability=T)
+
+x <- seq(-6,6,0.01)
+lines(x, dt(x, n-1))
+```
+
+QQ plot
+
+```{r}
+qqnorm(t_statistic)
 ```
 
 
