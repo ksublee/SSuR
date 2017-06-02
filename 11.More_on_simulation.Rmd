@@ -48,6 +48,7 @@ QQ-plot
 qqnorm(my_norm_rv)
 ```
 
+
 ## Generate exponential distribution from uniform random variables
 
 ```{r}
