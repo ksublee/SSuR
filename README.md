@@ -1,6 +1,12 @@
 # SSuR
 
-Lecture materials for Stochastic simulation course based on the book "Introduction to Scientific Programming and Simulation Using R"
+Lecture materials for "Stochastic Simulation" course.
 
-* Github 내에서 R notebook 파일을 이용하려면 .md 파일을 클릭.
-* ppt 자료는 ppt 폴더에 있음.
+* .md : These are github markdown documents. Unfortunately, currently github markdown does not support LaTex, thus math equations are not rendered.
+
+* .Rmd : R markdown documents written in Rstudio. Students can download .Rmd files and modify or knit to html or save as pdf files.
+
+* ppt : power point files. Previously, the lecture was based on ppt files but I plan to use markdown documents in the class. 
+
+
+These materials are based on the book [Introduction to Scientific Programming and Simulation Using R](https://www.amazon.com/Introduction-Scientific-Programming-Simulation-Chapman/dp/1420068725)
