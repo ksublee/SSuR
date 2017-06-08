@@ -20,7 +20,7 @@ For arithmetic calculations:
 ```{r}
 17%/%5
 ```
-[1] implies this is item 1 in a vector of output.
+```[1]``` implies this is item 1 in a vector of output.
 
 
 symbol | meaning
@@ -36,7 +36,7 @@ symbol | meaning
 ### Built-in function in R
 
 R has a number of built in functions:  
-sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x), ???
+```sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x)```
 
 ```{r}
 exp(1)
@@ -50,7 +50,7 @@ sin(pi/6)
 
 * We can assign a value to a variable and use the variable.
 
-* For the assignment, we use command <-
+* For the assignment, we use command ```<-```
 
 * Variable names made up of letters, numbers, . or _
 
@@ -61,8 +61,9 @@ sin(pi/6)
   * wrong name:
     * 2016_income, .1grade, _x, y@gmail.com
     
-To display the value of a variable x, we type x 
-* or print(x) or show(x).
+To display the value of a variable ```x```, we type ```x``` 
+
+* or ```print(x)``` or ```show(x)```.
 ```{r}
 x <- 100
 x
@@ -84,7 +85,7 @@ n <- n+1
 n
 ```
 
-R allows the use of = for variable assignment, in common with most programming languages.
+R allows the use of ```=``` for variable assignment, in common with most programming languages.
 
 ### Functions
 
@@ -97,7 +98,7 @@ seq(from = 1, to = 9, by =2)
 seq(from = 1, to = 9)
 ```
 
-You can access the built-in help by help(function name) or ?function name:
+You can access the built-in help by ```help(function name)``` or ```?function name```:
 
 Every function has a default order for arguments.  
 If you provide arguments in this order, then they do not need to be named.
@@ -114,7 +115,7 @@ seq(by=-2, 9, 1)
 ### Vectors
 
 * indexed list of variables
-* the name of the i-th element of vector x is x[i]
+* the name of the i-th element of vector ```x``` is ```x[i]```
 * three basic functions for constructing vectors
 
 ```{r}
@@ -212,7 +213,9 @@ t <- seq(0, pi/6, by = dt)
 ft <- cos(t)
 (I <- sum(ft) * dt)
 ```
-t is a vector and ft is also a vector.
+
+```t``` is a vector and ```ft``` is also a vector.
+
 ```{r}
 I - sin(pi/6)
 ```
@@ -233,7 +236,7 @@ plot(x, y)
 
 ### Missing data
 
-in R, missing data is represented by NA.
+in R, missing data is represented by ```NA```.
 
 ```{r}
 a <- NA   # assign NA to variable A
@@ -268,7 +271,7 @@ mean(c(1,2,3))
 1 > 2
 ```
 
-If the evaluation of the expression is saved using <-, then it called an assignment.
+If the evaluation of the expression is saved using ```<-```, then it called an assignment.
 ```{r}
 x1 <- seq(10, 20, by=3)
 ```
@@ -277,12 +280,16 @@ x2 <- 1>2
 ```
 
 A logical expression is formed using 
+
 * the comparison operators 
-  * <, >, <=, >=, ==, and != (not equal to)
+  * ```<```, ```>```, ```<=```, ```>=```, ```==```, and ```!=``` (not equal to)
+
 * and the logical operators 
-  * & (and), | (or), and ! (not).
-The value of a logical expression is either TRUE or FALSE.
-* The integers 1 and 0 can also be used as TRUE or FALSE.
+  * ```&``` (and), ```|``` (or), and ```!``` (not).
+
+The value of a logical expression is either ```TRUE``` or ```FALSE```.
+
+* The integers 1 and 0 can also be used as ```TRUE``` or ```FALSE```.
 ```{r}
 c(0, 0, 1, 1) | c(0, 1, 0, 1)
 ```
@@ -309,7 +316,7 @@ x[x >2]
 subset(x, subset = x>2 )
 ```
 
-For the index position of TRUE elements, use which(x)
+For the index position of TRUE elements, use ```which(x)````
 ```{r}
 x <- c(1, 1, 2, 3, 5, 8, 13)
 which(x%%2 == 0)
@@ -335,17 +342,19 @@ all.equal(sqrt(2)*sqrt(2), 2)
 
 Matrix is created from a vector using the function matrix:
 
-* matrix( data, nrow =1, ncol=1, byrow=TRUE )
-  * data : vector of length at most nrow*ncol
+* ```matrix( data, nrow =1, ncol=1, byrow=TRUE )```
+  * ```data``` : vector of length at most nrow*ncol
     * if length of vector< nrow*ncol, then data is reused as many times as is needed
-  * nrow : number of rows
-  * ncol : number of columns
-  * byrow = TRUE : fill the matrix up row-by-row
-  * byrow = FALSE : fill the matrix up column-by-column, default
+  * ```nrow``` : number of rows
+  * ```ncol``` : number of columns
+  * ```byrow = TRUE``` : fill the matrix up row-by-row
+  * ```byrow = FALSE``` : fill the matrix up column-by-column, default
 
-diag(x) : create diagonal matrix
-rbind(...) : join matrices with rows of the same length
-cbind(...) : join matrices with columns of the same length
+* ```diag(x)``` : create diagonal matrix
+
+* ```rbind(...)``` : join matrices with rows of the same length
+
+* ```cbind(...)``` : join matrices with columns of the same length
 
 
 Exampe:
@@ -366,13 +375,21 @@ A[, 2:3]
 ```
 
 Matrix operation
-* Usual algebraic operations, including ```*```, act elementwise.
-* To perform matrix operation, we use ```%*%```.
-* ```nrow(x)```, ```ncol(x)```
-* ```det(x)``` : determinant of ```x```
-* ```t(x)``` : transpose of ```x```
-* ```solve(A, B)``` : returns ```x``` such that ```A %*% x = B```
-* If ```A``` is invertable, the ```solve(A)``` is the inverse of ```A```.
+
+* Usual algebraic operations, including ```*```, act elementwise. 
+
+* To perform matrix operation, we use ```%*%```. 
+
+* ```nrow(x)```, ```ncol(x)```    
+
+* ```det(x)``` : determinant of ```x```    
+
+* ```t(x)``` : transpose of ```x```    
+
+* ```solve(A, B)``` : returns ```x``` such that ```A %*% x = B```    
+
+* If ```A``` is invertable, the ```solve(A)``` is the inverse of ```A```.    
+
 
 ```{r}
 A <- matrix(c(3,5,2,3), nrow=2, ncol=2)
@@ -394,7 +411,8 @@ A^(-1)   #This is not an inverse. ^(-1) applies elementwise.
 
 The objects that you create using R remain in existence until you explicitly delete them.
 
-* ```rm(x)``` : remove object x
+* ```rm(x)``` : remove object ```x```
+
 * ```rm(list=ls())``` : remove all objects
 
 
@@ -419,10 +437,12 @@ setwd("dir")
 ### Writing script
 
 We can type and evaluate all possible R expression at the prompt, it is much more convenient to write scripts,
+
 * which simply comprise collections of R expression.
+
 * We use the terms program and code synonymously with script.
-You can use built-in editor in Rgui or Rstudio.
-* or text-editor like Tinn-R, emacs
+
+You can use built-in editor in Rgui or Rstudio.    
 
 ### Help
 
@@ -435,12 +455,17 @@ HTML help command : ```help.start()```
 ### package
 
 R provides various useful packages to help you.
+
 https://cran.r-project.org/web/packages/
 
 To install a package:  
+
 ```install.packages("packagename")```  
+
 To access the package:  
+
 ```library("packagename")```
 
 Or use package menu.
 
+R documentation : https://www.rdocumentation.org/
