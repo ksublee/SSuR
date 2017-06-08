@@ -91,4 +91,188 @@ read.table(file, header=FALSE, sep="")
 
 ### Header
 
+* If a header is present, it is used to name the columns of the dataframe.    
+* You can assign your own column names after reading the dataframe (using the ```names``` function).    
+* Or when you read it in, using the ```col.names``` argument,
+    * which should be assigned a character vector the same lengths of the column number.
+* If there is no head and no ```col.names``` argument, then R uses the names "V1", "V2", etc.
+
+### read csv file
+
+* ufc.csv is comma separated and there is a header line.
+
+```{r, eval=FALSE}
+ufc <- read.csv("the path of ufc.csv")
+```
+
+```{r, echo=FALSE}
+ufc <- read.csv("./data/ufc.csv")
+```
+
+* head and tail to examine the object
+
+```{r}
+head(ufc)
+```
+
+```{r}
+tail(ufc)
+```
+
+* Each column has a unique name and we can extract that variable by means of names using ```$```.
+
+```{r}
+x <- ufc$height.m
+x[1:5]
+```
+
+### accessing element in data.frame
+
+* We can use ```[[?]]``` to extract columns.
+    * ```ufc$height.m```,  ```ufc[[5]]``` and ```ufc[["height.m"]]``` are all equivalent.
+    
+
+* You can extract the elements of a dataframe directly using matrix indexing.
+
+```{r}
+ufc[1:5, 5]
+```
+
+* To select more than one of the variables in a dataframe, we use ```[?]```.
+    * ```ufc[4:5]``` is equivalent to ```ufc[c("dbh.cm", "height.m")]```.
+
+```{r}
+diam.height <- ufc[4:5]    
+diam.height[1:5, ]
+```
+```{r}
+is.data.frame(diam.height)
+```
+
+* Selectin a column using ```[[?]]``` preserves the mode of the object that is being extracted.
+
+* Whereas, ```[?]``` keeps the mode of the object from which the extraction is being made.
+
+```{r}
+mode(ufc)
+```
+
+```{r}
+mode(ufc[5])
+```
+
+```{r}
+mode(ufc[[5]])
+```
+
+http://r4ds.had.co.nz/vectors.html
+
+### creating data.frame and adding column
+
+* construct a dataframe from a collection of vectors or dataframes
+
+```{r, eval=FALSE}
+data.frame(col1=x1, col2=x2, ¡¦, df1, df2, ¡¦)
+```
+
+* ```col1``` and ```col2``` are column names
+
+* ```x1``` and ```x2``` are vectors of equal lengths
+
+* ```df1``` and ```df2``` are dataframes whose columns must be the same length with ```x1```, ```x2```
+
+* create a new variable within a dataframe, by naming it and assigning it a value.
+
+```{r}
+ufc$volume.m3 <- pi*(ufc$dbh.cm/200)^2*ufc$height/2
+mean(ufc$volume.m3)
+```
+
+### name of column
+
+* ```name(df)``` return the names of the dataframe ```df```.
+
+* To change the names of ```df``` you pass a vector of strings to ```names(df)```.
+
+```{r}
+(ufc.names <- names(ufc))
+```
+
+```{r}
+names(ufc) <- c("P", "T", "S", "D", "H", "V")
+names(ufc)
+```
+
+```{r}
+names(ufc) <- ufc.names
+```
+
+### subset
+
+* ```subset``` is a convenient tool for selecting rows of dataframe.
+    * ```x %in% y``` returns a logical vector whose i-th element is ```TRUE``` if ```x[i]``` is in ```y```.
+
+
+```{r}
+fir.height <- subset(ufc, subset=species %in% c("DF", "GF"), select = c(plot, tree, height.m))
+head(fir.height)
+```
+
+### write a dataframe
+
+```{r, eval=FALSE}
+wirte.table(x, file="", append=FALSE, sep=" ", row.names=TRUE, col.names=TRUE)
+```
+
+* ```x``` is a dataframe to be written.    
+* ```file``` is the address of the file to write to.    
+* ```append``` indicates whether or not to append.    
+* ```sep``` is the character used to separate the values.    
+* ```row.name``` indicates whether or not to include the row names as the first column.    
+* ```col.names``` indicates whether or not to include the column names as the first row.   
+
+## List
+
+* We have seen that a vector is an indexed set of objects.
+
+* All the elements of a vector to be the same type ??? numeric, character or logical ??? which is called the mode of the vector.
+
+* List is an indexed set of objects, but the element of a list can be of different type, including other list.
+    * The mode of a list is list.
+
+* A list is created using the ```list(¡¦)``` command, with comma separated arguments.
+
+* Single square brackets ```[ ]``` are used to select a sublist.
+
+* Double square brackets ```[[ ]]``` are used to extract a single element.
+
+### Example
+
+```{r}
+(my.list <- list("one", TRUE, 3, c("f", "o", "u", "r")))
+```
+
+```{r}
+my.list[[2]]
+```
+
+```{r}
+mode(my.list[[2]])
+```
+
+```{r}
+my.list[2]
+```
+
+```{r}
+mode(my.list[2])
+```
+
+```{r}
+my.list[[4]][1]
+```
+
+```{r}
+my.list[4][1]
+```
 

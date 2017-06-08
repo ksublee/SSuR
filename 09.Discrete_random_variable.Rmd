@@ -205,10 +205,6 @@ plot(x, pmf, 'h')
 
 #### Example
 
-* Suppose that items on a manufacturing line each have a probability 0.01 of being faulty.
-
-* If you test a randomly selected sample of ?‘? items, how large does ?‘? have to be to have a 95% chance of having a faulty item in the sample?
-
 * What is the probability that a thousand randomly selected items will have less than 20 failures?
 
 ```{r}
