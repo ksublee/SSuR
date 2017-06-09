@@ -385,3 +385,4 @@ lapply(ufc[4:6], mean)   # return a list
 sapply(ufc[4:6], mean)   # return a vector
 ```
 
+More about apply : http://adv-r.had.co.nz/Functional-programming.html
