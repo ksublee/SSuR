@@ -276,3 +276,112 @@ my.list[[4]][1]
 my.list[4][1]
 ```
 
+* When displaying a list, 
+
+* R uses double brackets ```[[1]], [[2]], etc.```, to indicate list elements, 
+
+* then single brackets ```[1], [2], etc.```, to indicate vector elements.
+
+
+### name of elements of list
+
+The element of a list can be named when the list is created.
+
+```{r}
+my.list <- list(first = "one", second=TRUE, third=3, fourth = c("f", "o", "u", "r"))
+names(my.list)
+```
+
+```{r}
+my.list$second
+```
+
+
+The element of a list can be named by names ```attribute```.
+
+```{r}
+names(my.list) <- c("Fi", "Se", "Th", "Fo")
+my.list$Se     
+```
+
+```{r}
+my.list$"Se"
+```
+
+```{r}
+my.list[["Se"]]
+```
+
+
+### list as output of function
+
+* Many functions produce list object as their ouput.
+
+* For example, when fit a least squares regression, the regression object itself is a list, 
+
+* and can manipulated using list operations.
+
+```{r}
+lm.xy <- lm(y~x, data=data.frame(x=1:5, y=1:5))
+mode(lm.xy)
+```
+```{r}
+names(lm.xy)
+```
+* ```str``` can be used to summarize a list or dataframe : ```str(lm.xy)```
+
+## apply family
+
+* R has several functions that allow you to easily apply a function to all or selected elements of a list or dataframe.
+
+* ```tapply``` allows us to vectorise the application of a function to subsets of data.
+
+```{r, eval=FALSE}
+tapply(X, INDEX, FUN, ¡¦)
+```
+
+* ```X``` : target vector to be applied.
+
+* ```INDEX``` : a factor, the same length as ```X```, used to group the elements. (If ```INDEX``` is not a factor, then it will be automatically converted to a factor.)
+
+* ```FUN``` : a function to be applied. It is applied to subvectors of ```X``` corresponding to a single level of ```INDEX```.
+
+https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/tapply
+
+### tapply example
+
+Using ```tapply``` we obtain average height group by species as follows:
+
+```{r}
+tapply(ufc$height.m, ufc$species, mean)
+```
+
+To round the results:
+
+```{r}
+round(tapply(ufc$height.m, ufc$species, mean), digits=1)
+```
+
+To find out how many samples we have of each species:
+
+```{r}
+tapply(ufc$species, ufc$species, length)
+```
+
+### lapply and sapply
+
+* ```lapply(X, FUN, ¡¦)``` applies the function ```FUN``` to each element of the list ```X``` and returns a list.
+
+* ```sapply(X, FUN, ¡¦)``` applies the function ```FUN``` to each element of ```X```, which can be a list or a vector, 
+and by default will try to return the results in a vector or a matrix, if this make sense, otherwise in a list.
+
+
+To obtain the mean diameter, height, and volume of trees:
+
+```{r}
+lapply(ufc[4:6], mean)   # return a list
+```
+```{r}
+sapply(ufc[4:6], mean)   # return a vector
+```
+
