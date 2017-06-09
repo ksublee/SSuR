@@ -11,12 +11,12 @@ Lecture materials for "Stochastic Simulation" course.
 
 These materials are based on the book [Introduction to Scientific Programming and Simulation Using R](https://www.amazon.com/Introduction-Scientific-Programming-Simulation-Chapman/dp/1420068725)
 
-Useful link to learn R:
+Useful links to learn R:
 
 * Online R documentation : https://www.rdocumentation.org/
 
 * Datacamp to learn R and Python : https://www.datacamp.com/
 
-* R for DataScience book : http://r4ds.had.co.nz/
+* R for Data Science book : http://r4ds.had.co.nz/
 
 * Advanced R book : http://adv-r.had.co.nz/
