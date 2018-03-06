@@ -2,8 +2,6 @@
 title: "Introduction to R"
 output:
   github_document: default
-  html_document: default
-  pdf_document: default
 ---
 
 
@@ -114,9 +112,12 @@ seq(by=-2, 9, 1)
 
 ### Vectors
 
+* the basic data structure in R
 * indexed list of variables
 * the name of the i-th element of vector ```x``` is ```x[i]```
 * three basic functions for constructing vectors
+* the types of all elements of an atomic vector should be the same
+
 
 ```{r}
 (x <- seq(1, 20, by = 2))
@@ -151,6 +152,11 @@ minus index:
 ```{r}
 j <- c(-1, -2, -3)
 x[j]
+```
+
+but you can't mix positive and negative index, the following code is erroneous.
+```{r, eval=FALSE}
+x[c(-1, 2)]
 ```
 
 empty vetor:
@@ -188,6 +194,35 @@ mean(1:6)
 
 sort(c(5, 1, 3, 4, 2))
 ```
+
+logical vector
+```{r}
+c(TRUE, FALSE, T, F)
+```
+
+character vector
+```{r}
+c("a", "vector", "of", "characters")
+```
+
+integer vector
+```{r}
+c(1L, 2L, 3L, 4L)
+```
+
+
+#### Coercion
+
+If we try to combine differet types of elements in a vector, they will be coerced to the most flexible type.
+  * logical, integer, double, character
+```{r}
+c("a", 1)
+```
+```{r}
+c(TRUE, FALSE, 0)
+```
+
+
 #### Example : mean and variance
 
 compare computed mean and variance with built-in functions
@@ -254,6 +289,22 @@ mean(a)
 mean(a, na.rm = TRUE) #NAs can be removed
 ```
 
+```NA``` is logical 
+```{r}
+typeof(NA)
+```
+and can be coerced to numeric, or integer, or charactor
+
+```{r}
+x <- c(NA, 10)
+typeof(x[1])
+```
+```{r}
+y <- c(NA, "abc")
+typeof(y[1])
+```
+
+
 ### Expression and assignment
 
 Expression is a phrase of code that can be executed.
@@ -296,6 +347,10 @@ c(0, 0, 1, 1) | c(0, 1, 0, 1)
 
 ### x[subset]
 
+R's subsetting operators are powerful and fast.
+
+Subsetting is hard to learn.
+
 We can extract a subvector using a subset as a vector of TRUE/FALSE.
 
 ```{r}
@@ -306,8 +361,8 @@ x%%4 == 0
 ( y <- x[ x%%4==0 ] )
 ```
 
-R also provide subset function, which ignore NA.
-* whereas x[subset] preserve NA.
+R also provide subset function, which ignore ```NA```.
+* whereas ```x[subset]``` preserve ```NA```.
 ```{r}
 x <- c(1, NA, 3, 4)
 x[x >2]
@@ -322,7 +377,22 @@ x <- c(1, 1, 2, 3, 5, 8, 13)
 which(x%%2 == 0)
 ```
 
-Example : rounding error
+Explore more about subsetting:
+```{r}
+x <- c(2.1, 4.2, 3.3, 5.4)
+```
+```{r}
+x[c(TRUE,FALSE,TRUE,FALSE)]
+```
+```{r}
+x[x>3]
+```
+```{r}
+x[order(x)]
+```
+
+
+#### Example : rounding error
 
 Many floating numbers are subject to rounding errors in digital computers.
 ```{r}
@@ -338,13 +408,28 @@ all.equal(sqrt(2)*sqrt(2), 2)
 ```
 
 
+### Names
+
+You can name a vector:
+```{r}
+(x <- c(a=1, b=2, c=3))
+```
+```{r}
+y <- 1:3
+names(y) <- c("first", "second", "third")
+y
+```
+
+
+
+
 ### Matrix
 
 Matrix is created from a vector using the function matrix:
 
 * ```matrix( data, nrow =1, ncol=1, byrow=TRUE )```
-  * ```data``` : vector of length at most nrow*ncol
-    * if length of vector< nrow*ncol, then data is reused as many times as is needed
+  * ```data``` : vector of length at most ```nrow*ncol```
+    * if length of vector < nrow*ncol, then data is reused as many times as is needed
   * ```nrow``` : number of rows
   * ```ncol``` : number of columns
   * ```byrow = TRUE``` : fill the matrix up row-by-row
@@ -357,7 +442,7 @@ Matrix is created from a vector using the function matrix:
 * ```cbind(...)``` : join matrices with columns of the same length
 
 
-Exampe:
+Example:
 ```{r}
 (A <- matrix(1:6, nrow=2, ncol=3, byrow=TRUE))
 ```
@@ -406,6 +491,47 @@ A %*% A.inv   # we observe rounding error
 A^(-1)   #This is not an inverse. ^(-1) applies elementwise.
 ```
 
+```cbind()``` : Combine R objects by columns
+```rbind()``` : Combine R objects by rows
+
+```{r}
+(C <- cbind(A,B))
+```
+```{r}
+(D <- rbind(A,B))
+```
+```{r}
+colnames(C) <- c("a", "b", "c", "d")
+C
+```
+
+```{r}
+rownames(C) <- c("first", "second")
+C
+```
+
+```{r}
+# number of rows
+nrow(C)
+```
+```{r}
+# number of columns
+ncol(C)
+```
+#### Subsetting of matrix
+
+select columns:
+```{r}
+(partC1 <- C[,c(1,2)])
+```
+select rows:
+```{r}
+(partC2 <- C[1,])
+```
+Or, in a combined way:
+```{r}
+(partC <- C[1,c(2,3)])
+```
 
 ### Workspace
 
