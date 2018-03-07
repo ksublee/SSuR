@@ -10,9 +10,11 @@ output:
 
 Functions are a fundamental building block of R.
 
+A function is an object in R that takes some input objects (called arguments) and returns an ouput object.
+
 A function has a form:
 ```{r, eval=FALSE}
-name <- function(argument_1, argument_2, ...) {
+function_name <- function(argument_1, argument_2, ...) {
   expression_1
   expression_2
   ...
@@ -24,7 +26,7 @@ name <- function(argument_1, argument_2, ...) {
 
 To call or run the function we type:
 ```{r, eval=FALSE}
-name(x1, x2, ?€?)
+function_name(x1, x2, ...)
 ```
 the value of this expression is the value of output.
 
@@ -39,6 +41,35 @@ the value of this expression is the value of output.
 * The most important advantage of using a function is that once it is loaded, it can be used again and again without having to reload it.
 
 * The second most important use of functions is to break down a programming task into smaller logical units.
+
+All work in R is done by functions.
+For example, we have
+```{r}
+animals <- c("cow", "dog", "cat", "pig")
+```
+and you want 
+```{r, eval=F}
+animals[4] <- "duck"
+```
+This is equivalent to
+```{r}
+`[<-`(animals, 4, "duck")
+```
+In practice, we do not use the above expression, but it is useful to know that every operation in R is a function.
+
+Other example:
+```{r}
+x <- 3
+y <- 4
+# functional form of arithmetic expression
+`+`(x,y)
+```
+```{r}
+# functional form of if-then expression
+`if`(x >y, "x is larger than y", "y is larger than x")
+```
+
+
 
 #### Example : Find zeros of ```a2*x^2+a1*x+a0=0```
 
