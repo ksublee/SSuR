@@ -33,7 +33,8 @@ If you type:
 
 ```{r, eval=FALSE}
 if (logical_expression) {	 
-  expression_1  
+  expression_1
+}
 else {  
   expression_2  
 }  
