@@ -8,6 +8,8 @@ output:
 
 ### Functions
 
+Functions are a fundamental building block of R.
+
 A function has a form:
 ```{r, eval=FALSE}
 name <- function(argument_1, argument_2, ...) {
@@ -22,7 +24,7 @@ name <- function(argument_1, argument_2, ...) {
 
 To call or run the function we type:
 ```{r, eval=FALSE}
-name(x1, x2, â€¦)
+name(x1, x2, ?€?)
 ```
 the value of this expression is the value of output.
 
@@ -81,7 +83,7 @@ n_choose_r <- function(n, r) {
 
 
 #### Example : Winsorised mean
-k-th Winsorised mean of x={x1, â€¦, xn} is defined as
+k-th Winsorised mean of x={x1, ?€?, xn} is defined as
 $$ w_k =\frac{(k+1)x_{k+1} + x_{k+2} + \cdots + x_{n-k+1} + (k+1)x_{n-k}}{n} $$
 ```{r}
 wmean <- function(x, k) {
@@ -162,7 +164,7 @@ test3(y=2, z=2)
    * apply function ```FUN``` to every element of vector ```X```.
    
    
-#### Example : Density of primes â€“ sapply
+#### Example : Density of primes ?€? sapply
  
 * Let $\rho(n)$ be the number of primes less than or equal to n
 * Then
