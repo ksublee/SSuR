@@ -49,6 +49,7 @@ sin(pi/6)
 * We can assign a value to a variable and use the variable.
 
 * For the assignment, we use command ```<-```
+  * Usually, this is pronounced as "gets".
 
 * Variable names made up of letters, numbers, . or _
 
@@ -84,6 +85,13 @@ n
 ```
 
 R allows the use of ```=``` for variable assignment, in common with most programming languages.
+
+The following also works.
+```{r}
+3 -> three
+three
+```
+
 
 ### Functions
 
@@ -240,7 +248,7 @@ x.var - var(x)
 ```
 
 
-Example : simple numerical integration
+#### Example : simple numerical integration
 
 ```{r}
 dt <- 0.005
@@ -257,7 +265,8 @@ I - sin(pi/6)
 Note the difference between the numerical integration and theoretical value.
 
 
-Example : exponential limit
+#### Example : exponential limit
+
 ```{r}
 x <- seq(10, 200, by = 10)
 
