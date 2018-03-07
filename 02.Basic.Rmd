@@ -62,14 +62,15 @@ if (logical_expression_1){
 ```{r, eval=FALSE}
 if (logical_expression_1){   
   expression_1   
-} elseif (logical_expression_2){   
+} else if (logical_expression_2){   
   expression_2   
 } else {   
   expression_3   
 }
 ```
 
-Example : root of quadratic
+#### Example : root of quadratic
+
 ```{r}
 rm(list=ls())
 
@@ -96,7 +97,7 @@ for (x in vector) {
 }
 ```
 
-where x is a simple variable.
+where ```x``` is a simple variable.
 
 #### Example : summing a vector
 
@@ -182,10 +183,10 @@ while (logical_expression) {
   ...   
 }
 ```
-* logical_expression is evaluated first.
-* If it is TRUE, then the expression in { } is executed.
+* ```logical_expression``` is evaluated first.
+* If it is ```TRUE```, then the expression in ```{ }``` is executed.
   * back to the start of the command.
-* If logical_expression is FALSE, the loop stop.
+* If ```logical_expression``` is ```FALSE```, the loop stop.
 
 * We can always rewrite a for loop as a while loop.
 
@@ -239,20 +240,20 @@ Alternatively, using vector operations:
 sum((1:n)^2)
 ```
 
-The ifelse function performs elementwise conditional evaluation upon a vector.
+The ```ifelse``` function performs elementwise conditional evaluation upon a vector.
 
-* ifelse(test, A, B)
-  * test : logical expression
+* ```ifelse(test, A, B)```
+  * ```test``` : logical expression
   * returns a vector consist of
-    * A : when element of test are true
-    * B : when element of test are true
+    * ```A``` : when element of test are true
+    * ```B``` : when element of test are true
 
 ```{r}
 x <- c(-2, -1, 1, 2)
 ifelse( x>0, "Positive", "Negative")
 ```
 
-pmin and pmax:  
+```pmin``` and ```pmax```:  
 vectorised versions of the minimum and maximum
 
 ```{r}
@@ -313,6 +314,6 @@ show(x)
 * Write comments.
 * Variable name should be descriptive.
   * Avoid using reserved names of functions
-    * for example, t, c and q are all function names in R
+    * for example, ```t```, ```c``` and ```q``` are all function names in R
     * check with ```exists()``` function
 * Use black line to separate sections.
