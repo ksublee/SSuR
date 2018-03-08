@@ -24,9 +24,9 @@ if (logical_expression) {
 }  
 ```
 
-If logical_expression is TRUE then the first group of expression is executed and the second group of expression is not executed.
+If ```logical_expression``` is ```TRUE``` then the first group of expression is executed and the second group of expression is not executed.
 
-Conversely if logical_expression is FALSE then only the second group expression is executed.
+Conversely if ```logical_expression``` is ```FALSE``` then only the second group expression is executed.
 
 
 If you type:   
@@ -125,14 +125,6 @@ for (i in 1:n) {
 }
 show(n_factorial)
 ```
-
----
-title: "R Notebook"
-output: html_notebook
----
-
-
-
 
 
 

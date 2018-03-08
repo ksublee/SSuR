@@ -52,7 +52,6 @@ sin(pi/6)
   * Usually, this is pronounced as "gets".
 
 * Variable names made up of letters, numbers, . or _
-
   * provided it starts with a letter, or . then a letter.
   * names are case sensitive.
   * for example,
@@ -80,7 +79,7 @@ We can show the outcome of assignment by parentheses.
 When assigning, the right-hand side is evaluated first, then that value is placed in the variable on the left-hand side.
 ```{r}
 n <- 1
-n <- n+1
+n <- n + 1
 n
 ```
 
