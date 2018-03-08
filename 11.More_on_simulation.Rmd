@@ -1,9 +1,6 @@
 ---
 title: "More on simulation"
-output:
-  github_document: default
-  html_document: default
-  pdf_document: default
+output: github_document
 ---
 
 ## Uncorrelated but dependent variables
@@ -22,7 +19,9 @@ cor(X,Y)   # correlation coefficient is almost 0
 plot(X,Y, cex=0.1) # check scatter plot
 ```
 
-## Generate normal distribution from uniform random variables
+## Inversion method
+
+### Generate normal distribution from uniform random variables
 
 
 Using inverse normal cdf, we can simple generate a normal distribution from uniform distribution.
@@ -49,7 +48,7 @@ qqnorm(my_norm_rv)
 ```
 
 
-## Generate exponential distribution from uniform random variables
+### Generate exponential distribution from uniform random variables
 
 ```{r}
 Nsim <- 10000       #number of random variables
@@ -60,6 +59,55 @@ par(mfrow=c(1,2))   #plots
 hist(X,freq=F,main="Exp from Uniform")
 hist(Y,freq=F,main="Exp from R")
 ```
+
+
+## Box-Muller algorithm to generate normal
+
+Generate two normals from two unifroms
+
+In the following, ```X1``` and ```X2``` follows independent normal distributions.
+
+```{r}
+Nsim <- 10000
+U1 <- runif(Nsim)   #uniform1
+U2 <- runif(Nsim)   #uniform2
+X1 <- sqrt(-2*log(U1))*cos(2*pi*U2)
+X2 <- sqrt(-2*log(U1))*sin(2*pi*U2)
+
+par(mfrow=c(1,2))
+x <- seq(-5,5,0.1)
+hist(X1, breaks = seq(-5,5,0.2), freq=F)
+lines(x, dnorm(x), col='red')
+
+hist(X2, breaks = seq(-5,5,0.2), freq=F)
+lines(x, dnorm(x), col='red')
+```
+
+## Rejection method
+
+Suppose that pdf $f$ is non-zero only on $[a,b]$ and $f<k$.
+
+* Generate $X \sim U(a,b)$ and $Y \sim U(0,k)$ independet of $X$
+
+* If $Y < f(X)$ then return $X$, otherwise go back to the previous step.
+
+### Example
+Suppose that pdf $f$ is a $\sin$ function.
+
+$$f(x) = 0.5*sin(x),  x \in [0,\pi]$$
+```{r}
+NSim <- 10000
+X <- runif(NSim, 0, pi)
+Y <- runif(NSim)
+Z <- X[0.5*sin(X) > Y ]
+hist(Z, breaks = 40, freq=F)
+x <- seq(0, pi, 0.001)
+y <- 0.5*sin(x)
+lines(x, y, col='red')
+
+```
+
+
 
 
 ## Memoryless property
@@ -86,6 +134,33 @@ larger_12 <- y[y > 12]
 (ratio2 <- length(larger_12)/length(larger_8))
 
 ```
+
+## Generating t distribution from normal distributions
+
+* Student t random variable with d.f. $\nu$ can be reperesented by
+
+     <img src="./11.More_on_simulation_files/figure-markdown_github/t.png" width="200">
+
+where
+
+* $Z$ is a standard normal r.v.
+* $V$ is a chi-square r.v. with d.f. $\nu$
+* $Z$ and $V$ are independent
+
+```{r}
+Nsim <- 10000
+nu <- 10
+Z <- rnorm(Nsim)
+V <- rnorm(Nsim)^2
+for (i in 2:nu) V <- V+rnorm(Nsim)^2
+Trv <- Z * sqrt(nu/V)
+
+Y <- rt(Nsim, df=nu)     #t random variable from R
+par(mfrow=c(1,2))   #plots
+hist(Trv, breaks = seq(-10,10,0.2), freq=F, main="T from normal")
+hist(Y, breaks = seq(-10,10,0.2), freq=F, main="T from R")
+```
+
 
 ## t statistics
 
