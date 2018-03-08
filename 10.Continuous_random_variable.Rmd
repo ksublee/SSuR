@@ -11,33 +11,33 @@ Some of the discrete distributions provided by R, together with the names of the
 
 Distribution | R name (dist) | Paramter names
 ------ | -------- | --------
-Uniform | unif | min=0, max=1
-Exponential | exp | rate=1
-chi-square | chisq | df
-Gamma | gamma | shape, rate=1
-Normal | norm | mean=0, sd=1
-t | t | df
-Weibull | weibull | shape, scale=1
+Uniform | ```unif``` | ```min=0, max=1```
+Exponential | ```exp``` | ```rate=1```
+chi-square | ```chisq``` | ```df```
+Gamma | ```gamma``` | ```shape, rate=1```
+Normal | ```norm``` | ```mean=0, sd=1```
+t | ```t``` | ```df```
+Weibull | ```weibull``` | ```shape, scale=1```
 
 ## Uniform distribution
 
-* If the probability that X lies in a given subinterval of [a,b] depends only on the length of the subinterval and not on its location,
+* If the probability that $X$ lies in a given subinterval of $[a,b]$ depends only on the length of the subinterval and not on its location,
 
-* then X is said to have a uniform distribution on [a,b].
+* then $X$ is said to have a uniform distribution on $[a,b]$.
 
-* Write X~U[a,b]
+* Write $X \sim U[a,b]$
 
 * The pdf, mean and variace are
 
-    * f(x) = 1/(a-b), for a<=x<=b
-    * E[X] = (a+b)/2
-    * Var(x) = (b-a)^2/12
+    * $f(x) = 1/(a-b)$, for $a \leq x  \leq b$
+    * $E[X] = (a+b)/2$
+    * $Var(x) = (b-a)^2/12$
     
 ![Uniform](./10.Continuous_random_variable_files/figure-markdown_github/uniform.png)
     
 ### Uniform distribution in R
 
-* density function of the uniform on the interval from min to max.
+* density function of the uniform on the interval from ```min``` to ```max```.
 
 ```{r, eval=FALSE}
 dunif(x, min=0, max=1, log = FALSE)
@@ -172,9 +172,9 @@ lines(x, phi(x))  # or lines(x, dnorm(x))
 
 ### Sum of independent normal
 
-X ~ N(mu1, sigma1^2), Y ~ N(mu2, sigma2^2)
+$X \sim N(\mu_1, \sigam_1^2), Y ~ N(\mu_2, \sigma_2^2)$
 
-Then X+Y ~ N(mu1 + mu2, sigma1^2 + sigma2^2)
+Then $X+Y \sim N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$
 
 ```{r}
 mu1 <-1; mu2 <-1
@@ -224,6 +224,7 @@ curve(dt(x, df=10), add = TRUE)
 curve(dnorm(x), lwd=2, add= TRUE)
 title("t densities with 1,2,4 and 10 d.f., and normal limit in bold")
 ```
+
 ### t statistics
 
 ```{r}
@@ -289,40 +290,40 @@ for (df in dfs){
 
 ## Exponential distribution
 
-* If lambda(x) = lambda, constant rate of failure, then we say X has an exponential distribution and write X ~ exp(lambda).
+* If $\lambda(x) = \lambda$, constant rate of failure, then we say $X$ has an exponential distribution and write $X \sim \exp (\lambda)$.
 
-    * f(x) = lambda exp(-lambda x)
-    * mu = 1/lambda
-    * sigma = 1/lambda
+    * $f(x) = \lambda$ exp$(-\lambda x)$
+    * $\mu = 1/\lambda$
+    * $\sigma = 1/\lambda$
 
 * memoryless property
 
     * ageing has no effect, that is, the component fails at random.
-    * P(X > s + t | X > s) = P(X > s + t)/P(X > t) = P(X > t)
-    * Given that you have survived until age s, the probability of surviving an additional time t is the same as if you has just been born.
+    * $P(X > s + t | X > s) = P(X > s + t)/P(X > t) = P(X > t)$
+    * Given that you have survived until age $s$, the probability of surviving an additional time $t$ is the same as if you has just been born.
 
 ### Exponential distribution in R
 
-* density function with lambda = ```rate```
+* density function with $\lambda =$ ```rate```
 
 ```{r, eval=FALSE}
 dexp(x, rate = 1, log = FALSE)
 ```
 
-* distribution function with lambda = ```rate```
+* distribution function with $\lambda =$ ```rate```
 
 ```{r, eval=FALSE}
 pexp(q, rate = 1, lower.tail = TRUE, log.p = FALSE)
 ```
 
 
-* quantile function with lambda = ```rate```
+* quantile function with $\lambda =$ ```rate```
 
 ```{r, eval=FALSE}
 qexp(p, rate = 1, lower.tail = TRUE, log.p = FALSE)
 ```
 
-* random variables with lambda = ```rate```
+* random variables with $\lambda =$ ```rate```
 
 ```{r, eval=FALSE}
 rexp(n, rate = 1)
@@ -353,17 +354,17 @@ legend(5.5, 0.4, c("lambda = 2", "lambda = 1", "lambda = 0.5"), col=c(1,2,3), lt
 
 ### Example : radioactive decay
 
-* Uranium-238 decays into thorium-234 at rate lambda per year.
+* Uranium-238 decays into thorium-234 at rate $\lambda$ per year.
 
-* The half-life of uranium-238 is 4.47*10^9 years.
+* The half-life of uranium-238 is $4.47*10^9$ years.
 
     * the time it takes for half of some lump of uranium-238 to decay into thorium-234.
 
-* Let X be the time of decay of a single atom, then X ~ exp(lambda) and 
+* Let $X$ be the time of decay of a single atom, then $X \sim$ exp$(\lambda)$ and 
 
-    * P(X > 4.47*10^9) = 0.5
+    * $P(X > 4.47*10^9) = 0.5$
 
-* Since P(X > x) = exp(-lambda*x), we have 
+* Since $P(X > x) = \exp(-\lambda * x)$, we have 
 
 ```{r}
 (lambda <- log(2)/(4.47*10^9))
@@ -373,15 +374,15 @@ legend(5.5, 0.4, c("lambda = 2", "lambda = 1", "lambda = 0.5"), col=c(1,2,3), lt
 
 ## Weibull distribution
 
-* X has a Weibull distribution with parameters lambda and m, if the hazard function is
+* $X$ has a Weibull distribution with parameters $\lambda$ and $m$, if the hazard function is
 
-    * lambda(x) = m*lambda x^(m-1)
+    * $\lambda(x) = m*\lambda x^(m-1)$
     
-* X ~ Weibull(lambda, m)
+* $X \sim $Weibull$(\lambda, m)$
 
-* G(x) = exp(-lambda m)
+* $G(x) = $exp$(-\lambda m)$
 
-* f(x) = m lambda x^(m-1) exp(-lambda m)
+* $f(x) = m \lambda x^(m-1) $exp$(-\lambda m)
 
 * R parameterization of the Weibull distribution differs from that presented above.
 
@@ -432,16 +433,16 @@ text(2,0.8,"Weibull(2,3) density")
 
 * Also suppose we keep building nuclear power stations at a rate of one per year, until we have a major accident.
 
-* Let T be the time until the first major accident.
+* Let $T$ be the time until the first major accident.
 
-* Let alpha*t be the chance that a single power station age t has an accident in the next year.
+* Let $\alpha*t$ be the chance that a single power station age $t$ has an accident in the next year.
 
-* After t years there are t power stations operating, so the total rate of accident is alpha*t^2.
-    * m lambda t^(m-1) = alpha t^2  => m=3, lambda=alpha/3
+* After $t$ years there are $t$ power stations operating, so the total rate of accident is $\alpha*t^2$.
+    * $m \lambda t^(m-1) = \alpha t^2$  => $m=3, \lambda=\alpha/3$
     
-* Thus,  X ~ Weibull(alpha/3, 3).
+* Thus,  $X \sim $Weibull$(\alpha/3, 3)$.
 
-* For example, let alpha be 1/1,000,000.
+* For example, let $\alpha$ be 1/1,000,000.
 
 * The probability that the first major accident is within the next 50 years 
 
@@ -461,7 +462,7 @@ A Poisson process looks like:
 ### Merging and Thinning
 
 * Merging
-    * If we merge a Poisson process rate lambda1 with an independent Poisson process lambda2, then the results is a Poisson process rate lambda1 + lambda2.
+    * If we merge a Poisson process rate $\lambda_1$ with an independent Poisson process $\lambda_2$, then the results is a Poisson process rate $\lambda_1 + \lambda_2$.
     
 
 ![Poisson](./10.Continuous_random_variable_files/figure-markdown_github/merging.png)
@@ -471,8 +472,9 @@ A Poisson process looks like:
     * We thin a process by tossing a (biased) coin for each event:
         * heads we keep it
         * tails it is discarded
-    * If we start with a Poisson process rate lambda, and the probability of keeping an event is p, 
-    * then the result is a Poisson process rate p*lambda.
+    * If we start with a Poisson process rate $\lambda$, and the probability of keeping an event is $p$, 
+    
+    * then the result is a Poisson process rate $p*\$lambda$.
     
 ![Poisson](./10.Continuous_random_variable_files/figure-markdown_github/thining.png)
 
@@ -481,11 +483,11 @@ A Poisson process looks like:
 
 * Customer arrival time and the time taken to serve are assumed to be exponential distribution.
 
-* The probability of new customer arrival during (t, t + dt) is lambda*dt.
+* The probability of new customer arrival during $(t, t + dt)$ is $\lambda*dt$.
 
-* The probability that service finished during (t, t + dt) is mu*dt.
+* The probability that service finished during $(t, t + dt)$ is $\mu*dt$.
   
-* We do not allow an arrival and a departure to occur in the same interval (t, t + dt)
+* We do not allow an arrival and a departure to occur in the same interval $(t, t + dt)$
     * because the probability is small.
 
 

@@ -320,8 +320,8 @@ plot(x, relative_frequency, 'h');   plot(x, pmf, 'h')
 
 * Then $Z$ is said to have a negative binomial distribution and we write $Z \sim nbinomial(r,p)$.
 
-* Let $Y_1, ..., Y_r$ be iid $geom(p)$ rvs, then
-    * $Z = Y_1 + ... + Y_r \sim nbinom(r,p)$
+* Let $Y_1, ..., Y_r$ be i.i.d. geom$(p)$ r.v.s, then
+    * $Z = Y_1 + ... + Y_r \sim $nbinom$(r,p)$
     
 * It follows
     * $E[Z] = r(1-p)/p$
@@ -409,6 +409,7 @@ pnbinom(97, 3, 0.01)
 ```
 
 This value also can be represented by the binomial distribution:
+
 * The probability of three or more faulty items from 100 items.
 
 ```{r}
@@ -429,7 +430,7 @@ The Poisson distribution is used as a model for events occurring at random over 
 
 * number of companies going bankrupt in a year
 
-We say $X$ has a Poisson distribution with parameter $\lambda$,a nd write $X \sim pois(\lambda)$.
+We say $X$ has a Poisson distribution with parameter $\lambda$, and write $X \sim$ pois$(\lambda)$.
 
 * $E[X] = \lambda$
 
