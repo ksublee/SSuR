@@ -12,7 +12,7 @@ output:
 * A string of characters is said to be of mode character.
 * Character strings are denoted by either double quotes " " or single quotes ' '.
 * Strings can be arranged into vectors and matrices just like numbers.
-* We can paste string using ```paste(???, sep)```.
+* We can paste string using ```paste(..., sep)```.
 
 ```{r}
 x <- "Citroen SM"
@@ -21,7 +21,7 @@ z <- "Ford Falcon GT-HO"
 (wish.list <- paste(x, y, z, sep=", "))
 ```
 
-* Special characters with the escape character \.
+* Special characters with the escape character ```\```.
   * ```\n``` for newline, ```\t``` for tab, ```\b``` for backspace, ```\"``` for ```"```, ```\\``` for ```\```
 * If a character string can be understood as a number, the ```as.numeric(x)``` is used.
 ```{r}
@@ -30,6 +30,16 @@ as.numeric("10.1")
 * Use ```as.character(x)``` to coerce a number into a character string.
 ```{r}
 as.character(10.1)
+```
+
+```paste0(..., )``` is equivalent to ```paste(..., sep = "", )```, slightly more efficiently.
+
+```{r}
+paste0("a","b","c")
+```
+
+```{r}
+paste("a","b","c")
 ```
 
 ### Input from a file
@@ -71,7 +81,7 @@ quantile( scan("data/data1.txt"), (0:4)/4 )
 
 ### Input from the keyboard
 
-* scan can be used to read from the keyboard if ```file``` is ```""```.
+* ```scan``` can be used to read from the keyboard if ```file``` is ```""```.
 
 ```{r, eval=FALSE}
 scan(file="", what="")   # character input
@@ -138,8 +148,8 @@ write(t(x), file = "out.txt", ncolumn=6)
 ### cat for writing to a file
 
 * ```cat``` is more flexible command.
-* ```cat(???, file="", sep="", append=FALSE)```
-   * ```???``` is a list of expressions (separated by commas) that are coerced into character strings, concatenated, and then written.
+* ```cat(..., file="", sep="", append=FALSE)```
+   * ```...``` is a list of expressions (separated by commas) that are coerced into character strings, concatenated, and then written.
    * ```file``` gives the file to write or append to as a character string.
       * the default ```""``` writes to the screen.
    * ```sep``` is character string that is inserted between objects.
@@ -172,7 +182,6 @@ x
 #### plotting a parabola $y^2=4x$
 
 ```{r}
-
 x <- seq(0, 5, by=0.01)
 y.upper <- 2*sqrt(x)
 y.lower <- -2*sqrt(x)
@@ -186,7 +195,6 @@ points(1,0)
 text(1, 0, "focus (1, 0)", pos=4)
 text(-1, y.min, "directrix x = -1", pos=4)
 title("The parabola y^2 = 4*x")
-
 ```
 
 #### more than one plots

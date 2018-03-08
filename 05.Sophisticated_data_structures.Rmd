@@ -20,28 +20,55 @@ output: github_document
     
     
 ## Factor
+A factor is a vector that can contain only predefined values, and is used to store categorical data
+
+Factors are built on top of integer vectors using two attributes: the ```class```, ¡°factor¡±, which makes them behave differently from regular integer vectors, and the ```levels```, which defines the set of allowed values.
 
 * Data type for ordinal and categorical vectors.   
 * The possible values of a factor are referred to as its level.   
-* To create a factor, apply function factor to some vector.
+* To create a factor, apply function ```factor``` to some vector.
 
 
 ```{r}
 hair <- c("blonde", "black", "brown", "brown", "black", "gray", "none")
-(hair <- factor(hair))
+is.character(hair)
+```
+```{r}
+is.factor(hair)
 ```
 
+
+```{r}
+hair <- factor(hair)
+is.factor(hair)
+```
 ```{r}
 levels(hair)
 ```
+```table()``` calculates the number of times each level of the factor appears.
+
+```{r}
+table(hair)
+```
 
 * Specify level using ```levels``` argument.
-
 
 ```{r}
 hair <- factor(hair, levels=c("black", "blonde", "brown", "gray", "white", "none"))
 table(hair)
 ```
+
+You can't use values that are not in the levels.
+
+Indeed, the type of a factor is integer.
+
+```{r}
+typeof(hair)
+```
+```{r}
+as.numeric(hair)
+```
+
 
 
 ## Dataframe
@@ -368,6 +395,20 @@ To find out how many samples we have of each species:
 tapply(ufc$species, ufc$species, length)
 ```
 
+#### Example : tapply
+
+```tapply``` can be used to count the number of elements in a vector
+```{r}
+a_vector <- c(1, 2, 3, 5, 2, 1, 2, 4, 5, 6, 7, 3, 2, 1, 3, 5, 6)
+tapply(a_vector, INDEX = a_vector, FUN = length)
+```
+the above is almost the same as
+```{r}
+table(a_vector)
+```
+
+
+
 ### lapply and sapply
 
 * ```lapply(X, FUN, ¡¦)``` applies the function ```FUN``` to each element of the list ```X``` and returns a list.
@@ -384,5 +425,8 @@ lapply(ufc[4:6], mean)   # return a list
 ```{r}
 sapply(ufc[4:6], mean)   # return a vector
 ```
+
+
+
 
 More about apply : http://adv-r.had.co.nz/Functional-programming.html

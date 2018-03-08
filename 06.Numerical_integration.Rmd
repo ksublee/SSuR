@@ -50,7 +50,7 @@ trapezoid(ftn6, 0, 1, n=20)
 
 ## Simpson's rule
 
-* Simpson?€™s rule subdivides the interval [a,b] into n (even) subintervals
+* Simpson's rule subdivides the interval [a,b] into n (even) subintervals
 
 * and approximate f by a parabola (polynomial of degree 2).
 

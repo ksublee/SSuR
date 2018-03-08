@@ -9,7 +9,7 @@ output:
 ## Discrete random variable in R
 
 R has built-in functions for handling the most commonly encountered probability distributions.   
-Let X be type ```dist``` with parameters ```p1```, ```p2```, ..., then
+Let $X$ be type ```dist``` with parameters ```p1```, ```p2```, ..., then
 
 * ```ddist(x, p1, p2, ...)``` equals P(X=x) for X discrete, or the density of X at x for X continuous.
 
