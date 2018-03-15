@@ -229,6 +229,7 @@ c(1L, 2L, 3L, 4L)
 #### Coercion
 
 If we try to combine differet types of elements in a vector, they will be coerced to the most flexible type.
+
   * logical, integer, double, character
 ```{r}
 c("a", 1)
@@ -364,10 +365,10 @@ x2 <- 1>2
 A logical expression is formed using 
 
 * the comparison operators 
-  * ```<```, ```>```, ```<=```, ```>=```, ```==```, and ```!=``` (not equal to)
+    * ```<```, ```>```, ```<=```, ```>=```, ```==```, and ```!=``` (not equal to)
 
 * and the logical operators 
-  * ```&``` (and), ```|``` (or), and ```!``` (not).
+    * ```&``` (and), ```|``` (or), and ```!``` (not).
 
 The value of a logical expression is either ```TRUE``` or ```FALSE```.
 
@@ -393,7 +394,9 @@ x%%4 == 0
 ```
 
 R also provide subset function, which ignore ```NA```.
+
 * whereas ```x[subset]``` preserve ```NA```.
+
 ```{r}
 x <- c(1, NA, 3, 4)
 x[x >2]
@@ -402,7 +405,7 @@ x[x >2]
 subset(x, subset = x>2 )
 ```
 
-For the index position of TRUE elements, use ```which(x)````
+For the index position of TRUE elements, use ```which(x)```
 ```{r}
 x <- c(1, 1, 2, 3, 5, 8, 13)
 which(x%%2 == 0)
@@ -432,7 +435,7 @@ Many floating numbers are subject to rounding errors in digital computers.
 ```{r}
 sqrt(2)*sqrt(2) == 2
 ```
-The solution is to use all.equal(x,y), which returns TRUE if the difference between x and y is smaller than some tolerance.
+The solution is to use ```all.equal(x,y)```, which returns TRUE if the difference between x and y is smaller than some tolerance.
 
 ```{r}
 all.equal(sqrt(2)*sqrt(2), 2)
