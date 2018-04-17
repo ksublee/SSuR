@@ -171,7 +171,7 @@ x
 * We have already seen ```plot(x, y, type)```.
 * To add points to the current plot, use ```points(x, y)```.
 * To add lines, use ```lines(x, y)```.
-* To add vertical or horizontal liens, use ```abline(v=xpos)``` or ```abline(y=ypos)```.
+* To add vertical or horizontal liens, use ```abline(v=xpos)``` or ```abline(h=ypos)```.
 * ```points``` and ```lines``` take optional input ```col```, which determines color.
   * ```colors()``` show the complete list of colors.
 * To add text ```labels[1]``` at ```(x[i], y[i])```, use ```text(x, y, lables)```.

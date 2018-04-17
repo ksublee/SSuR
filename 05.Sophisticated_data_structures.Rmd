@@ -158,25 +158,46 @@ x[1:5]
 * We can use ```[[?]]``` to extract columns.
     * ```ufc$height.m```,  ```ufc[[5]]``` and ```ufc[["height.m"]]``` are all equivalent.
     
+```{r}
+x1 <- ufc[["height.m"]]
+x1[1:5]
+```
+
+```{r}
+x2 <- ufc[[5]]
+x2[1:5]
+```
 
 * You can extract the elements of a dataframe directly using matrix indexing.
 
 ```{r}
+# the result is a vector
 ufc[1:5, 5]
 ```
 
 * To select more than one of the variables in a dataframe, we use ```[?]```.
     * ```ufc[4:5]``` is equivalent to ```ufc[c("dbh.cm", "height.m")]```.
+    * ```[]``` preserves the type of dataframe.
 
 ```{r}
+#diam.height and z are data.frame
 diam.height <- ufc[4:5]    
-diam.height[1:5, ]
+(z <- diam.height[1:5, ])
 ```
 ```{r}
 is.data.frame(diam.height)
 ```
+```{r}
+#diam.height is a data.frame
+#z1 is not a data.frame, but a vector
+diam.height1 <- ufc[5]
+z1 <- diam.height1[1:5, ]
+is.data.frame(z1)
+```
 
-* Selectin a column using ```[[?]]``` preserves the mode of the object that is being extracted.
+
+
+* Selecting a column using ```[[?]]``` preserves the mode of the object that is being extracted.
 
 * Whereas, ```[?]``` keeps the mode of the object from which the extraction is being made.
 
