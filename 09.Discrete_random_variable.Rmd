@@ -46,7 +46,7 @@ A Bernoulli random variable $B$ is based on a single trial
 
 * 0 otherwise.
 
-We use notation $B \sim Bernoulli(p)$.
+We use notation $B$ ~ $Bernoulli(p)$.
 
 * $P(B=x) = p$ for $x = 1$ and $P(B=x) = 1-p$ for $x = 0$.
 
@@ -63,7 +63,7 @@ Then $X$ is said to have a binomial distribution with parameters $n$ and $p$.
 
 Let $B_1, ..., B_n$ be independent $Bernoulli(p)$ r.v.s, then   
 
-* $X = B_1 + ... + B_n \sim binom(n,p)$
+* $X = B_1 + ... + B_n$ ~ $binom(n,p)$
 
 For $x = 0, 1, ..., n,$ we have
 
@@ -114,7 +114,7 @@ qbinom(p, size, prob, lower.tail = TRUE, log.p = FALSE)
 ```{r, eval=FALSE}
 rbinom(n, size, prob)
 ```
-* ```n`` observations of of the binomial random variable
+* ```n``` observations of of the binomial random variable
 
     * ```size``` : number of trial
     * ```prob``` : probability of success on each trial
@@ -179,6 +179,11 @@ N <- 100; n <- 20; p <- 0.4
 table(brv)
 ```
 
+* Using ```factor```, you can specify ```levels```.
+```{r}
+table(factor(brv, levels=0:20))
+```
+
 
 ### Comparison between r.v. and pmf
 
@@ -188,11 +193,10 @@ table(brv)
 
 ```{r}
 N <- 500; n <- 20; p <- 0.4
-frequency <- table(rbinom(N, n, p))
 
-relative_frequency <- rep(0, n+1)
-nonzero_index <- as.numeric(names(frequency)) + 1
-relative_frequency[ nonzero_index ] <- frequency/N
+frequency <- table(factor(rbinom(N, n, p), levels = 0:n))
+relative_frequency <- as.numeric(frequency/N)
+
 
 x <- 0:n
 pmf <- dbinom(x, n, p)
@@ -222,7 +226,7 @@ pbinom(19, size=1000, prob=0.01)
 
 * $Y$ is the number of trials up to (but not including) the first success.
 
-* We write $Y \sim $ geom$(p)$, and we have,
+* We write $Y$ ~ $geom$(p)$, and we have,
 
     * $P(Y=y) = p(1-p)^y$
     * $E[Y] = (1-p)/p$
@@ -274,15 +278,15 @@ for (p in ps){
 
 ```{r}
 N <- 500; p <- 0.4; xmax <- 20
-relative_frequency <- rep(0, xmax +1)
-frequency <- table(rgeom(N, p))
-relative_frequency[ as.numeric(names(frequency))+1 ] <- frequency/N
 
-x <- 0:n
+x <- 0:xmax
 pmf <- dgeom(x, p)
 
+frequency <- table(factor(rgeom(N, p), levels=x))
+relative_frequency <- as.numeric(frequency/N)
+
 par(mfrow=c(1,2))
-plot(x, relative_frequency[1:(xmax+1)], 'h')
+plot(x, relative_frequency, 'h')
 plot(x, pmf, 'h')
 
 ```
@@ -303,12 +307,12 @@ for (i in 1:N){
   geom_rv[i] <- n
 }
 
-frequency <- table(geom_rv)
-relative_frequency <- rep(0, xmax+1)
-relative_frequency[as.numeric(names(frequency))+1] <- frequency/N
-
 x <- 0:xmax
 pmf <- dgeom(x, p)
+
+frequency <- table(factor(rbinom(N, n, p), levels = x))
+relative_frequency <- as.numeric(frequency/N)
+
 par(mfrow=c(1,2))
 plot(x, relative_frequency, 'h');   plot(x, pmf, 'h')
 
@@ -379,13 +383,11 @@ for (i in 1:N){
   nbinom_rv[i] <- total_trial - total_success
 }
 
-
-relative_frequency <- rep(0, xmax+1)
-frequency <- table(nbinom_rv)
-relative_frequency[as.numeric(names(frequency))+1] <- frequency/N
 x <- 0:xmax;   pmf <- dnbinom(x, r, p)
+relative_frequency <- as.numeric(table(factor(nbinom_rv, levels=x))/N)
+
 par(mfrow=c(1,2))
-plot(x, relative_frequency[1:length(x)], 'h')
+plot(x, relative_frequency, 'h')
 plot(x, pmf, 'h')
 
 ```
@@ -501,16 +503,15 @@ for (lambda in lambdas){
 
 ```{r}
 N <- 500; lambda <- 10; xmax <- 20
-relative_frequency <- rep(0, xmax +1)
-frequency <- table(rpois(N, lambda))
-idx <- as.numeric(names(frequency))+1 
-relative_frequency[idx] <- frequency/N
 
 x <- 0:xmax
 pmf <- dpois(x, lambda)
 
+frequency <- table(factor(rpois(N, lambda), levels=x))
+relative_frequency <- as.numeric(frequency/N)
+
 par(mfrow=c(1,2))
-plot(x, relative_frequency[1:(xmax+1)], ylab = "relative frequency", 'h')
+plot(x, relative_frequency, ylab = "relative frequency", 'h')
 plot(x, pmf, 'h')
 
 ```
