@@ -325,7 +325,7 @@ plot(x, relative_frequency, 'h');   plot(x, pmf, 'h')
 * Then $Z$ is said to have a negative binomial distribution and we write $Z \sim nbinomial(r,p)$.
 
 * Let $Y_1, ..., Y_r$ be i.i.d. geom$(p)$ r.v.s, then
-    * $Z = Y_1 + ... + Y_r $ ~ nbinom$(r,p)$
+    * $Z = Y_1 + ... + Y_r$ ~ nbinom$(r,p)$
     
 * It follows
     * $E[Z] = r(1-p)/p$
