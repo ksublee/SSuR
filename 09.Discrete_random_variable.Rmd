@@ -226,7 +226,7 @@ pbinom(19, size=1000, prob=0.01)
 
 * $Y$ is the number of trials up to (but not including) the first success.
 
-* We write $Y$ ~ $geom$(p)$, and we have,
+* We write $Y$ ~ geom$(p)$, and we have,
 
     * $P(Y=y) = p(1-p)^y$
     * $E[Y] = (1-p)/p$
@@ -325,7 +325,7 @@ plot(x, relative_frequency, 'h');   plot(x, pmf, 'h')
 * Then $Z$ is said to have a negative binomial distribution and we write $Z \sim nbinomial(r,p)$.
 
 * Let $Y_1, ..., Y_r$ be i.i.d. geom$(p)$ r.v.s, then
-    * $Z = Y_1 + ... + Y_r \sim $nbinom$(r,p)$
+    * $Z = Y_1 + ... + Y_r $ ~ nbinom$(r,p)$
     
 * It follows
     * $E[Z] = r(1-p)/p$
