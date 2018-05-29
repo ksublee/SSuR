@@ -290,9 +290,9 @@ for (df in dfs){
 
 ## Exponential distribution
 
-* If $\lambda(x) = \lambda$, constant rate of failure, then we say $X$ has an exponential distribution and write $X \sim \exp (\lambda)$.
+* If $\lambda(x) = \lambda$, constant rate of failure, then we say $X$ has an exponential distribution and write $X$ ~ exp$(\lambda)$.
 
-    * $f(x) = \lambda$ exp$(-\lambda x)$
+    * $f(x) = \lambda$ exp$(-\lambda$x)
     * $\mu = 1/\lambda$
     * $\sigma = 1/\lambda$
 
@@ -376,17 +376,17 @@ legend(5.5, 0.4, c("lambda = 2", "lambda = 1", "lambda = 0.5"), col=c(1,2,3), lt
 
 * $X$ has a Weibull distribution with parameters $\lambda$ and $m$, if the hazard function is
 
-    * $\lambda(x) = m*\lambda x^(m-1)$
+    * $\lambda(x) = m \lambda x^{(m-1)}$
     
-* $X \sim $Weibull$(\lambda, m)$
+* $X$ ~ Weibull$(\lambda, m)$
 
-* $G(x) = $exp$(-\lambda m)$
+* $G(x)$ = exp(-$\lambda$ m)
 
-* $f(x) = m \lambda x^(m-1) $exp$(-\lambda m)
+* $f(x)$ = m$\lambda$ $x^{(m-1)}$ exp(-$\lambda$ m)
 
 * R parameterization of the Weibull distribution differs from that presented above.
 
-    * m for ```shape``` argument and lambda^(-1/m) for ```scale``` argument.
+    * m for ```shape``` argument and $\lambda^{(-1/m)}$ for ```scale``` argument.
     
 ```{r, fig.width=6, fig.height=3}
 curve(dweibull(x, shape=0.5, scale=2^(-1/0.5)), from=0, to=4)
@@ -435,12 +435,12 @@ text(2,0.8,"Weibull(2,3) density")
 
 * Let $T$ be the time until the first major accident.
 
-* Let $\alpha*t$ be the chance that a single power station age $t$ has an accident in the next year.
+* Let $\alpha$$t$ be the chance that a single power station age $t$ has an accident in the next year.
 
-* After $t$ years there are $t$ power stations operating, so the total rate of accident is $\alpha*t^2$.
-    * $m \lambda t^(m-1) = \alpha t^2$  => $m=3, \lambda=\alpha/3$
+* After $t$ years there are $t$ power stations operating, so the total rate of accident is $\alpha$$t^2$.
+    * m$\lambda$ $t^{(m-1)}$ = $\alpha$ $t^2$  => m=3, $\lambda=\alpha/3$
     
-* Thus,  $X \sim $Weibull$(\alpha/3, 3)$.
+* Thus,  $X$ ~ Weibull$(\alpha/3, 3)$.
 
 * For example, let $\alpha$ be 1/1,000,000.
 
@@ -474,7 +474,7 @@ A Poisson process looks like:
         * tails it is discarded
     * If we start with a Poisson process rate $\lambda$, and the probability of keeping an event is $p$, 
     
-    * then the result is a Poisson process rate $p*\$lambda$.
+    * then the result is a Poisson process rate p$\lambda$.
     
 ![Poisson](./10.Continuous_random_variable_files/figure-markdown_github/thining.png)
 
@@ -483,11 +483,11 @@ A Poisson process looks like:
 
 * Customer arrival time and the time taken to serve are assumed to be exponential distribution.
 
-* The probability of new customer arrival during $(t, t + dt)$ is $\lambda*dt$.
+* The probability of new customer arrival during (t, t + dt) is $\lambda$dt.
 
-* The probability that service finished during $(t, t + dt)$ is $\mu*dt$.
+* The probability that service finished during (t, t + dt) is $\mu$dt.
   
-* We do not allow an arrival and a departure to occur in the same interval $(t, t + dt)$
+* We do not allow an arrival and a departure to occur in the same interval (t, t + dt).
     * because the probability is small.
 
 
