@@ -435,10 +435,10 @@ text(2,0.8,"Weibull(2,3) density")
 
 * Let $T$ be the time until the first major accident.
 
-* Let $\alpha$$t$ be the chance that a single power station age $t$ has an accident in the next year.
+* Let $\alpha$ $t$ be the chance that a single power station age $t$ has an accident in the next year.
 
-* After $t$ years there are $t$ power stations operating, so the total rate of accident is $\alpha$$t^2$.
-    * m$\lambda$ $t^{(m-1)}$ = $\alpha$ $t^2$  => m=3, $\lambda=\alpha/3$
+* After $t$ years there are $t$ power stations operating, so the total rate of accident is $\alpha$ $t^2$.
+    * m$\lambda$ $t^{(m-1)}$ = $\alpha$ $t^2$  implies that  m=3, $\lambda=\alpha/3$
     
 * Thus,  $X$ ~ Weibull$(\alpha/3, 3)$.
 
