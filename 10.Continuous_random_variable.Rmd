@@ -380,7 +380,7 @@ legend(5.5, 0.4, c("lambda = 2", "lambda = 1", "lambda = 0.5"), col=c(1,2,3), lt
     
 * $X$ ~ Weibull$(\lambda, m)$
 
-* $G(x)$ = exp(-$\lambda$ m)
+* $G(x)$ = exp(-$\lambda$ $x^m$)
 
 * $f(x)$ = m$\lambda$ $x^{(m-1)}$ exp(-$\lambda$ m)
 
