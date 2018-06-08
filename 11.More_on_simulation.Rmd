@@ -63,7 +63,7 @@ hist(Y,freq=F,main="Exp from R")
 
 ## Box-Muller algorithm to generate normal
 
-Generate two normals from two unifroms
+Generate two normals from two uniforms.
 
 In the following, ```X1``` and ```X2``` follows independent normal distributions.
 
