@@ -454,11 +454,16 @@ tapply(X, INDEX, FUN, ¡¦)
 
 * ```FUN``` : a function to be applied. It is applied to subvectors of ```X``` corresponding to a single level of ```INDEX```.
 
+* ```tapply``` works similar with groupby + summary function in SQL.
+
+* ```INDEX``` denotes groupby and ```FUN``` represents a summary function.
+
 https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/tapply
 
 ### tapply example
 
 Using ```tapply``` we obtain average height group by species as follows:
+
 
 ```{r}
 tapply(ufc$height.m, ufc$species, mean)
@@ -477,17 +482,27 @@ tapply(ufc$species, ufc$species, length)
 ```
 
 #### Example : tapply
+```tapply``` can be used to count the number of elements in a vector:
 
-```tapply``` can be used to count the number of elements in a vector
 ```{r}
-a_vector <- c(1, 2, 3, 5, 2, 1, 2, 4, 5, 6, 7, 3, 2, 1, 3, 5, 6)
-tapply(a_vector, INDEX = a_vector, FUN = length)
+x <- c(1,2,3,4,5,4,6,2,5,6,5,3,4,1,4,5,6,7,2,2,6,7,9,3,5)
+tapply(X = x, INDEX = x, FUN = length)
 ```
 the above is almost the same as
 ```{r}
-table(a_vector)
+table(z)
 ```
 
+```{r}
+y <- x %% 2
+tapply(X = x, INDEX = y, FUN = length)
+```
+
+
+```{r}
+y <- x %% 2
+tapply(X = x, INDEX = y, FUN = max)
+```
 
 
 ### lapply and sapply
@@ -507,6 +522,33 @@ lapply(ufc[4:6], mean)   # return a list
 sapply(ufc[4:6], mean)   # return a vector
 ```
 
+Simple example:
+```{r}
+sapply(1:3, function(x) x^2)
+```
+```{r}
+lapply(1:3, function(x) x^2)
+```
+
+
+### lapply example
+
+```{r}
+df <- data.frame(replicate(6, sample(c(1:10, -99), 6, rep = TRUE)))
+names(df) <- letters[1:6]
+df
+```
+
+You want to replace all the -99s with NAs.
+
+```{r}
+fix_missing <- function(x) {
+  x[x == -99] <- NA
+  x
+}
+df[] <- lapply(df, fix_missing)  #list to data.frame, use df[]
+df
+```
 
 
 
