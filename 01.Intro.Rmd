@@ -46,6 +46,12 @@ pi
 sin(pi/6)
 ```
 
+```{r}
+floor(2.3)
+ceiling(2.3)
+round(2.3)
+```
+
 ### Variable
 
 * We can assign a value to a variable and use the variable.
@@ -126,6 +132,8 @@ seq(to = 9, from = 1)
 seq(by=-2, 9, 1)
 ```
 
+We will study more about functions in Chapter 4.
+
 ### Vectors
 
 * the basic data structure in R
@@ -138,7 +146,11 @@ seq(by=-2, 9, 1)
    
 * three basic functions for constructing vectors
      * ```seq```, ```rep```, ```c```
-
+     
+* Basic three properties:
+     * Type, ```typeof()```, what it is.
+     * Length, ```length()```, how many elements it contains.
+     * Attributes, ```attributes()```, additional arbitrary metadata.
 
 ```{r}
 # short for sequence
@@ -161,6 +173,9 @@ seq(by=-2, 9, 1)
 ```
 ```{r}
 (y <- 110:100)
+```
+```{r}
+length(x)
 ```
 
 * vector and index
@@ -221,17 +236,20 @@ sort(c(5, 1, 3, 4, 2))
 
 logical vector
 ```{r}
-c(TRUE, FALSE, T, F)
+logi <- c(TRUE, FALSE, T, F)
+typeof(logi)
 ```
 
 character vector
 ```{r}
-c("a", "vector", "of", "characters")
+char <- c("a", "vector", "of", "characters")
+typeof(char)
 ```
 
 integer vector
 ```{r}
-c(1L, 2L, 3L, 4L)
+integ <- c(1L, 2L, 3L, 4L)
+typeof(integ)
 ```
 
 
@@ -620,6 +638,31 @@ Or, in a combined way:
 ```{r}
 (partC <- C[1, c(2, 3)])
 ```
+
+### Objects and classes
+
+R is an object oriented language.
+
+Every object in R is a member of a class.
+
+You can use the ```class``` function to determine the class of object.
+
+```{r}
+# numeric vector
+class(c(1, 2, 3))
+```
+```{r}
+# character vector
+class(c("c", "B", "z"))
+```
+```{r}
+# function
+class(sin)
+```
+```{r}
+class(matrix(c(1,2)))
+```
+
 
 ### Workspace
 

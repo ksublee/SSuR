@@ -10,6 +10,8 @@ output:
 
 Functions are a fundamental building block of R.
 
+In R, the operations that do all the work are functions.
+
 A function is an object in R that takes some input objects (called arguments) and returns an ouput object.
 
 A function has a form:

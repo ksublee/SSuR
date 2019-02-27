@@ -36,6 +36,8 @@ Factors are built on top of integer vectors using two attributes: the ```class``
 hair <- c("blonde", "black", "brown", "brown", "black", "gray", "none")
 is.character(hair)
 ```
+
+
 ```{r}
 is.factor(hair)
 ```
@@ -45,6 +47,10 @@ is.factor(hair)
 hair <- factor(hair)
 is.factor(hair)
 ```
+```{r}
+class(hair)
+```
+
 ```{r}
 levels(hair)
 ```
@@ -63,6 +69,15 @@ table(hair)
 
 You can't use values that are not in the levels.
 
+```{r}
+hair[2] <- "green"
+```
+```{r}
+# reset
+hair[2] <- "black"
+```
+
+
 Indeed, the type of a factor is integer.
 
 ```{r}
@@ -76,10 +91,51 @@ as.numeric(hair)
 
 ## Dataframe
 
+A data frame is the most common way of storing data in R.
+
 * Dataframe is a list of vectors (with equal length).   
 * Each vector (column) is a variable in experiment.   
 * Each row is a single observation.
 
+
+You create a data.frame using ```data.frame()```, which takes named vectors as input:
+
+```{r}
+df <- data.frame(x = 2:4, y = c("a", "b", "c"))
+str(df)
+```
+
+
+```data.frame()``` turns strings into factors. 
+Use ```stringsAsFactors = FALSE``` to suppress this behaviour:
+
+```{r}
+df <- data.frame(
+  x = 2:4,
+  y = c("a", "b", "c"),
+  stringsAsFactors = FALSE)
+str(df)
+```
+
+```{r}
+typeof(df)
+class(df)
+is.data.frame(df)
+```
+
+Combinding dataframes:
+
+```{r}
+cbind(df, data.frame(z = 3:1))
+```
+```{r}
+rbind(df, data.frame(x = 10, y = "z"))
+```
+
+
+### read.table
+
+You can use ```read.table``` to create data.frame from a file.
 
 Plot | Tree | Species | Diameter | Height
 ---- | ---- | ------- | -------- | ------
@@ -88,8 +144,6 @@ Plot | Tree | Species | Diameter | Height
 3 | 2 | GF | 52 | 30.0
 ... | ... | ... | ... | ...
 
-
-### read.table
 
 * Large dataframe are usually read into R from a file, using ```read.table```.    
 
@@ -291,7 +345,7 @@ wirte.table(x, file="", append=FALSE, sep=" ", row.names=TRUE, col.names=TRUE)
 * List is an indexed set of objects, but the element of a list can be of different type, including other list.
     * The mode of a list is list.
 
-* A list is created using the ```list(...)``` command, with comma separated arguments.
+* A list is created using the ```list(...)``` command instead of ```c()```, with comma separated arguments.
 
 * Single square brackets ```[ ]``` are used to select a sublist.
 
@@ -301,6 +355,9 @@ wirte.table(x, file="", append=FALSE, sep=" ", row.names=TRUE, col.names=TRUE)
 
 ```{r}
 (my.list <- list("one", TRUE, 3, c("f", "o", "u", "r")))
+```
+```{r}
+str(my.list)
 ```
 
 ```{r}
@@ -374,7 +431,7 @@ my.list[["Se"]]
 
 ```{r}
 lm.xy <- lm(y~x, data=data.frame(x=1:5, y=1:5))
-mode(lm.xy)
+typeof(lm.xy)
 ```
 ```{r}
 names(lm.xy)
