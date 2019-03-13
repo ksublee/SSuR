@@ -1,9 +1,9 @@
 ---
 title: "Continuous random variable"
 output: 
-  github_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
+  github_document: default
 ---
 
 ## Some of continuous random variables in R

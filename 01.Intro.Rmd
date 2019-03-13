@@ -1,9 +1,9 @@
 ---
 title: "Introduction to R"
 output:
-  github_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
+  github_document: default
 ---
 
 
@@ -156,6 +156,9 @@ We will study more about functions in Chapter 4.
 # short for sequence
 (x <- seq(1, 20, by = 2))
 ```
+```{r}
+(x2 <- seq(1.1, 2, by = 0.1))
+```
 
 ```{r}
 # short for repeat
@@ -179,6 +182,14 @@ length(x)
 ```
 
 * vector and index
+```{r}
+(x<- 100:110)
+# second element
+x[2]
+# last element
+x[length(x)]
+```
+
 ```{r}
 (x<- 100:110)
 
@@ -251,6 +262,28 @@ integer vector
 integ <- c(1L, 2L, 3L, 4L)
 typeof(integ)
 ```
+
+double vector
+```{r}
+doub <- c(1, 2, 3, 4)
+typeof(doub)
+```
+
+#### ```typeof()```
+
+```typeof()``` returns an (internal) object type : 
+
+* logical - logical vector
+* double - double vector
+* interger - interger vector
+* character - character vector
+* list - see Ch.5
+* builtin : R built-in function
+* clouser : user defined function
+* and so on.
+
+Simply speaking, the objects in R are implemented via C, 
+and the internal types mean the C level data types.
 
 
 #### Coercion
