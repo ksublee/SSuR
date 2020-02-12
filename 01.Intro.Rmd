@@ -181,6 +181,29 @@ We will study more about functions in Chapter 4.
 length(x)
 ```
 
+* ```letters, LETTERS```
+```{r}
+# the 26 lower-case letters of the Roman alphabet
+letters
+```
+```{r}
+# the 26 upper-case letters of the Roman alphabet;
+LETTERS
+```
+
+
+* ```seq_along()```
+
+```seq_along(x)``` is the same as ```1:length(x)```
+
+```{r}
+x <- letters[1:5]  # a b c d e
+y <- seq_along(x)
+print(y)
+```
+
+
+
 * vector and index
 ```{r}
 (x<- 100:110)
@@ -196,6 +219,9 @@ x[length(x)]
 i <- c(1, 3, 2)
 
 x[i]
+```
+```{r}
+x[1:5]
 ```
 
 minus index:
@@ -269,6 +295,9 @@ doub <- c(1, 2, 3, 4)
 typeof(doub)
 ```
 
+
+
+
 #### ```typeof()```
 
 ```typeof()``` returns an (internal) object type : 
@@ -320,7 +349,6 @@ x.var - var(x)
 
 * The basic problem in numerical integration is to compute an approximate solution to a definite integral
 
-      <img src="./06.Numerical_integration_files/figure-markdown_github/int_f.png" width="100">
 
 ```{r, echo=FALSE, fig.width=5, fig.height=4}
 dt <- 0.005
@@ -394,6 +422,32 @@ typeof(x[1])
 ```{r}
 y <- c(NA, "abc")
 typeof(y[1])
+```
+
+
+### Inf and -Inf
+
+If a computation result is too big, R will return ```Inf```.
+
+```{r}
+2 ^ 1024
+```
+```{r}
+- 2 ^ 1024
+```
+```{r}
+1 / 0
+```
+
+### NaN
+
+If a computation result makes little sense, then R will return ```NaN```, not a number.
+
+```{r}
+Inf - Inf
+```
+```{r}
+0 / 0
 ```
 
 
@@ -534,6 +588,13 @@ You can name a vector:
 y <- 1:3
 names(y) <- c("first", "second", "third")
 y
+```
+and select elements by names:
+```{r}
+y["first"]
+```
+```{r}
+y[c("first", "third")]
 ```
 
 

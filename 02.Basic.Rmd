@@ -130,7 +130,7 @@ show(n_factorial)
 
 #### Example : pension	
 
-```{r}
+```{r, fig.width = 5, fig.height=4}
 r <- 0.11             # Annual interest rate
 term <- 10            # Forecast duration (in years)
 period <- 1/12        # Time between payments (in years)
@@ -250,7 +250,7 @@ ifelse( x>0, "Positive", "Negative")
 
 #### ```pmin``` and ```pmax```
 * vectorised versions of the minimum and maximum  
-* ```pmax``` and ```pmin()``` take one or more vectors as arguments, recycle them to common length and return a single vector giving the ¡®parallel¡¯ maxima (or minima) of the argument vectors.
+* ```pmax``` and ```pmin()``` take one or more vectors as arguments, recycle them to common length and return a single vector giving the parallel maxima (or minima) of the argument vectors.
 
 ```{r}
 pmin( c(1, 2, 3), c(3, 2, 1), c(2, 2, 2))

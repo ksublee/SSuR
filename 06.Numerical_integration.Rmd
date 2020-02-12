@@ -10,40 +10,56 @@ output:
 
 * It is frequently necessary to compute
 
-      <img src="./06.Numerical_integration_files/figure-markdown_github/int_f.png" width="100">
+      <img src="./figure/6.Numerical_integration/int_f.png" width="100">
 
 * If we know the antiderivative F, then
 
-      <img src="./06.Numerical_integration_files/figure-markdown_github/int_f_F.png" width="250">
+      <img src="./figure/6.Numerical_integration/int_f_F.png" width="250">
 
 * However for many function f, we don't know the closed form of antiderivative.
 
 * We approximate the integral on the divided subinterval:
 
-      <img src="./06.Numerical_integration_files/figure-markdown_github/subinterval.png" width="250">
+      <img src="./figure/6.Numerical_integration/subinterval.png" width="250">
+
+## Rectagular method
+
+* Review the rectangular method
+
+```{r}
+rect <- function(ftn, a, b, n = 100){
+  h <- (b-a)/n
+  x.vec <- seq(a, b, by = h)
+  f.vec <- sapply(x.vec, ftn)
+  h * sum(f.vec)
+}
+```
+```{r}
+ftn6 <- function(x) return(4*x^3)
+rect(ftn6, 0, 1, n=20)
+```
 
 ## Trapzoidal rule
 
 * Approximating the are under $y=f(x)$ over the subinterval $[x_i, x_{i+1}]$ by a trapezoid.
 
-<img src="./06.Numerical_integration_files/figure-markdown_github/trapzoid.png" width="400">
+<img src="./figure/6.Numerical_integration/trapzoid.png" width="400">
 
 
 * The area of each trapezoid:
 
-      <img src="./06.Numerical_integration_files/figure-markdown_github/h.png" width="350">
+      <img src="./figure/6.Numerical_integration/h.png" width="350">
     
 * Trapezoidal approximation:
 
-      <img src="./06.Numerical_integration_files/figure-markdown_github/T.png" width="450">
+      <img src="./figure/6.Numerical_integration/T.png" width="450">
 
 ```{r}
 trapezoid <- function(ftn, a, b, n = 100) {
   h <- (b-a)/n
   x.vec <- seq(a, b, by = h)
   f.vec <- sapply(x.vec, ftn)
-  T <- h*(f.vec[1]/2 + sum(f.vec[2:n]) + f.vec[n+1]/2)
-  return(T)
+  h*(f.vec[1]/2 + sum(f.vec[2:n]) + f.vec[n+1]/2)
 }
 ```
 
@@ -59,19 +75,18 @@ trapezoid(ftn6, 0, 1, n=20)
 
 * and approximate $f$ by a parabola (polynomial of degree 2).
 
-<img src="./06.Numerical_integration_files/figure-markdown_github/P.png" width="700">
+<img src="./figure/6.Numerical_integration/P.png" width="700">
 
 
 * As an approximation to the area, we use
 
-<img src="./06.Numerical_integration_files/figure-markdown_github/int_P.png" width="400">
+<img src="./figure/6.Numerical_integration/int_P.png" width="400">
 
-
-![Simpson](./06.Numerical_integration_files/figure-markdown_github/simpson.png)
+<img src="./figure/6.Numerical_integration/simpson.png" width="300">
 
 * Now assuming $n$ is even, we add up the approximation for subintervals $[x_{2i}, x_{2i+2}]$ to obtain Simpson's approximations $S$.
 
-<img src="./06.Numerical_integration_files/figure-markdown_github/S.png" width="700">
+<img src="./figure/6.Numerical_integration/S.png" width="700">
 
 * Notice that the $f(x_i)$ for $i$ odd are all weighted 4, while the $f(x_i)$ for $i$ even (except 0 and n) are weighted 2.
 
@@ -84,8 +99,22 @@ simpson_n <- function(ftn, a, b, n = 100) {
   x.vec2 <- seq(a+2*h, b-2*h, by = 2*h)
   f.vec1 <- sapply(x.vec1, ftn)
   f.vec2 <- sapply(x.vec2, ftn)
-  S <- h/3*(ftn(a) + ftn(b) + 4*sum(f.vec1) + 2*sum(f.vec2))   # return value
-  return(S)
+  h/3*(ftn(a) + ftn(b) + 4*sum(f.vec1) + 2*sum(f.vec2))   # return value
+}
+
+```
+
+```{r}
+# or similarly
+simpson_n <- function(ftn, a, b, n = 100) {
+  n <- max(c(2*(n %/% 2), 4))
+  h <- (b-a)/n
+  
+  x.vec <- seq(a, b, by = h)
+  f.vec <- sapply(x.vec, ftn)
+  
+  h * 1/3 * (f.vec[1] + 4 * sum(f.vec[seq(2, n, by=2)]) + 2 * sum(f.vec[seq(3, n-1, by=2)]) + f.vec[n+1])
+  
 }
 
 ```
@@ -99,7 +128,7 @@ simpson_n(ftn6, 0, 1, 20)
 
 * Example
 
-```{r}
+```{r, fig.width = 5}
 f <- function(x) {
   if (0 < x & x < 1) 1/simpson_n(function(x) exp(-x^3), 0, 1)*exp(-x^3)
   else 0
@@ -120,20 +149,23 @@ plot(seq(-1,2,0.01), sapply(seq(-1,2,0.01), f), xlab="x", ylab="f(x)", 'l')
 simpson_n(function(x) (x-m)^2*f(x), 0, 1)
 ```
 
+* How to define the cumulative function F(x)?
+
 ### pdf and cdf of the standard normal
 
 Consider the probability density function and cumulative distribution of standard normal.
 
-```{r}
-phi <- function(x) return(exp(-x^2/2)/sqrt(2*pi))
+```{r, fig.width = 5}
+# probability density function
+phi <- function(x) exp(-x^2 / 2) / sqrt(2*pi)
+
+# cumulative distribution function
 Phi <- function(z) {
-	if (z<0) {
-	  return(0.5 - simpson_n(phi, z, 0))
-	} else {
-    return(0.5 + simpson_n(phi, 0, z))
-	}
+	if (z < 0) 0.5 - simpson_n(phi, z, 0)
+	else 0.5 + simpson_n(phi, 0, z)
 }
-z<- seq(-5, 5, by = 0.1)
+
+z <- seq(-5, 5, by = 0.1)
 phi.z <- sapply(z, phi)
 Phi.z <- sapply(z, Phi)
 plot(z, Phi.z, type  ="l", ylab="", main="phi(z) and Phi(z)")
@@ -141,3 +173,85 @@ lines(z, phi.z)
 
 ```
 
+### Functional programming
+
+Return values are determined by ```f.vec```:
+
+* rectangular : ```h * sum(f.vec)```
+* trapzoid : ```h * (f.vec[1]/2 + sum(f.vec[2:n]) + f.vec[n+1]/2)```
+* Simpson : ```h * 1/3 * (f.vec[1] + 4 * sum(f.vec[seq(2, n, by=2)]) + 2 * sum(f.vec[seq(3, n-1, by=2)]) + f.vec[n+1])```
+
+
+Define each component as a function:
+
+```{r}
+rect_method <- function(f.vec) sum(f.vec)
+
+trapz_method <- function(f.vec) {
+  n <- length(f.vec) - 1
+  f.vec[1]/2 + sum(f.vec[2:n]) + f.vec[n+1]/2
+}
+
+simpson_method <- function(f.vec) {
+  n <- length(f.vec) - 1
+  (f.vec[1] +
+    4 * sum(f.vec[seq(2, n, by=2)]) +
+    2 * sum(f.vec[seq(3, n-1, by=2)]) +
+    f.vec[n+1]) / 3
+}
+```
+
+
+Now we can define general numerical integration function.
+
+```{r}
+numerical_int <- function(ftn, a, b, n = 100, method){
+  
+  n <- max(c(2*(n %/% 2), 4))
+  h <- (b-a)/n
+  x.vec <- seq(a, b, by = h)
+  f.vec <- sapply(x.vec, ftn)
+  
+  h * method(f.vec)
+}
+
+```
+
+```{r}
+ftn6 <- function(x) return(4*x^3)
+```
+
+```{r}
+numerical_int(ftn6, 0, 1, method = rect_method)
+```
+```{r}
+numerical_int(ftn6, 0, 1, method = trapz_method)
+```
+```{r}
+numerical_int(ftn6, 0, 1, method = simpson_method)
+```
+
+This programming tatic allow us to extend the numerical integrations as a new method is implemented.
+
+For example, the Milne method:
+
+<img src="./figure/6.Numerical_integration/simpson.png" width="300">
+
+<img src="./figure/6.Numerical_integration/milne.png" width="300">
+
+
+```{r}
+milne_method <- function(f.vec) {
+  n <- length(f.vec) - 1
+  (4 * f.vec[1] +
+    (-2) * sum(f.vec[seq(2, n, by=2)]) +
+    8 * sum(f.vec[seq(3, n-1, by=2)]) +
+    4 * f.vec[n+1]) * 1 / 3
+}
+```
+
+```{r}
+numerical_int(ftn6, 0, 1, method = milne_method)
+```
+
+More about functional programming : http://adv-r.had.co.nz/Functional-programming.html

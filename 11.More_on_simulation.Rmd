@@ -6,22 +6,6 @@ output:
   github_document: default
 ---
 
-## Uncorrelated but dependent variables
-
-Indepnent variables are uncorrelated but uncorrelated variables can be dependent.
-
-
-```{r}
-n <- 10000
-X <- runif(n, -1, 1)
-Z <- runif(n, -1, 1)
-Y <- sign(Z)*abs(X)
-cor(X,Y)   # correlation coefficient is almost 0
-```
-```{r, fig.height=5, fig.width=5}
-plot(X,Y, cex=0.1) # check scatter plot
-```
-
 ## Inversion method
 
 ### Generate normal distribution from uniform random variables
@@ -54,13 +38,14 @@ qqnorm(my_norm_rv)
 ### Generate exponential distribution from uniform random variables
 
 ```{r}
+lambda <- 0.5
 Nsim <- 10000       #number of random variables
 U <- runif(Nsim)
-X <- -log(U)        #transforms of uniforms
+X <- - 1/lambda *log(U)        #transforms of uniforms
 Y <- rexp(Nsim)     #exponentials from R
 par(mfrow=c(1,2))   #plots
-hist(X,freq=F,main="Exp from Uniform")
-hist(Y,freq=F,main="Exp from R")
+hist(X, freq=FALSE, main="Exp from Uniform")
+hist(Y, freq=FALSE, main="Exp from R")
 ```
 
 
@@ -69,6 +54,9 @@ hist(Y,freq=F,main="Exp from R")
 Generate two normals from two uniforms.
 
 In the following, ```X1``` and ```X2``` follows independent normal distributions.
+
+ * Note that ```-2*log(U1)``` follows the exponential distribution with $\lambda=2$, i.e., the Chi-square distribution with d.f. = 2.
+ 
 
 ```{r}
 Nsim <- 10000
@@ -109,88 +97,6 @@ y <- 0.5*sin(x)
 lines(x, y, col='red')
 
 ```
-
-
-
-
-## Memoryless property
-
-The exponential distribution has a memoryless property.
-
-Let X follows an exponential distribution.
-
-The following simulates P(X>4).
-
-```{r}
-n <- 1000000
-y <- rexp(n, rate = 0.1)
-larger_4 <- y[y > 4]
-(ratio1 <- length(larger_4)/n)
-```
-
-The following simulates P( X>12 | X>8 ) which is similar to the previous result.
-
-```{r}
-larger_8 <- y[y > 8]
-larger_12 <- y[y > 12]
-
-(ratio2 <- length(larger_12)/length(larger_8))
-
-```
-
-## Generating t distribution from normal distributions
-
-* Student t random variable with d.f. $\nu$ can be reperesented by
-
-     <img src="./11.More_on_simulation_files/figure-markdown_github/t.png" width="200">
-
-where
-
-* $Z$ is a standard normal r.v.
-* $V$ is a chi-square r.v. with d.f. $\nu$
-* $Z$ and $V$ are independent
-
-```{r}
-Nsim <- 10000
-nu <- 10
-Z <- rnorm(Nsim)
-V <- rnorm(Nsim)^2
-for (i in 2:nu) V <- V+rnorm(Nsim)^2
-Trv <- Z * sqrt(nu/V)
-
-Y <- rt(Nsim, df=nu)     #t random variable from R
-par(mfrow=c(1,2))   #plots
-hist(Trv, breaks = seq(-10,10,0.2), freq=F, main="T from normal")
-hist(Y, breaks = seq(-10,10,0.2), freq=F, main="T from R")
-```
-
-
-## t statistics
-
-```{r}
-mu <- 5
-sigma <- 3
-n <- 7     # sample size
-N <- 10000   # simulation number
-t_statistic <- numeric(N)
-
-for (i in 1:N){
-  sample_data <- rnorm(n, mu, sigma)
-  t_statistic[i] <- (mean(sample_data) - mu)/(sd(sample_data)/sqrt(n))
-}
-
-hist(t_statistic, breaks = seq(min(t_statistic),max(t_statistic)+0.2,0.2), probability=T)
-
-x <- seq(-6,6,0.01)
-lines(x, dt(x, n-1))
-```
-
-QQ plot
-
-```{r}
-qqnorm(t_statistic)
-```
-
 
 
 ## Random walk

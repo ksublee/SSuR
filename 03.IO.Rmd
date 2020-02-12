@@ -161,9 +161,9 @@ write(t(x), file = "out.txt", ncolumn=6)
 ```{r}
 x <- matrix(rep(1:5, 1:5), nrow=3, ncol=5)
 dump("x", file="result.txt")
-rm(x)
+rm(x) # this removes x
 source("result.txt")
-x
+x 
 ```
 
 ### Plotting
@@ -178,10 +178,36 @@ x
   * ```pos``` is used to indicate the position. (See ```help(text)```)
 * ```title(main)``` for the title (```main``` is a character string).
 
+#### Basic plot
+
+```{r, fig.height = 4, fig.width = 4}
+x <- seq(-5, 5, by = 1)
+y <- x^2
+plot(x, y)
+```
+```{r, fig.height = 4, fig.width = 4}
+x <- seq(-5, 5, by = 1)
+y <- x^2
+plot(x, y, type = 'l')
+```
+```{r, fig.height = 4, fig.width = 4}
+x <- seq(-5, 5, by = 0.01)
+y <- x^2
+plot(x, y, type = 'l')
+```
+
+```{r, fig.height = 4, fig.width = 4}
+x <- seq(-5, 5, by = 0.01)
+y <- x^2
+plot(x, y, type = 'l')
+# add another line
+lines(x, - x^2 + 25)
+```
+
 
 #### plotting a parabola $y^2=4x$
 
-```{r}
+```{r, fig.height = 4, fig.width = 6}
 x <- seq(0, 5, by=0.01)
 y.upper <- 2*sqrt(x)
 y.lower <- -2*sqrt(x)
@@ -199,7 +225,6 @@ title("The parabola y^2 = 4*x")
 
 #### more than one plots
 
-* ```windows()``` open additional graphics devices.
 * ```par(mfrow = c(nr, nc))``` or ```par(mfcol = c(nr, nc))``` creates a grid of plots.
    * ```mfrow = c(nr, nc))``` : with ```nr``` rows and ```nc``` columns, filled row by row.
    * ```mfcol = c(nr, nc))``` : filled column by column.
