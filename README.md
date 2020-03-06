@@ -6,7 +6,7 @@ Lecture materials for "Stochastic Simulation" course.
 
 * .Rmd : R markdown documents written in Rstudio. Students can download .Rmd files and modify or knit to html and save as pdf files or print them.
 
-* ppt : power point files. Previously, the lecture was based on ppt files but I am going to use markdown documents based materials in the class. 
+* .html : After downloading files, you can open .html files in your web browser and print the lecture notes.
 
 
 These materials are based on the follwing great books:

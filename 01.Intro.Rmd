@@ -10,7 +10,7 @@ output:
 ### R as a calculating environment
 
 R can be used as a powerful calculator.
-For arithmetic calculations:
+For arithmetic calculations:`
 ```{r}
 (1 + 1 / 100) ^ 100
 ```
@@ -347,7 +347,7 @@ x.var - var(x)
 
 #### Example : simple numerical integration
 
-* The basic problem in numerical integration is to compute an approximate solution to a definite integral
+* The basic problem in numerical integration is to compute an approximate solution to a definite integral.
 
 
 ```{r, echo=FALSE, fig.width=5, fig.height=4}
