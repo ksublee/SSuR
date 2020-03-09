@@ -308,7 +308,7 @@ typeof(doub)
 * character - character vector
 * list - see Ch.5
 * builtin : R built-in function
-* clouser : user defined function
+* closure : user defined function
 * and so on.
 
 Simply speaking, the objects in R are implemented via C, 
