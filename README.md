@@ -11,9 +11,9 @@ Lecture materials for "Stochastic Simulation" course.
 
 These materials are based on the follwing great books:
 
-[Introduction to Scientific Programming and Simulation Using R](https://www.amazon.com/Introduction-Scientific-Programming-Simulation-Chapman/dp/1420068725)
-[Advanced R](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)
-[R in a Nutshell](https://www.amazon.com/R-Nutshell-Desktop-Quick-Reference/dp/144931208X)
+[Introduction to Scientific Programming and Simulation Using R](https://www.amazon.com/Introduction-Scientific-Programming-Simulation-Chapman/dp/1420068725)  
+[Advanced R](https://www.amazon.com/Advanced-Chapman-Hall-Hadley-Wickham/dp/1466586966)  
+[R in a Nutshell](https://www.amazon.com/R-Nutshell-Desktop-Quick-Reference/dp/144931208X)  
 [Software for Data Analysis : Programming with R](https://www.amazon.com/Software-Data-Analysis-Programming-Statistics/dp/0387759352)
 
 
