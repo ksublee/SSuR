@@ -514,7 +514,7 @@ names(lm.xy)
 * ```tapply``` allows us to vectorise the application of a function to subsets of data.
 
 ```{r, eval=FALSE}
-tapply(X, INDEX, FUN, ¡¦)
+tapply(X, INDEX, FUN, â€¦)
 ```
 
 * ```X``` : target vector to be applied.
@@ -580,9 +580,9 @@ tapply(X = x, INDEX = y, FUN = max)
 
 ### lapply and sapply
 
-* ```lapply(X, FUN, ¡¦)``` applies the function ```FUN``` to each element of the list ```X``` and returns a list.
+* ```lapply(X, FUN, â€¦)``` applies the function ```FUN``` to each element of the list ```X``` and returns a list.
 
-* ```sapply(X, FUN, ¡¦)``` applies the function ```FUN``` to each element of ```X```, which can be a list or a vector, 
+* ```sapply(X, FUN, â€¦)``` applies the function ```FUN``` to each element of ```X```, which can be a list or a vector, 
 and by default will try to return the results in a vector or a matrix, if this make sense, otherwise in a list.
 
 
