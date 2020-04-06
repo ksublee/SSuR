@@ -1,9 +1,9 @@
 ---
 title: "Sophisticated data structures"
 output: 
-  html_document: default
-  pdf_document: default
   github_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 ## Sophisticated data structures
@@ -102,7 +102,7 @@ A data frame is the most common way of storing data in R.
 You create a data.frame using ```data.frame()```, which takes named vectors or existing data.frame as input:
 
 ```{r, eval=FALSE}
-data.frame(col1=x1, col2=x2, ¡¦, df1, df2, ¡¦)
+data.frame(col1=x1, col2=x2, ..., df1, df2, ...)
 ```
 
 * ```col1``` and ```col2``` are column names
