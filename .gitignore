@@ -5,7 +5,7 @@
 .RData
 .Ruserdata
 
-
+.ipynb_checkpoints
 
 hw/*
 
