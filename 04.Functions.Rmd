@@ -270,7 +270,7 @@ sqrt(1:5)
 #### Example : Simple sapply with anonymous function
 
 Anonymous function is a function without a name.
-You use an anonymous function when it¡¯s not worth the effort to give it a name.
+You use an anonymous function when it is not worth the effort to give it a name.
 
 ```{r}
 (function(x) x^2 + 1)(10)
