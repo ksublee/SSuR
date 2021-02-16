@@ -8,19 +8,20 @@ output:
 
 
 
+
 ### Branching with if
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 if ( logical_expression ) {  
-  expression_1	
+  expression_1
 }  
 ```
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 if (logical_expression) {   
-  expression_1   	
-} else {   	
-  expression_2 	
+  expression_1
+} else {
+  expression_2
 }  
 ```
 
@@ -31,8 +32,8 @@ Conversely if ```logical_expression``` is ```FALSE``` then only the second group
 
 If you type:   
 
-```{r, eval=FALSE}
-if (logical_expression) {	 
+```{r eval=FALSE}
+if (logical_expression) {
   expression_1
 }
 else {  
@@ -48,7 +49,7 @@ That is, R treats the else as the start of a new command, but there is no comman
 The followings are equivalent.
 
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 if (logical_expression_1){    
   expression_1    
 } else {   
@@ -59,7 +60,7 @@ if (logical_expression_1){
     }      
 }
 ```
-```{r, eval=FALSE}
+```{r eval=FALSE}
 if (logical_expression_1){   
   expression_1   
 } else if (logical_expression_2){   
@@ -90,7 +91,7 @@ show(roots)
 
 ### Looping with for
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 for (x in vector) {  
   expression_1   
   ...   
@@ -130,7 +131,7 @@ show(n_factorial)
 
 #### Example : pension	
 
-```{r, fig.width = 5, fig.height=4}
+```{r fig.width=5, fig.height=4}
 r <- 0.11             # Annual interest rate
 term <- 10            # Forecast duration (in years)
 period <- 1/12        # Time between payments (in years)
@@ -153,13 +154,13 @@ plot(time, pension)
 
 
 Program 1 and 2 produce the same result but 1 is faster.
-```{r, eval=FALSE}
+```{r eval=FALSE}
 #Program1
 n <- 100000
 x <- rep(0, n)
 for (i in 1:n) x[i] <- i
 ```
-```{r, eval=FALSE}
+```{r eval=FALSE}
 #Program2
 n <- 100000
 x <- 1
@@ -169,7 +170,7 @@ Program1 of preallocation is faster than Program2 of redimensioning.
 
 ### Looping with while
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 while (logical_expression) {   
   expression_1   
   ...   

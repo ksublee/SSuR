@@ -10,7 +10,7 @@ output:
 ### R as a calculating environment
 
 R can be used as a powerful calculator.
-For arithmetic calculations:`
+For arithmetic calculations:
 ```{r}
 (1 + 1 / 100) ^ 100
 ```
@@ -23,21 +23,21 @@ For arithmetic calculations:`
 ```[1]``` implies this is item 1 in a vector of output.
 
 
-symbol | meaning
------- | --------
-+ | addition
-- | subtraction
-* | multiplication
-/ | division
-^ | exponential
-%% | modulus
-%/% | integer division
+|symbol | meaning
+|------ | --------
+|+ | addition
+|- | subtraction
+|* | multiplication
+|/ | division
+|^ | exponential
+|%% | modulus
+|%/% | integer division
+
 
 ### Built-in function in R
 
 R has a number of built in functions:  
 ```sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x)```
-
 ```{r}
 exp(1)
 options(digits = 16)
@@ -73,9 +73,13 @@ To display the value of a variable ```x```, we type ```x```
 ```{r}
 x <- 100
 x
+```
 
+```{r}
 print(x)
+```
 
+```{r}
 show(x)
 ```
 
@@ -202,13 +206,17 @@ y <- seq_along(x)
 print(y)
 ```
 
-
-
 * vector and index
 ```{r}
 (x<- 100:110)
+```
+
+```{r}
 # second element
 x[2]
+```
+
+```{r}
 # last element
 x[length(x)]
 ```
@@ -231,7 +239,7 @@ x[j]
 ```
 
 but you can't mix positive and negative index, the following code is erroneous.
-```{r, eval=FALSE}
+```{r eval=FALSE}
 x[c(-1, 2)]
 ```
 
@@ -258,7 +266,7 @@ c(1, 2, 3, 4) + c(1, 2)
 ```
 
 This works but with warning message:
-```{r, eval=FALSE}
+```{r eval=FALSE}
 c(1, 2, 3) + c(1, 2)
 ```
 
@@ -350,7 +358,7 @@ x.var - var(x)
 * The basic problem in numerical integration is to compute an approximate solution to a definite integral.
 
 
-```{r, echo=FALSE, fig.width=5, fig.height=4}
+```{r echo=FALSE, fig.width=5, fig.height=4}
 dt <- 0.005
 x <- seq(0, pi/6, 0.00001)
 f <- cos(x)
@@ -385,7 +393,7 @@ y <- (1 + 1/x)^x
 
 exp(1) - y
 ```
-```{r, fig.width=5, fig.height=4}
+```{r fig.width=5, fig.height=4}
 plot(x, y)
 ```
 
@@ -410,9 +418,11 @@ mean(a, na.rm = TRUE) #NAs can be removed
 ```
 
 ```NA``` is logical 
+
 ```{r}
 typeof(NA)
 ```
+
 and can be coerced to numeric, or integer, or charactor
 
 ```{r}
@@ -828,13 +838,13 @@ When you run R, it uses one of the directories on your hard drive as a working d
 * where it looks for user-written programs and data files.
 
 Check the working directory.
-```{r, eval=FALSE}
+```{r eval=FALSE}
 getwd()
 ```
 
 Change the working directory to "dir"
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 setwd("dir")
 ```
 

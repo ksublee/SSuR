@@ -6,22 +6,26 @@ output:
   html_document: default
 ---
 
+<!-- #region -->
 ## Sophisticated data structures
 
 * R provides sophisticated structure for the storage and manipulation of data.
-    * simplify data representation, manipulation and analysis.
+    * simplify data representation, manipulation and analysis.  
 
-* dataframe
+
+* dataframe  
     * is like a matrix, 
-    * but extended to allow for different object models in different columns
+    * but extended to allow for different object models in different columns  
+
 
 * list
-    * is a general data structure that can house many kinds of R object.
+    * is a general data structure that can house many kinds of R object.  
+
 
 * factor
-    * special variable that represent categorical objects.
-    
-    
+    * special variable that represent categorical objects.  
+<!-- #endregion -->
+
 ## Factor
 A factor is a vector that can contain only predefined values, and is used to store categorical data
 
@@ -86,9 +90,6 @@ typeof(hair)
 ```{r}
 as.numeric(hair)
 ```
-
-
-
 ## Dataframe
 
 A data frame is the most common way of storing data in R.
@@ -101,7 +102,7 @@ A data frame is the most common way of storing data in R.
 
 You create a data.frame using ```data.frame()```, which takes named vectors or existing data.frame as input:
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 data.frame(col1=x1, col2=x2, ..., df1, df2, ...)
 ```
 
@@ -118,8 +119,9 @@ str(df)
 ```
 
 
-```data.frame()``` turns strings into factors. 
-Use ```stringsAsFactors = FALSE``` to suppress this behaviour:
+```data.frame()``` turns strings into factors in R 3.x and 2.x.   
+Use ```stringsAsFactors = FALSE``` to suppress this behaviour:  
+(In R 4.x, R now uses a ```stringsAsFactors = FALSE``` default.)
 
 ```{r}
 df <- data.frame(
@@ -159,7 +161,7 @@ Plot | Tree | Species | Diameter | Height
 
 * Large dataframe are usually read into R from a file, using ```read.table```.    
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 read.table(file, header=FALSE, sep="")
 ```
 
@@ -197,11 +199,11 @@ read.table(file, header=FALSE, sep="")
 
 * ufc.csv is comma separated and there is a header line.
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 ufc <- read.csv("the path of ufc.csv")
 ```
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 ufc <- read.csv("./data/ufc.csv")
 ```
 
@@ -227,7 +229,7 @@ x[1:5]
 * We can use ```[[?]]``` to extract columns.
     * ```ufc$height.m```,  ```ufc[[5]]``` and ```ufc[["height.m"]]``` are all equivalent.
     * The result is a vector.
-    
+
 ```{r}
 x1 <- ufc[["height.m"]]
 x1[1:5]
@@ -338,7 +340,7 @@ head(fir.height)
 
 ### write a dataframe
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 write.table(x, file="", append=FALSE, sep=" ", row.names=TRUE, col.names=TRUE)
 ```
 
@@ -364,9 +366,6 @@ ufc_tibble <- read_csv("./data/ufc.csv")
 ```{r}
 ufc_tibble
 ```
-
-
-
 ## List
 
 * We have seen that a vector is an indexed set of objects.
@@ -428,7 +427,7 @@ my.list2 <- list("a", c(5,6,7), my.list)
 ```{r}
 my.list2[3]
 ```
-```{r, eval = FALSE}
+```{r eval=FALSE}
 #error
 my.list2[3][[4]]
 ```
@@ -443,7 +442,6 @@ my.list2[[3]][4]
 
 ```{r}
 my.list2[[3]][[4]]
-
 ```
 
 
@@ -513,7 +511,7 @@ names(lm.xy)
 
 * ```tapply``` allows us to vectorise the application of a function to subsets of data.
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 tapply(X, INDEX, FUN, ...)
 ```
 
@@ -556,12 +554,13 @@ tapply(ufc$height.m, ufc$species, length)
 
 #### Example : tapply
 ```tapply``` can be used to count the number of elements in a vector:
-
 ```{r}
 x <- c(1,2,3,4,5,4,6,2,5,6,5,3,4,1,4,5,6,7,2,2,6,7,9,3,5)
 tapply(X = x, INDEX = x, FUN = length)
 ```
+
 the above is almost the same as
+
 ```{r}
 table(x)
 ```

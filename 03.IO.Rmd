@@ -83,7 +83,7 @@ quantile( scan("data/data1.txt"), (0:4)/4 )
 
 * ```scan``` can be used to read from the keyboard if ```file``` is ```""```.
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 scan(file="", what="")   # character input
 scan(file="", what=0)   # numeric input
 ```
@@ -91,13 +91,13 @@ scan(file="", what=0)   # numeric input
 * ```readline(prompt)``` read a single line of text from the keyboard.
    * ```prompt``` (default "") : takes the optional character input
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 your_name <- readline("Input your name : ")
 ```
 
 #### Example : Root of quadratic
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 cat("find zeros of a2*x^2 +a1*x +a0 = 0\n")
 a2 <- as.numeric(readline("a2= "))
 a1 <- as.numeric(readline("a1= "))
@@ -140,7 +140,7 @@ if (length(roots) == 0){
 * ```write``` converts matrices to vectors
 * Since R stores its matrices by column, you should transpose the matrix to ```write``` if you want the output to reflect the matrix structure.
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 ( x <- matrix(1:24, nrow=4, ncol=6)) 
 write(t(x), file = "out.txt", ncolumn=6)
 ```
@@ -180,23 +180,23 @@ x
 
 #### Basic plot
 
-```{r, fig.height = 4, fig.width = 4}
+```{r fig.height=4, fig.width=4}
 x <- seq(-5, 5, by = 1)
 y <- x^2
 plot(x, y)
 ```
-```{r, fig.height = 4, fig.width = 4}
+```{r fig.height=4, fig.width=4}
 x <- seq(-5, 5, by = 1)
 y <- x^2
 plot(x, y, type = 'l')
 ```
-```{r, fig.height = 4, fig.width = 4}
+```{r fig.height=4, fig.width=4}
 x <- seq(-5, 5, by = 0.01)
 y <- x^2
 plot(x, y, type = 'l')
 ```
 
-```{r, fig.height = 4, fig.width = 4}
+```{r fig.height=4, fig.width=4}
 x <- seq(-5, 5, by = 0.01)
 y <- x^2
 plot(x, y, type = 'l')
@@ -207,7 +207,7 @@ lines(x, - x^2 + 25)
 
 #### plotting a parabola $y^2=4x$
 
-```{r, fig.height = 4, fig.width = 6}
+```{r fig.height=4, fig.width=6}
 x <- seq(0, 5, by=0.01)
 y.upper <- 2*sqrt(x)
 y.lower <- -2*sqrt(x)
@@ -236,4 +236,3 @@ curve(x*sin(x), from=0, to=10, n=1001)
 curve(x*sin(x), from=0, to=1, n=1001)
 curve(x*sin(x), from=0, to=0.1, n=1001)
 ```
-

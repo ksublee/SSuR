@@ -30,35 +30,36 @@ Weibull | ```weibull``` | ```shape, scale=1```
 
 * The pdf, mean and variace are
 
-    * $f(x) = 1/(a-b)$, for $a \leq x  \leq b$
-    * $E[X] = (a+b)/2$
-    * $Var(x) = (b-a)^2/12$
+    * $f(x) = \frac{1}{a-b}$, for $a \leq x  \leq b$
+    * $E[X] = \frac{a+b}{2}$
+    * $Var(x) = \frac{(b-a)^2}{12}$
     
 <img src="./figure/10.Continuous_RV/uniform.png" width="400">
+
 
 ### Uniform distribution in R
 
 * density function of the uniform on the interval from ```min``` to ```max```.
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 dunif(x, min=0, max=1, log = FALSE)
 ```
 
 * the uniform distribution function
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 punif(q, min=0, max=1, lower.tail = TRUE, log.p = FALSE)
 ```
 
 * quantile function
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 qunif(p, min=0, max=1, lower.tail = TRUE, log.p = FALSE)
 ```
 
 * generate the uniform random variable
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 runif(n, min=0, max=1)
 ```
 
@@ -122,7 +123,7 @@ plot(x, pmf, 'h')
 
 Independent two uniform random variables.
 
-```{r, fig.width=5, fig.height=5}
+```{r fig.width=5, fig.height=5}
 n <- 10000
 X <- runif(n, -1, 1)
 Y <- runif(n, -1, 1)
@@ -142,24 +143,21 @@ Z <- runif(n, -1, 1)
 Y <- sign(Z)*abs(X)
 cor(X,Y)   # correlation coefficient is almost 0
 ```
-```{r, fig.width=3.5, fig.height=3.5}
+```{r fig.width=3.5, fig.height=3.5}
 plot(X,Y, cex=0.1) # check scatter plot
 ```
-
-
-
 ## Normal distribution
 
 ### Normal distribution in R
 
 * the normal density function
-```{r, eval=FALSE}
+```{r eval=FALSE}
 dnorm(x, mean = 0, sd = 1, log = FALSE)
 ```
 
 
 * the normal distribution function
-```{r, eval=FALSE}
+```{r eval=FALSE}
 pnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 ```
 
@@ -172,7 +170,7 @@ pnorm(1.96, lower.tail=FALSE)
 ```
 
 * quantile function
-```{r, eval=FALSE}
+```{r eval=FALSE}
 qnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 ```
 
@@ -184,13 +182,13 @@ qnorm(0.975, 0, 1)
 
 * normal random variables
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 rnorm(n, mean = 0, sd = 1)
 ```
 
 
 ### Normal density with different mean
-```{r, fig.width=4.5, fig.height=4}
+```{r fig.width=4.5, fig.height=4}
 x <- seq(-3, 5, 0.01)
 plot(x, dnorm(x, 0, 1), type="l", xlab="x", ylab="y",  xlim=c(-3,5))
 lines(x, dnorm(x, 1, 1), col="red")
@@ -201,7 +199,7 @@ title("Normal distribution: sigma=1, mu=0,1,2")
 ### Normal density with different sigma
 
 
-```{r, fig.width=4.5, fig.height=4}
+```{r fig.width=4.5, fig.height=4}
 x <- seq(-10, 10, 0.01)
 plot(x, dnorm(x, 0, 1), type="l", xlab="x", ylab="y",  xlim=c(-10,10))
 lines(x, dnorm(x, 0, 2), col="red")
@@ -227,7 +225,7 @@ $X$ ~ $N(\mu_1, \sigma_1^2)$, $Y$ ~ $N(\mu_2, \sigma_2^2)$
 
 Then $X+Y$ ~ $N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2)$
 
-```{r, fig.width=4, fig.height=4}
+```{r fig.width=4, fig.height=4}
 mu1 <-1; mu2 <-1
 sigma1 <- 1; sigma2 <- 2
 X <- rnorm(50000, mu1, sigma1)
@@ -242,23 +240,23 @@ lines(x, dnorm(x, mu1 + mu2, sqrt(sigma1^2 + sigma2^2)))
 ### Correlated normal r.v.s
 
 
-```{r, fig.width=7.5, fig.height=3}
+```{r fig.width=7.5, fig.height=3}
 Z1 <- rnorm(1000)
 Z2 <- rnorm(1000)
 
 par(mfrow=c(1,3))
 rhos <- c(-0.7,0,0.7)
 for (rho in rhos){
-	X <- Z1
-	Y <- rho * Z1 + sqrt(1 - rho^2) * Z2
-	plot(X,Y, cex=0.2)
-	title(paste("rho = ", rho))
+  X <- Z1
+  Y <- rho * Z1 + sqrt(1 - rho^2) * Z2
+  plot(X,Y, cex=0.2)
+  title(paste("rho = ", rho))
 }
 ```
 ```{r}
 for (rho in rhos){
   X <- Z1
-	Y <- rho * Z1 + sqrt(1 - rho^2) * Z2
+  Y <- rho * Z1 + sqrt(1 - rho^2) * Z2
   cat("When rho is ", rho, " the variance of X+Y is :",  var(X+Y), "\n")
 }
 ```
@@ -306,13 +304,13 @@ curve(dnorm(x), lwd=2, add= TRUE)
 title("t densities with 1,2,4 and 10 d.f., and normal limit in bold")
 ```
 
-### t statistics
+### t statistic
 
 In the code below, I intentionally used ```sapply``` for practical purpose of vectorized programming.
 
 You can rewrite this code with a program that uses ```for``` loop.
 
-```{r, fig.width=6}
+```{r fig.width=6}
 mu <- 5
 sigma <- 3
 n <- 7     # sample size for each simulation
@@ -336,7 +334,7 @@ lines(x, dt(x, n-1))
 
 QQ plot
 
-```{r, fig.width=4, fig.height=4}
+```{r fig.width=4, fig.height=4}
 qqnorm(t_statistic)
 ```
 
@@ -344,7 +342,7 @@ qqnorm(t_statistic)
 
 ### chi-square density
 
-```{r, fig.width=6}
+```{r fig.width=6}
 curve(dchisq(x, df=1), from=0, to=8, ylab="density", ylim=c(0,0.5))
 curve(dchisq(x, df=2), col="red", add = TRUE)
 curve(dchisq(x, df=3), col="blue", add = TRUE)
@@ -362,11 +360,11 @@ N <- 5000
 
 par(mfrow=c(2,2))
 for (df in dfs){
-	chi_rv <- numeric(N)
-	for (i in 1:df)
-		chi_rv <- chi_rv + rnorm(N)^2
-	hist(chi_rv, breaks=seq(0, 30, 0.5), freq=FALSE, main=paste("d.f. = ", df))
-	curve(dchisq(x, df), add=TRUE)
+  chi_rv <- numeric(N)
+  for (i in 1:df)
+    chi_rv <- chi_rv + rnorm(N)^2
+    hist(chi_rv, breaks=seq(0, 30, 0.5), freq=FALSE, main=paste("d.f. = ", df))
+  curve(dchisq(x, df), add=TRUE)
 }
 
 ```
@@ -437,26 +435,26 @@ cat("The correlation between X_bar and S^2 is ", cor(X_bar, S2), "\n")
 
 * density function with $\lambda =$ ```rate```
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 dexp(x, rate = 1, log = FALSE)
 ```
 
 * distribution function with $\lambda =$ ```rate```
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 pexp(q, rate = 1, lower.tail = TRUE, log.p = FALSE)
 ```
 
 
 * quantile function with $\lambda =$ ```rate```
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 qexp(p, rate = 1, lower.tail = TRUE, log.p = FALSE)
 ```
 
 * random variables with $\lambda =$ ```rate```
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 rexp(n, rate = 1)
 ```
 
@@ -508,12 +506,11 @@ hist(Y, freq=FALSE, main="Chi-square with df=2")
 
 * Let $X$ be the time of decay of a single atom, then $X \sim$ exp$(\lambda)$ and 
 
-    * $P(X > 4.47*10^9) = 0.5$
+    * $P(X > 4.47 \times 10^9) = 0.5$
 
-* Since $P(X > x) = \exp(-\lambda * x)$, we have 
+* Since $P(X > x) = \exp(-\lambda  x)$, we have 
 
 ```{r}
-
 (lambda <- log(2)/(4.47*10^9))
 ```
 
@@ -523,7 +520,7 @@ The exponential distribution has a memoryless property.
 
 Let X follows an exponential distribution.
 
-The following simulates P(X>4).
+The following simulates $P(X>4)$.
 
 ```{r}
 n <- 1000000
@@ -532,7 +529,7 @@ larger_4 <- y[y > 4]
 (ratio1 <- length(larger_4)/n)
 ```
 
-The following simulates P( X>12 | X>8 ) which is similar to the previous result.
+The following simulates $P( X>12 | X>8 )$ which is similar to the previous result.
 
 ```{r}
 larger_8 <- y[y > 8]
@@ -561,7 +558,8 @@ hist(Y,freq=F,main="Exp from R")
 * $X$ has a Weibull distribution with parameters $\lambda$ and $m$, if the hazard function is
 
     * $\lambda(x) = m \lambda x^{(m-1)}$
-    
+
+
 * $X$ ~ Weibull$(\lambda, m)$
 
 * $G(x) = \exp(-\lambda x^m)$
@@ -588,7 +586,7 @@ text(3.5, 1.3, "m=1")
 text(3, 0.52, "m<1")
 ```
 
-```{r, fig.width=6, fig.height=9}
+```{r fig.width=6, fig.height=9}
 par(mfrow=c(3,1))
 curve(dweibull(x, shape=0.5, scale=2^(-1/0.5)), from=0, to=4, ylab="f(x)", lwd=3)
 text(2,2,"Weibull(2,0.5) density")
@@ -599,6 +597,7 @@ text(2,0.8,"Weibull(2,3) density")
 
 ```
 
+<!-- #region -->
 ### Example : time to the next disaster
 
 * Suppose that the chance of a nuclear power station having a major accident in any given year is proportional to its age.
@@ -611,12 +610,14 @@ text(2,0.8,"Weibull(2,3) density")
 
 * After $t$ years there are $t$ power stations operating, so the total rate of accident is $\alpha$ $t^2$.
     * m$\lambda$ $t^{(m-1)}$ = $\alpha$ $t^2$  implies that  m=3, $\lambda=\alpha/3$
-    
+
+
 * Thus, $T$ ~ Weibull$(\alpha/3, 3)$.
 
 * For example, let $\alpha$ be 1/1,000,000.
 
 * The probability that the first major accident is within the next 50 years 
+<!-- #endregion -->
 
 ```{r}
 alpha <- 1/1000000
@@ -650,7 +651,7 @@ pweibull(50, shape = m, scale = lambda^(-1/m))
 
 * Merging
     * If we merge a Poisson process rate $\lambda_1$ with an independent Poisson process $\lambda_2$, then the results is a Poisson process rate $\lambda_1 + \lambda_2$.
-    
+
 
 <img src="./figure/10.Continuous_RV/merging.png" width="400">
 

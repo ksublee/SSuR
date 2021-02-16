@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -83,7 +83,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -145,6 +144,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -156,18 +156,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -195,7 +183,7 @@ $(document).ready(function () {
 
 <div id="r-as-a-calculating-environment" class="section level3">
 <h3>R as a calculating environment</h3>
-<p>R can be used as a powerful calculator. For arithmetic calculations:`</p>
+<p>R can be used as a powerful calculator. For arithmetic calculations:</p>
 <pre class="r"><code>(1 + 1 / 100) ^ 100</code></pre>
 <pre><code>## [1] 2.704814</code></pre>
 <pre class="r"><code>17 %% 5</code></pre>
@@ -384,12 +372,12 @@ If you provide arguments in this order, then they do not need to be named.</p>
 </ul>
 <pre class="r"><code># the 26 lower-case letters of the Roman alphabet
 letters</code></pre>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot;
-## [18] &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 <pre class="r"><code># the 26 upper-case letters of the Roman alphabet;
 LETTERS</code></pre>
-<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot;
-## [18] &quot;R&quot; &quot;S&quot; &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
+## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
 <ul>
 <li><code>seq_along()</code></li>
 </ul>
@@ -812,7 +800,7 @@ ncol(C)</code></pre>
 ## second 5 3</code></pre>
 <p><code>partC1</code> is a matrix</p>
 <pre class="r"><code>class(partC1)</code></pre>
-<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>When you select one column, it becomes a vector, not a matrix</p>
 <pre class="r"><code>this_is_vector_now &lt;- C[, &quot;a&quot;]
 class(this_is_vector_now)</code></pre>
@@ -820,7 +808,7 @@ class(this_is_vector_now)</code></pre>
 <p>When you want to preserve matrix form:</p>
 <pre class="r"><code>still_matrix &lt;- C[, &quot;a&quot;, drop = FALSE]
 class(still_matrix)</code></pre>
-<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>select rows:</p>
 <pre class="r"><code>(partC2 &lt;- C[1,])</code></pre>
 <pre><code>## a b c d 
@@ -849,7 +837,7 @@ class(still_matrix)</code></pre>
 ## b    2
 ## c    1</code></pre>
 <pre class="r"><code>class(Cm)</code></pre>
-<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <pre class="r"><code>(Cv &lt;- as.vector(Cm))</code></pre>
 <pre><code>## [1] 2 1</code></pre>
 <pre class="r"><code>class(Cv)</code></pre>
@@ -871,7 +859,7 @@ class(c(&quot;c&quot;, &quot;B&quot;, &quot;z&quot;))</code></pre>
 class(sin)</code></pre>
 <pre><code>## [1] &quot;function&quot;</code></pre>
 <pre class="r"><code>class(matrix(c(1,2)))</code></pre>
-<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 </div>
 <div id="workspace" class="section level3">
 <h3>Workspace</h3>
@@ -937,6 +925,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

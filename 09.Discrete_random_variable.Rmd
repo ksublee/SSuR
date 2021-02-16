@@ -1,8 +1,8 @@
 ---
 title: "Discrete random variable"
 output:
-  html_document: default
   github_document: default
+  html_document: default
   html_notebook: default
 ---
 
@@ -67,20 +67,21 @@ Let $B_1, ..., B_n$ be independent $Bernoulli(p)$ r.v.s, then
 
 For $x = 0, 1, ..., n,$ we have
 
-<img src="./figure/9.Discrete_RV/binom.png" width="250">
-
+$$ P(X = x) = {n \choose x} p^x (1-p)^{n-x} $$
 
 The Bernoulli distribution is the same as a $binom(1,p)$.
+
 
 ### Related functions in R
 
 [R online document for Binomial](https://www.rdocumentation.org/packages/stats/versions/3.4.0/topics/Binomial)
 
+
 #### probability mass function for the binomial such that $P(X=x)$
 
 
 ##### Usage
-```{r, eval=FALSE}
+```{r eval=FALSE}
 dbinom(x, size, prob, log=FALSE)
 ```
 * ```x``` can be a vector
@@ -94,7 +95,7 @@ dbinom(c(0,1,2,3,4,5), size=5, prob=0.4)
 #### probability distribution function for the binomial such that $P(X \leq q)$
 
 ##### Usage
-```{r, eval=FALSE}
+```{r eval=FALSE}
 pbinom(q, size, prob, lower.tail = TRUE, log.p = FALSE)
 ```
 * ```q``` can be a vector
@@ -107,14 +108,14 @@ pbinom(c(0,1,2,3,4,5), 5, 0.4)
 #### quantile function
 
 ##### Usage
-```{r, eval=FALSE}
+```{r eval=FALSE}
 qbinom(p, size, prob, lower.tail = TRUE, log.p = FALSE)
 ```
 
 #### random number generator
 
 ##### Usage
-```{r, eval=FALSE}
+```{r eval=FALSE}
 rbinom(n, size, prob)
 ```
 * ```n``` observations of of the binomial random variable
@@ -236,9 +237,6 @@ plot(x, pmf, 'h')
 ```{r}
 pbinom(19, size=1000, prob=0.01)
 ```
-
-
-
 ## Geometric distribution
 
 * Let $B_1, B_2, ...$ be an infinite sequence of independent $Bernoulli(p)$ random variables
@@ -263,38 +261,35 @@ par(mfrow=c(2,2))
 x <- seq(0,20,1)
 ps <- seq(0.2,0.8,0.2)
 for (p in ps){
-	y <- dgeom(x, p)
-	plot(x,y,xlim=c(0,20),ylim=c(0,1),xlab="x",		ylab="P(X=x)",type="h")
-	points(x,y)
-	title(paste("geometric(",p,")"))
+  y <- dgeom(x, p)
+  plot(x, y, xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X=x)", type="h")
+  points(x, y)
+  title(paste("geometric(", p, ")"))
 }
-
 ```
 
 ### cdf of geometric distribution
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 par(mfrow=c(2,2))
 x <- seq(0,20,1)
 ps <- seq(0.2,0.8,0.2)
 for (p in ps){
-	y <- pgeom(x, p)
-	plot(x,y,xlim=c(0,20),ylim=c(0,1),xlab="x", ylab="P(X=x)", type="s")
-	title(paste("geometric(",p,")"))
+  y <- pgeom(x, p)
+  plot(x,y,xlim=c(0,20),ylim=c(0,1),xlab="x", ylab="P(X<=x)", type="s")
+  title(paste("geometric(",p,")"))
 }
-
 ```
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 par(mfrow=c(2,2))
 x <- seq(0,20,1)
 ps <- seq(0.2,0.8,0.2)
 for (p in ps){
-	y <- pgeom(x, p)
-	plot(x,y,xlim=c(0,20), ylim=c(min(y),1), xlab="x", ylab="P(X=x)",type="s")
-	title(paste("geometric(",p,")"))
+  y <- pgeom(x, p)
+  plot(x,y,xlim=c(0,20), ylim=c(min(y),1), xlab="x", ylab="P(X<=x)",type="s")
+  title(paste("geometric(",p,")"))
 }
-
 ```
 
 ### Comparison with simulation
@@ -363,26 +358,24 @@ plot(x, relative_frequency, 'h');   plot(x, pmf, 'h')
     * $Z = Y_1 + ... + Y_r$ ~ nbinom$(r,p)$
     
 * It follows
-    * $E[Z] = r(1-p)/p$
-    * $Var(X) = r(1-p)/p^2$
-    
+    * $E[Z] = \frac{r(1-p)}{p}$
+    * $Var(X) = \frac{r(1-p)}{p^2}$
+
 
 ### Negative binomial probability mass function
 
 ```{r}
-
 par(mfrow=c(2,2))
 x <- seq(0,20,1)
 sizes = c(2, 3, 10, 10)
 probs = c(0.5, 0.5, 0.5, 0.8)
 
 for (i in seq(1,4)){
-  y<- dnbinom(x, sizes[i], probs[i])
-	plot(x, y, xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X=x)", type="h")
-	points(x, y)
-	title(paste("neg-binomial(", sizes[i], ",", probs[i], ")"))
+  y <- dnbinom(x, sizes[i], probs[i])
+  plot(x, y, xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X=x)", type="h")
+  points(x, y)
+  title(paste("neg-binomial(", sizes[i], ",", probs[i], ")"))
 }
-
 ```
 
 ### Negative binomial distribution function
@@ -396,8 +389,8 @@ probs = c(0.5, 0.5, 0.5, 0.8)
 
 for (i in seq(1,4)){
   y<- pnbinom(x, sizes[i], probs[i])
-	plot(x, y, xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X<=x)", type="s")
-	title(paste("neg-binomial(", sizes[i], ",", probs[i], ")"))
+  plot(x, y, xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X<=x)", type="s")
+  title(paste("neg-binomial(", sizes[i], ",", probs[i], ")"))
 }
 ```
 
@@ -458,7 +451,7 @@ plot(x, relative_frequency, 'h'); plot(x, pmf, 'h')
 * Let $Z$ be the number of items we check before we find three faults, then $Z \sim nbinomial(3,p)$ and
     * $P($stopping production$) = P(Z+3 \leq 100)$
   
-  
+
 ```{r}
 pnbinom(97, size = 3, prob = 0.01)
 ```
@@ -503,7 +496,7 @@ We say $X$ has a Poisson distribution with parameter $\lambda$, and write $X \si
 
 ### Poisson distribution in R
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 dpois(x, lambda, log = FALSE)
 ```
 
@@ -511,19 +504,19 @@ dpois(x, lambda, log = FALSE)
     * ```x``` can be a vector
 * ```lambda``` : (non-negative) mean, can be a vector
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 ppois(q, lambda, lower.tail = TRUE, log.p = FALSE)
 ```
 
 * Poisson distribution function such that $P(X \leq q)$
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 qpois(p, lambda, lower.tail = TRUE, log.p = FALSE)
 ```
 
 * quantile function
 
-```{r, eval=FALSE}
+```{r eval=FALSE}
 rpois(n, lambda)
 ```
 
@@ -537,10 +530,10 @@ x <- seq(0, 20, 1)
 lambdas = c(0.1, 1, 5, 10)
 
 for (lambda in lambdas){
-	y <- dpois(x, lambda)
-	plot(x,y,xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X=x)", type="h")
-	points(x, y)
-	title(paste("Poisson(", lambda, ")"))
+  y <- dpois(x, lambda)
+  plot(x,y,xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X=x)", type="h")
+  points(x, y)
+  title(paste("Poisson(", lambda, ")"))
 }
 
 ```
@@ -555,9 +548,9 @@ x <- seq(0, 20, 1)
 lambdas = c(0.1, 1, 5, 10)
 
 for (lambda in lambdas){
-	y <- ppois(x, lambda)
-	plot(x,y,xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X=x)", type="s")
-	title(paste("Poisson(", lambda, ")"))
+  y <- ppois(x, lambda)
+  plot(x,y,xlim=c(0,20), ylim=c(0,1), xlab="x", ylab="P(X<=x)", type="s")
+  title(paste("Poisson(", lambda, ")"))
 }
 
 ```
@@ -590,4 +583,3 @@ plot(x, dbinom(x, n, p), 'h')
 plot(x, dpois(x, n*p), 'h')
 
 ```
-

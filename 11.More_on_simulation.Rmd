@@ -85,7 +85,7 @@ Suppose that pdf $f$ is non-zero only on $[a,b]$ and $f<k$.
 ### Example
 Suppose that pdf $f$ is a $\sin$ function.
 
-$$f(x) = 0.5*sin(x),  x \in [0,\pi]$$
+$$f(x) = 0.5 \sin(x), \quad x \in [0,\pi]$$
 ```{r}
 NSim <- 10000
 X <- runif(NSim, 0, pi)
