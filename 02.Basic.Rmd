@@ -43,7 +43,7 @@ else {
 
 then you get an error.
 
-This is because R is believes the if statement is finished before it sees the else part.  
+This is because R believes the if statement is finished before it sees the else part.  
 That is, R treats the else as the start of a new command, but there is no command that starts with an else.
 
 The followings are equivalent.
@@ -236,7 +236,7 @@ sum((1:n)^2)
 #### ```ifelse```
 
 The ```ifelse``` function performs elementwise conditional evaluation upon a vector.  
-```ifelse``` returns a value with the same shape as test which is filled with elements selected from either yes or no depending on whether the element of test is ```TRUE``` or ```FALSE```.
+```ifelse``` returns a value with the same shape as ```test``` which is filled with elements selected from either yes or no depending on whether the element of test is ```TRUE``` or ```FALSE```.
 
 * ```ifelse(test, A, B)```
   * ```test``` : logical expression
@@ -251,7 +251,7 @@ ifelse( x>0, "Positive", "Negative")
 
 #### ```pmin``` and ```pmax```
 * vectorised versions of the minimum and maximum  
-* ```pmax``` and ```pmin()``` take one or more vectors as arguments, recycle them to common length and return a single vector giving the parallel maxima (or minima) of the argument vectors.
+* ```pmax``` and ```pmin``` take one or more vectors as arguments, recycle them to common length and return a single vector giving the parallel maxima (or minima) of the argument vectors.
 
 ```{r}
 pmin( c(1, 2, 3), c(3, 2, 1), c(2, 2, 2))
@@ -313,4 +313,4 @@ show(x)
   * Avoid using reserved names of functions
     * for example, ```t```, ```c``` and ```q``` are all function names in R
     * check with ```exists()``` function
-* Use black line to separate sections.
+* Use blank line to separate sections.
