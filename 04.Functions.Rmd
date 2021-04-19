@@ -99,7 +99,7 @@ n_choose_r(10,4)
 #### Example : Winsorised mean
 k-th Winsorised mean of ordered data $x=\{ x_1, ..., x_n \}$ is defined as  
 
-$$ w_k = \frac{(k+1)x_{k+1} + x_{k+2} + \cdots + x_{n-k+1} + (k+1) x_{n-k} }{n} $$
+$$ w_k = \frac{(k+1)x_{k+1} + x_{k+2} + \cdots + x_{n-k-1} + (k+1) x_{n-k} }{n} $$
 ```{r}
 wmean <- function(x, k) {
   x <- sort(x)
@@ -320,10 +320,16 @@ prime <- function(n) {
 ```{r}
 x <- 1:22
 y <- sapply(x, prime)
-tapply(x, y, max)
+y
 ```
 
+
 ```{r}
+tapply(x, y, length)
+```
+
+
+```{r, fig.width=6}
 n <- 1000
 m.vec <- 2:n
 primes <- sapply(m.vec, prime)

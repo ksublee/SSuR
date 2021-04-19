@@ -1,16 +1,16 @@
 ---
 title: "Continuous random variable"
 output: 
-  html_document: default
-  pdf_document: default
   github_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 ## Some of continuous random variables in R
 
-Some of the discrete distributions provided by R, together with the names of their parameter inputs.
+Some of the continuous distributions provided by R, together with the names of their parameter inputs.
 
-Distribution | R name (dist) | Paramter names
+Distribution | R name (dist) | Parameter names
 ------ | -------- | --------
 Uniform | ```unif``` | ```min=0, max=1```
 Exponential | ```exp``` | ```rate=1```
@@ -406,13 +406,13 @@ cat("The correlation between X_bar and S^2 is ", cor(X_bar, S2), "\n")
 * The failure rate is called the hazard function $\lambda(x)$.  
     * $\lambda(x) dx = P($component fails between $x$ and $x+dx$ | still working at $x)$ = $\frac{f(x)dx}{G(x)}$   
 
-* Removing $dt$, we have   
+* Removing $dx$, we have   
     * $\lambda(x) = \frac{f(x)}{G(x)}$
 
 * We can find the density $f$ from $\lambda$ as follows:
     * $f(x) = \frac{d F(x)}{dx} = \frac{d}{dx} (1 - G(x)) = - \frac{dG(x)}{dx}$   
     * $-\lambda(x) = \frac{f(x)}{G(x)} = -\frac{G'(x)}{G(x)} = - \frac{d}{dx} \log G(x)$    
-    * $G(x) = \exp(- \int_0^t \lambda(u) du)$
+    * $G(x) = \exp(- \int_0^x \lambda(u) du)$
     * $f(x) = \lambda(x) \exp ( - \int_0^x \lambda(u) d u )$
 
 
@@ -420,7 +420,7 @@ cat("The correlation between X_bar and S^2 is ", cor(X_bar, S2), "\n")
 
 * If $\lambda(x) = \lambda$, constant rate of failure, then we say $X$ has an exponential distribution and write $X$ ~ exp$(\lambda)$.
 
-    * $f(x) = \lambda$ exp$(-\lambda$x)
+    * $f(x) = \lambda \exp (-\lambda x)$
     * $F(x) = 1 - \exp(-\lambda x)$
     * $\mu = 1/\lambda$
     * $\sigma = 1/\lambda$
@@ -564,7 +564,7 @@ hist(Y,freq=F,main="Exp from R")
 
 * $G(x) = \exp(-\lambda x^m)$
 
-* $f(x)$ = m$\lambda$ $x^{(m-1)}$ exp(-$\lambda$ m x^{(m-1)})
+* $f(x)$ = $m\lambda x^{(m-1)}\exp(-\lambda m x^{(m-1)})$
 
 * R parameterization of the Weibull distribution differs from that presented above.
 

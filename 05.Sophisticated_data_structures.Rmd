@@ -1,9 +1,9 @@
 ---
 title: "Sophisticated data structures"
 output: 
-  html_document: default
-  pdf_document: default
   github_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 <!-- #region -->
@@ -137,7 +137,7 @@ class(df)
 is.data.frame(df)
 ```
 
-Combinding dataframes:
+Combining dataframes:
 
 ```{r}
 cbind(df, data.frame(z = 3:1))
@@ -226,7 +226,7 @@ x[1:5]
 
 ### accessing element in data.frame
 
-* We can use ```[[?]]``` to extract columns.
+* We can use ```[[?]]``` to extract a column.
     * ```ufc$height.m```,  ```ufc[[5]]``` and ```ufc[["height.m"]]``` are all equivalent.
     * The result is a vector.
 
@@ -459,7 +459,7 @@ my.list$second
 ```
 
 
-The element of a list can be named by names ```attribute```.
+The element of a list can be named by ```names``` attribute.
 
 ```{r}
 names(my.list) <- c("Fi", "Se", "Th", "Fo")
@@ -533,6 +533,9 @@ Using ```tapply``` we obtain average height group by species as follows:
 
 
 ```{r}
+ufc <- read.csv("./data/ufc.csv")
+ufc$volume.m3 <- pi * (ufc$dbh.cm / 200)^2 * ufc$height / 2
+
 tapply(ufc$height.m, ufc$species, mean)
 ```
 

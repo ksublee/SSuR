@@ -1,8 +1,8 @@
 ---
 title: "Discrete random variable"
 output:
-  html_document: default
   github_document: default
+  html_document: default
 ---
 
 ## Discrete random variable in R
@@ -343,7 +343,7 @@ geom_rv <- numeric(N)  # preallocation, zero vector with length N
 for (i in 1:N){        # N is sample size
   n <- 0
   while(TRUE){
-    trial <- rbinom(1, 1, 0.4)  # Bernoulli trial
+    trial <- rbinom(1, 1, p)  # Bernoulli trial
     if (trial == 1) break   # if trial is success, stop while
     n <- n + 1              # if trial is failure, increase number of trials
   }
