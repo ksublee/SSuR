@@ -666,30 +666,48 @@ pweibull(50, shape = m, scale = lambda^(-1/m))
     
 <img src="./figure/10.Continuous_RV/thining.png" width="400">
 
+### Example : Poisson process
+
+```{r}
+lambda <- 0.5; t.end <- 20
+t <- N <- 0
+i <- 1
+
+while(t[i] < t.end){
+  arrival <- rexp(1, lambda)
+  i <- i + 1
+  t[i] <- t[i-1] + arrival
+  N[i] <- N[i-1] + 1
+}
+
+plot(t, N, type='s', xlab='time', ylab = 'Poisson Process')
+
+```
+
 
 ### Example : Thinging
 
 ```{r}
-lambda <- 0.5    
-t.end <- 10    
+lambda <- 0.5; t.end <- 20
+t <- N <- 0
+i <- 1
+p <- 0.4
 
-t1 <- N1 <- t2 <- N2 <- 0
-
-i <- j <- 1
-while(t1[i] < t.end | t2[j] < t.end){
+while(t[i] < t.end){
   arrival <- rexp(1, lambda)
-  
-  if(runif(1) < 0.4){
-    i <- i + 1
-    t1[i] <- t1[i-1] + arrival
-    N1[i] <- N1[i-1] + 1
-  } else {
-    j <- j + 1
-    t2[j] <- t2[j-1] + arrival
-    N2[j] <- N2[j-1] + 1
-  }
+  i <- i + 1
+  t[i] <- t[i-1] + arrival
+  N[i] <- N[i-1] + 1
 }
-plot(t1, N1, type='s', xlab='time', ylab = 'Poisson Process')
+
+TF <- runif(length(N) - 1) < p
+t1 <- t[c(TRUE, TF)]
+t2 <- t[c(TRUE, !TF)]
+
+N1 <- 0:(length(t1) - 1)
+N2 <- 0:(length(t2) - 1)
+
+plot(t1, N1, type='s', xlim = c(0, max(t)), ylim = c(0, max(N1,N2)), xlab='time', ylab = 'Poisson Process')
 lines(t2, N2, type='s', col = 'red', lty='dashed')
 ```
 

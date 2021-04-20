@@ -1,9 +1,9 @@
 ---
 title: "More on simulation"
 output: 
-  html_document: default
-  pdf_document: default
   github_document: default
+  pdf_document: default
+  html_document: default
 ---
 
 ## Inversion method
@@ -35,14 +35,17 @@ qqnorm(my_norm_rv)
 ```
 
 
-### Generate exponential distribution from uniform random variables
+### Exponential distribution from uniform random variables
+
+Recall this method, with ```lambda = 0.5```.
+
 
 ```{r}
 lambda <- 0.5
 Nsim <- 10000       #number of random variables
 U <- runif(Nsim)
 X <- - 1/lambda *log(U)        #transforms of uniforms
-Y <- rexp(Nsim)     #exponentials from R
+Y <- rexp(Nsim)     #exponential from R
 par(mfrow=c(1,2))   #plots
 hist(X, freq=FALSE, main="Exp from Uniform")
 hist(Y, freq=FALSE, main="Exp from R")
