@@ -716,11 +716,11 @@ lines(t2, N2, type='s', col = 'red', lty='dashed')
 
 * Customer arrival time and the time taken to serve are assumed to be exponential distribution.
 
-* The probability of new customer arrival during (t, t + dt) is $\lambda$dt.
+* The probability of new customer arrival during $(t, t + dt)$ is $\lambda dt$.
 
-* The probability that service finished during (t, t + dt) is $\mu$dt.
+* The probability that service finished during $(t, t + dt)$ is $\mu dt$.
   
-* We do not allow an arrival and a departure to occur in the same interval (t, t + dt).
+* We do not allow an arrival and a departure to occur in the same interval $(t, t + dt)$.
     * because the probability is small.
 
 
