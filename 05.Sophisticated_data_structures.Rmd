@@ -1,56 +1,56 @@
 ---
 title: "Sophisticated data structures"
 output: 
-  github_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
+  github_document: default
 ---
 
 <!-- #region -->
+
 ## Sophisticated data structures
 
-* R provides sophisticated structure for the storage and manipulation of data.
-    * simplify data representation, manipulation and analysis.  
+R은 데이터의 저장과 조작을 위한 정교한 구조를 제공한다.
 
+이러한 구조는 데이터 표현, 조작 및 분석을 단순화한다.
 
-* dataframe  
-    * is like a matrix, 
-    * but extended to allow for different object modes in different columns  
+-   dataframe
+    -   데이터프레임은 행렬과 유사하지만, 각 열에 서로 다른 객체 모드를 허용하도록 확장된 구조이다.
+-   list
+    -   리스트는 다양한 종류의 R 객체를 포함할 수 있는 일반적인 데이터 구조이다.
+-   factor
+    -   팩터는 범주형 객체를 표현하는 특별한 변수이다.
 
-
-* list
-    * is a general data structure that can house many kinds of R object.  
-
-
-* factor
-    * special variable that represent categorical objects.  
 <!-- #endregion -->
 
 ## Factor
-A factor is a vector that can contain only predefined values, and is used to store categorical data
 
-Factors are built on top of integer vectors using two attributes: the ```class```, "factor", which makes them behave differently from regular integer vectors, and the ```levels```, which defines the set of allowed values.
+Factor는 미리 정의된 값만을 포함할 수 있는 벡터로, 범주형 데이터를 저장하는 데 사용된다.
 
-* Data type for ordinal and categorical vectors.   
-* The possible values of a factor are referred to as its level.   
-* To create a factor, apply function ```factor``` to some vector.
+Factor는 두 가지 속성을 사용하는 정수 벡터 위에 구축된다: `class` "factor"는 이를 일반 정수 벡터와 다르게 동작하게 만들며, `levels`는 허용된 값의 집합을 정의한다.
 
+-   서수형 및 범주형 벡터의 데이터 타입이다.
+-   팩터의 가능한 값들은 그 수준(level)이라고 한다.
+-   팩터를 생성하려면, 어떤 벡터에 함수 `factor`를 적용한다.
 
 ```{r}
 hair <- c("blonde", "black", "brown", "brown", "black", "gray", "none")
 is.character(hair)
 ```
 
-
 ```{r}
 is.factor(hair)
 ```
 
+위에서 `hair`는 factor는 아니며, character 벡터이다.
+
+이것을 factor로 바꿔보자.
 
 ```{r}
 hair <- factor(hair)
 is.factor(hair)
 ```
+
 ```{r}
 class(hair)
 ```
@@ -58,76 +58,83 @@ class(hair)
 ```{r}
 levels(hair)
 ```
-```table()``` calculates the number of times each level of the factor appears.
+
+`table()` 함수는 팩터의 각 수준(level)이 나타나는 횟수를 계산한다.
 
 ```{r}
 table(hair)
 ```
 
-* Specify level using ```levels``` argument.
+`levels` 인수를 사용하여 수준(level)을 지정한다.
 
 ```{r}
 hair <- factor(hair, levels=c("black", "blonde", "brown", "gray", "white", "none"))
 table(hair)
 ```
 
-You can't use values that are not in the levels.
+수준(level)에 없는 값을 사용할 수 없다.
 
 ```{r}
 hair[2] <- "green"
 ```
+
 ```{r}
 # reset
 hair[2] <- "black"
 ```
 
-
-Indeed, the type of a factor is integer.
+사실, factor의 타입은 정수이다.
 
 ```{r}
 typeof(hair)
 ```
+
+각 레벨을 정수화하여 표현해 볼 수 있다.
+
 ```{r}
 as.numeric(hair)
 ```
+
 ## Dataframe
 
-A data frame is the most common way of storing data in R.
+Dataframe은 R에서 데이터를 저장하는 가장 일반적인 방법이다.
 
-* Dataframe is a list of vectors (with equal length).   
-* Each vector (column) is a variable in experiment.   
-* Each row is a single observation.
+-   Dataframe은 길이가 같은 벡터들의 리스트이다.
+-   각 벡터(열)는 실험에서의 변수이다.
+-   각 행은 하나의 관측값이다.
 
 ### creating data.frame
 
-You create a data.frame using ```data.frame()```, which takes named vectors or existing data.frame as input:
+`data.frame()`을 사용하여 데이터프레임을 생성하며, 이 함수는 이름이 지정된 벡터들이나 기존의 데이터프레임을 입력으로 받는다:
 
 ```{r eval=FALSE}
 data.frame(col1=x1, col2=x2, ..., df1, df2, ...)
 ```
 
-* ```col1``` and ```col2``` are column names
+-   `col1`과 `col2`는 열 이름이다.
 
-* ```x1``` and ```x2``` are vectors of equal lengths
+-   `x1`과 `x2`는 길이가 같은 벡터들이다.
 
-* ```df1``` and ```df2``` are dataframes whose columns must be the same length with ```x1```, ```x2```
-
+-   `df1`과 `df2`는 데이터프레임이며, 이들의 열은 `x1`, `x2`와 같은 길이여야 한다.
 
 ```{r}
 df <- data.frame(x = 2:4, y = c("a", "b", "c"))
 str(df)
 ```
 
+`data.frame()`은 R 3.x 및 2.x에서 문자열을 팩터로 변환한다.
 
-```data.frame()``` turns strings into factors in R 3.x and 2.x.   
-Use ```stringsAsFactors = FALSE``` to suppress this behaviour:  
-(In R 4.x, R now uses a ```stringsAsFactors = FALSE``` default.)
+이 동작을 억제하려면 `stringsAsFactors = FALSE`를 사용하라:
+
+(R 4.x에서는 `stringsAsFactors = FALSE`가 기본값으로 설정되어 있다.)
 
 ```{r}
 df <- data.frame(
   x = 2:4,
   y = c("a", "b", "c"),
   stringsAsFactors = FALSE)
+
+# R에서 객체의 구조를 간략하게 보여준다.
 str(df)
 ```
 
@@ -137,77 +144,96 @@ class(df)
 is.data.frame(df)
 ```
 
-Combining dataframes:
+-   `typeof(df)`: 이 함수는 객체 `df`의 내부 저장 모드를 반환한다. 데이터프레임의 경우, 보통 `"list"`를 반환한다. 이는 데이터프레임이 내부적으로 벡터들의 리스트라는 것을 의미한다.
+
+-   `class(df)`: 이 함수는 객체 `df`의 클래스 속성을 반환한다. 데이터프레임의 경우, `"data.frame"`을 반환하여 객체가 R에서 데이터프레임으로 인식되고 있음을 나타낸다.
+
+-   `is.data.frame(df)`: 이 함수는 객체 `df`가 데이터프레임인지 확인한다. `df`가 데이터프레임이면 `TRUE`를 반환하고, 그렇지 않으면 `FALSE`를 반환한다.
+
+Dataframe들을 합치기:
 
 ```{r}
 cbind(df, data.frame(z = 3:1))
 ```
+
 ```{r}
 rbind(df, data.frame(x = 10, y = "z"))
 ```
 
-
 ### read.table
 
-You can use ```read.table``` to create data.frame from a file.
+파일로부터 데이터프레임을 생성하기 위해 `read.table`을 사용할 수 있다.
 
-Plot | Tree | Species | Diameter | Height
----- | ---- | ------- | -------- | ------
-2 | 1 | DF | 39 | 20.5
-2 | 2 | WL | 48 | 33.0
-3 | 2 | GF | 52 | 30.0
-... | ... | ... | ... | ...
+다음의 가상의 데이터를 고려해 보자.
 
+| Plot | Tree | Species | Diameter | Height |
+|------|------|---------|----------|--------|
+| 2    | 1    | DF      | 39       | 20.5   |
+| 2    | 2    | WL      | 48       | 33.0   |
+| 3    | 2    | GF      | 52       | 30.0   |
+| ...  | ...  | ...     | ...      | ...    |
 
-* Large dataframe are usually read into R from a file, using ```read.table```.    
+대형 데이터프레임은 보통 파일로부터 `read.table`을 사용하여 R로 읽어들인다.
 
 ```{r eval=FALSE}
 read.table(file, header=FALSE, sep="")
 ```
 
-* ```file```
-    * filename to be read, can be relative or absolute.   
-    * the same number of values in each row.    
-    * the values may be different modes, but the pattern of modes must be the same in each row.   
-* ```header```
-    * whether or not the first line of the file is the variable names    
-* ```sep```
-    * gives the character used to separate values in each row.    
-    * default ```""``` has the special interpretation that a variable amount of white space (spaces, tabs, returns) can separate values.
+-   `file`
+    -   읽어들일 파일 이름으로, 상대 경로나 절대 경로를 사용할 수 있다.
+    -   각 행에 동일한 수의 값이 있어야 한다.
+    -   값들은 서로 다른 모드를 가질 수 있지만, 각 행에서 모드의 패턴은 동일해야 한다.
+-   `header`
+    -   파일의 첫 번째 줄이 변수 이름인지 여부를 지정한다.
+-   `sep`
+    -   각 행에서 값을 구분하는 데 사용되는 문자를 지정한다.
+    -   기본값인 `""`는 특수 해석으로, 가변적인 양의 공백(공백, 탭, 줄바꿈)이 값을 구분할 수 있음을 의미한다.
 
 ### more about read.table
 
-* Two commonly used variants of ```read.table```    
-    * ```read.csv(file)```
-        * for comma-separated data    
-        * equivalent to ```read.table(file, header=TRUE, sep=",")```    
+`read.table`의 두 가지 일반적으로 사용되는 변형
 
-    * ```read.delim(file)```
-        * for tab-delimitated data
-        * equivalent to ```read.table(file, header=TRUE, sep="\t")```
-
+-   `read.csv(file)`
+    -   쉼표로 구분된 데이터를 위한 함수
+    -   `read.table(file, header=TRUE, sep=",")`와 동등하다
+-   `read.delim(file)`
+    -   탭으로 구분된 데이터를 위한 함수
+    -   `read.table(file, header=TRUE, sep="\t")`와 동등하다
 
 ### Header
 
-* If a header is present, it is used to name the columns of the dataframe.    
-* You can assign your own column names after reading the dataframe (using the ```names``` function).    
-* Or when you read it in, using the ```col.names``` argument,
-    * which should be assigned a character vector the same lengths of the column number.
-* If there is no head and no ```col.names``` argument, then R uses the names "V1", "V2", etc.
+-   헤더가 존재하면, 데이터프레임의 열 이름으로 사용된다.
+-   데이터프레임을 읽은 후에 `names` 함수를 사용하여 자신의 열 이름을 지정할 수 있다.
+-   또는 `col.names` 인수를 사용하여 데이터프레임을 읽을 때 직접 지정할 수 있다.
+    -   이 경우, 열 수와 동일한 길이의 문자 벡터를 할당해야 한다.
+-   헤더도 없고 `col.names` 인수도 없는 경우, R은 "V1", "V2" 등의 이름을 사용한다.
 
 ### read csv file
 
-* ufc.csv is comma separated and there is a header line.
+`ufc.csv`는 쉼표로 구분되어 있으며, 헤더 라인이 존재한다.
+
+-   아래의 코드에서 `"the path of ufc.csv"`에 `ufc.csv` 파일의 위치를 지정한다.
 
 ```{r eval=FALSE}
 ufc <- read.csv("the path of ufc.csv")
 ```
 
-```{r echo=FALSE}
+-   예를 들어, `ufc.csv` 파일이 현재 작업 디렉토리 아래의 `/data/`에 존재한다면 다음과 같이 작성한다.
+
+    -   아래에서 `.`는 현재 작업 디렉토리를 의미한다.
+
+    -   현재 작업 디렉토리는 `getwd()`를 code chunk 안에서 실행하여 확인할 수 있다.
+
+```{r}
 ufc <- read.csv("./data/ufc.csv")
 ```
 
-* head and tail to examine the object
+```{r eval=FALSE}
+#현재 작업 디렉토리를 확인
+getwd()
+```
+
+내용을 살펴보기 위해 `head`와 `tail` 함수를 사용해 보자.
 
 ```{r}
 head(ufc)
@@ -217,7 +243,11 @@ head(ufc)
 tail(ufc)
 ```
 
-* Each column has a unique name and we can extract that variable by means of names using ```$```.
+각 열은 고유한 이름을 가지며, 우리는 `$`를 사용하여 names로 해당 변수를 추출할 수 있다.
+
+```{r}
+ufc$plot[1:6]
+```
 
 ```{r}
 x <- ufc$height.m
@@ -226,53 +256,60 @@ x[1:5]
 
 ### accessing element in data.frame
 
-* We can use ```[[?]]``` to extract a column.
-    * ```ufc$height.m```,  ```ufc[[5]]``` and ```ufc[["height.m"]]``` are all equivalent.
-    * The result is a vector.
+우리는 `[[ ]]`를 사용하여 열을 추출할 수 있다.
+
+-   `ufc$height.m`, `ufc[[5]]`, `ufc[["height.m"]]`은 모두 동등하다.
+
+-   결과는 벡터이다.
 
 ```{r}
-x1 <- ufc[["height.m"]]
+x1 <- ufc[["height.m"]]  # x1은 벡터
 x1[1:5]
 ```
 
 ```{r}
-x2 <- ufc[[5]]
+x2 <- ufc[[5]]   # x2는 벡터
 x2[1:5]
 ```
 
-* You can extract the elements of a dataframe directly using matrix indexing.
+행렬 인덱싱을 사용하여 데이터프레임의 요소를 직접 추출할 수 있다.
 
 ```{r}
 # the result is a vector
 ufc[1:5, 5]
 ```
 
-* To select more than one of the variables in a dataframe, we use ```[?]```.
-    * ```ufc[4:5]``` is equivalent to ```ufc[c("dbh.cm", "height.m")]```.
-    * ```[]``` preserves the type of dataframe.
+데이터프레임에서 여러 변수를 선택하려면 `[ ]`를 사용한다.
+
+-   `ufc[4:5]`는 `ufc[c("dbh.cm", "height.m")]`와 동등하다.
+
+-   `[ ]`는 데이터프레임의 타입을 유지한다.
 
 ```{r}
 #diam.height and z are data.frame
 diam.height <- ufc[4:5]    
 (z <- diam.height[1:5, ])
 ```
+
 ```{r}
 is.data.frame(diam.height)
 ```
+
 ```{r}
-# diam.height1 is a data.frame
+# diam.height1는 data.frame이다.
 diam.height1 <- ufc[5]
 is.data.frame(diam.height1)
+```
 
-# z1 is not a data.frame, but a vector, since [,] simplifies.
+```{r}
+# z1은 데이터프레임이 아닌 벡터이다. 이는 [,]가 단순화하기 때문이다.
 z1 <- diam.height1[1:5, ]
 is.data.frame(z1)
 ```
 
+-   `[[ ]]`를 사용하여 열을 선택하면 추출되는 객체의 타입이 유지된다.
 
-* Selecting a column using ```[[?]]``` preserves the type of the object that is being extracted.
-
-* Whereas, ```[?]``` keeps the type of the object from which the extraction is being made.
+-   반면, `[ ]`는 추출이 이루어지는 객체의 타입을 유지한다.
 
 ```{r}
 typeof(ufc)
@@ -286,22 +323,26 @@ typeof(ufc[5])
 # numeric vector
 typeof(ufc[[5]])
 ```
-* In addition, ```[,]``` tends to simplify the data type, if possible.
+
+또한, `[,]`는 가능하다면 데이터 타입을 단순화하는 경향이 있다.
+
 ```{r}
 typeof(ufc[1:5, 5])
 ```
+
+아래의 경우, 단순화는 불가능하므로 원래의 데이터프레임 타입이 유지된다.
+
 ```{r}
 # In this case, simplification is impossible, and original data.frame type is preserved.
 typeof(ufc[1:5, 4:5])
 class(ufc[1:5, 4:5])
 ```
 
-
-http://r4ds.had.co.nz/vectors.html
+<http://r4ds.had.co.nz/vectors.html>
 
 ### create new variable
 
-* create a new variable within a dataframe, by naming it and assigning it a value.
+데이터프레임 내에 변수를 새로 생성하고 이름을 지정한 후 값을 할당하여 생성할 수 있다.
 
 ```{r}
 ufc$volume.m3 <- pi * (ufc$dbh.cm / 200)^2 * ufc$height / 2
@@ -310,9 +351,9 @@ mean(ufc$volume.m3)
 
 ### name of column
 
-* ```names(df)``` return the names of the dataframe ```df```.
+-   `names(df)`는 데이터프레임 `df`의 이름을 반환한다.
 
-* To change the names of ```df``` you pass a vector of strings to ```names(df)```.
+-   `df`의 이름을 변경하려면 문자열 벡터를 `names(df)`에 전달한다.
 
 ```{r}
 (ufc.names <- names(ufc))
@@ -329,9 +370,7 @@ names(ufc) <- ufc.names
 
 ### subset
 
-* ```subset``` is a convenient tool for selecting rows of dataframe.
-    * ```x %in% y``` returns a logical vector whose i-th element is ```TRUE``` if ```x[i]``` is in ```y```.
-
+`subset`은 데이터프레임의 행을 선택하는 데 유용한 도구이다. \* `x %in% y`는 논리 벡터를 반환하며, 만약 `x[i]`가 `y`에 포함되어 있으면 i번째 요소는 `TRUE`이다.
 
 ```{r}
 fir.height <- subset(ufc, subset=species %in% c("DF", "GF"), select = c(plot, tree, height.m))
@@ -344,48 +383,57 @@ head(fir.height)
 write.table(x, file="", append=FALSE, sep=" ", row.names=TRUE, col.names=TRUE)
 ```
 
-* ```x``` is a dataframe to be written.    
-* ```file``` is the address of the file to write to.    
-* ```append``` indicates whether or not to append.    
-* ```sep``` is the character used to separate the values.    
-* ```row.name``` indicates whether or not to include the row names as the first column.    
-* ```col.names``` indicates whether or not to include the column names as the first row.   
+-   `x`는 작성할 데이터프레임이다.
 
+-   `file`은 작성할 파일의 주소이다.
+
+-   `append`는 추가 여부를 나타낸다.
+
+-   `sep`는 값을 구분하는 데 사용되는 문자이다.
+
+-   `row.name`은 행 이름을 첫 번째 열로 포함할지 여부를 나타낸다.
+
+-   `col.names`는 열 이름을 첫 번째 행으로 포함할지 여부를 나타낸다.
 
 ### Another method to read and write tabular data
 
+-   `read_csv()`와 `read_tsv()`는 `readr` 패키지의 일반 함수 `read_delim()`의 특별한 경우이다.
 
-* ```read_csv()``` and ```read_tsv()``` are special cases of the general ```read_delim()``` in ```readr``` package.  
-* They're useful for reading the most common types of flat file data, comma separated values and tab separated values, respectively.
-* ```ufc_tibble``` is a data frame providing a nicer printing method, useful when working with large data sets.
+-   각각 쉼표로 구분된 값과 탭으로 구분된 값의 가장 일반적인 평면 파일 데이터를 읽는 데 유용하다.
+
+-   아래 코드에서 `ufc_tibble`은 더 나은 출력 방식을 제공하는 데이터 프레임으로, 대규모 데이터 세트를 다룰 때 유용하다.
 
 ```{r}
 library(readr)
 ufc_tibble <- read_csv("./data/ufc.csv")
 ```
+
 ```{r}
 ufc_tibble
 ```
+
 ## List
 
-* We have seen that a vector is an indexed set of objects.
+-   벡터는 객체의 인덱스화된 집합이라는 것을 살펴 보았다.
 
-* All the elements of a vector to be the same type - numeric, character or logical - which is called the mode of the vector.
+-   벡터의 모든 요소는 동일한 타입이어야 하며, 숫자, 문자 또는 논리형일 수 있으며, 이를 벡터의 mode라고 한다.
 
-* List is an indexed set of objects, but the element of a list can be of different type, including other list.
-    * The mode of a list is list.
+-   리스트(list)는 인덱스화된 객체의 집합이지만, 리스트의 요소는 다른 리스트를 포함하여 서로 다른 타입일 수 있다.
 
-* A list is created using the ```list(...)``` command instead of ```c()```, with comma separated arguments.
+    -   리스트의 mode는 리스트이다.
 
-* Single square brackets ```[ ]``` are used to select a sublist.
+-   리스트는 쉼표로 구분된 인수를 사용하여 `c()` 대신 `list(...)` 명령어로 생성된다.
 
-* Double square brackets ```[[ ]]``` are used to extract a single element.
+-   단일 대괄호 `[ ]`는 서브리스트를 선택하는 데 사용된다.
+
+-   이중 대괄호 `[[ ]]`는 단일 요소를 추출하는 데 사용된다.
 
 ### Example
 
 ```{r}
 (my.list <- list("one", TRUE, 3, c("f", "o", "u", "r")))
 ```
+
 ```{r}
 str(my.list)
 ```
@@ -414,19 +462,21 @@ my.list[[4]][1]
 my.list[4][1]
 ```
 
-* When displaying a list, 
+리스트를 출력할 때,
 
-* R uses double brackets ```[[1]], [[2]], etc.```, to indicate list elements, 
+-   R은 리스트 요소를 나타내기 위해 이중 대괄호 `[[1]], [[2]], 등`을 사용한다.
 
-* then single brackets ```[1], [2], etc.```, to indicate vector elements.
+-   그런 다음 벡터 요소를 나타내기 위해 단일 대괄호 `[1], [2], 등`을 사용한다.
 
 ```{r}
 # list can contain other list
 my.list2 <- list("a", c(5,6,7), my.list)
 ```
+
 ```{r}
 my.list2[3]
 ```
+
 ```{r eval=FALSE}
 #error
 my.list2[3][[4]]
@@ -435,19 +485,18 @@ my.list2[3][[4]]
 ```{r}
 my.list2[[3]]
 ```
+
 ```{r}
 my.list2[[3]][4]
 ```
-
 
 ```{r}
 my.list2[[3]][[4]]
 ```
 
-
 ### name of elements of list
 
-The element of a list can be named when the list is created.
+리스트가 생성될 때 리스트의 요소에 이름을 지정할 수 있다.
 
 ```{r}
 my.list <- list(first = "one", second=TRUE, third=3, fourth = c("f", "o", "u", "r"))
@@ -458,8 +507,7 @@ names(my.list)
 my.list$second
 ```
 
-
-The element of a list can be named by ```names``` attribute.
+리스트의 요소는 `names` 속성을 통해 이름을 지정할 수 있다.
 
 ```{r}
 names(my.list) <- c("Fi", "Se", "Th", "Fo")
@@ -474,63 +522,72 @@ my.list$"Se"
 my.list[["Se"]]
 ```
 
-
 ### Simplify vs. Preserving
 
-type | Simplifying | Preserving 
----- | ---- | ------- 
-vector | ```x[[1]]``` | ```x[1]```
-array(matrix) | ```x[1, ]```, ```x[, 1]``` | ```x[1, , drop = F]```, ```x[, 1, drop = F]```
-list | ```x[[1]]```, ```x$a```, ```x[["a"]]``` | ```x[1]```, ```x["a"]```
-data.frame | ```x[, 1]``` | ```x[1, ]```, ```x[, 1, drop = F]```
+| type | 단순화(Simplifying) | 보존(Preserving) |
+|--------------------|--------------------|--------------------------------|
+| vector | `x[[1]]` | `x[1]` |
+| array(matrix) | `x[1, ]`, `x[, 1]` | `x[1, , drop = F]`, `x[, 1, drop = F]` |
+| list | `x[[1]]`, `x$a`, `x[["a"]]` | `x[1]`, `x["a"]` |
+| data.frame | `x[, 1]` | `x[1, ]`, `x[, 1, drop = F]` |
 
-* Note that data.frame is a list, and hence simlifying and preserving rules for list are also applied to data.frame.
+데이터프레임은 리스트라는 점에 유의하라. 따라서 리스트에 대한 단순화 및 보존 규칙은 데이터프레임에도 적용된다.
 
-http://adv-r.had.co.nz/Subsetting.html
+<http://adv-r.had.co.nz/Subsetting.html>
 
 ### list as output of function
 
-* Many functions produce list object as their ouput.
+많은 함수들이 출력으로 리스트 객체를 생성한다.
 
-* For example, when fit a least squares regression, the regression object itself is a list, 
+-   예를 들어, 최소제곱 회귀분석을 수행할 때, 회귀분석 결과는 리스트 객체로 반환된다.
 
-* and can manipulated using list operations.
+-   회귀분석의 복잡한 결과를 표현하기 위해 유연한 list 객체를 활용하는 것.
+
+-   이러한 객체들은 리스트 연산을 사용하여 추가적인 작업을 수행할 수 있다.
+
+-   아래에서 `lm` 함수는 선형 회귀 모델을 적합하는 함수이다.
+
+    -   `~` 기호는 R에서 모델을 정의할 때 사용되며 왼쪽이 종속 변수, 오른쪽이독립 변수이다.
 
 ```{r}
 lm.xy <- lm(y~x, data=data.frame(x=1:5, y=1:5))
 typeof(lm.xy)
 ```
+
 ```{r}
+# 요소들의 이름 출력
 names(lm.xy)
 ```
-* ```str``` can be used to summarize a list or dataframe : ```str(lm.xy)```
+
+-   `str` 함수는 리스트나 데이터프레임을 요약하는 데 사용할 수 있다:
+
+```{r}
+str(lm.xy)
+```
 
 ## apply family
 
-* R has several functions that allow you to easily apply a function to all or selected elements of a list or dataframe.
+-   R에는 리스트나 데이터프레임의 모든 또는 선택된 요소에 함수를 쉽게 적용할 수 있는 여러 함수가 있다.
 
-* ```tapply``` allows us to vectorise the application of a function to subsets of data.
+-   `tapply` 함수는 데이터의 부분 집합에 함수를 벡터화하여 적용할 수 있게 해준다.
 
 ```{r eval=FALSE}
 tapply(X, INDEX, FUN, ...)
 ```
 
-* ```X``` : target vector to be applied.
+-   `X`: 적용할 대상 벡터이다.
 
-* ```INDEX``` : a factor, the same length as ```X```, used to group the elements. (If ```INDEX``` is not a factor, then it will be automatically converted to a factor.)
+-   `INDEX`: 요소를 그룹화하는 데 사용되는 팩터이며, `X`와 같은 길이를 가져야 한다. (`INDEX`가 팩터가 아닌 경우 자동으로 팩터로 변환된다.)
 
-* ```FUN``` : a function to be applied. It is applied to subvectors of ```X``` corresponding to a single level of ```INDEX```.
+-   `FUN`: 적용할 함수이다. 이는 `INDEX`의 단일 레벨에 해당하는 `X`의 서브벡터에 적용된다.
 
-* ```tapply``` works similar with groupby + summary function in SQL.
+-   `tapply`는 SQL의 `groupby`와 `summary` 함수 조합과 유사하게 작동한다.
 
-* ```INDEX``` denotes groupby and ```FUN``` represents a summary function.
-
-https://www.rdocumentation.org/packages/base/versions/3.4.0/topics/tapply
+-   `INDEX`는 `groupby`를 나타내고, `FUN`은 요약 함수를 나타낸다.
 
 ### tapply example
 
-Using ```tapply``` we obtain average height group by species as follows:
-
+`tapply`를 사용하여 종(species)별로 평균 키(height)를 구하는 방법은 다음과 같다:
 
 ```{r}
 ufc <- read.csv("./data/ufc.csv")
@@ -539,30 +596,33 @@ ufc$volume.m3 <- pi * (ufc$dbh.cm / 200)^2 * ufc$height / 2
 tapply(ufc$height.m, ufc$species, mean)
 ```
 
-To round the results:
+결과 반올림:
 
 ```{r}
 round(tapply(ufc$height.m, ufc$species, mean), digits=1)
 ```
 
-To find out how many samples we have of each species:
+각 종(species)별로 샘플 수를 확인하는 방법은 다음과 같다:
 
 ```{r}
 tapply(ufc$species, ufc$species, length)
 ```
+
 ```{r}
 # the same result
 tapply(ufc$height.m, ufc$species, length)
 ```
 
 #### Example : tapply
-```tapply``` can be used to count the number of elements in a vector:
+
+`tapply`를 사용하여 벡터의 요소 수를 계산할 수 있다:
+
 ```{r}
 x <- c(1,2,3,4,5,4,6,2,5,6,5,3,4,1,4,5,6,7,2,2,6,7,9,3,5)
 tapply(X = x, INDEX = x, FUN = length)
 ```
 
-the above is almost the same as
+위 내용은 다음과 거의 동일하다:
 
 ```{r}
 table(x)
@@ -573,38 +633,36 @@ y <- x %% 2
 tapply(X = x, INDEX = y, FUN = length)
 ```
 
-
 ```{r}
 y <- x %% 2
 tapply(X = x, INDEX = y, FUN = max)
 ```
 
-
 ### lapply and sapply
 
-* ```lapply(X, FUN, ...)``` applies the function ```FUN``` to each element of the list ```X``` and returns a list.
+-   `lapply(X, FUN, ...)`는 리스트 `X`의 각 요소에 함수 `FUN`을 적용하고 리스트로 반환한다.
 
-* ```sapply(X, FUN, ...)``` applies the function ```FUN``` to each element of ```X```, which can be a list or a vector, 
-and by default will try to return the results in a vector or a matrix, if this make sense, otherwise in a list.
+-   `sapply(X, FUN, ...)`는 `X`의 각 요소에 함수 `FUN`을 적용한다. `X`는 리스트나 벡터일 수 있으며, 기본적으로 결과를 벡터나 행렬로 반환하려고 시도한다. 만약 이것이 의미가 없다면, 리스트로 반환한다.
 
-
-To obtain the mean diameter, height, and volume of trees:
+나무의 평균 직경, 높이 및 부피를 구하려면:
 
 ```{r}
 lapply(ufc[4:6], mean)   # return a list
 ```
+
 ```{r}
 sapply(ufc[4:6], mean)   # return a vector
 ```
 
 Simple example:
+
 ```{r}
 sapply(1:3, function(x) x^2)
 ```
+
 ```{r}
 lapply(1:3, function(x) x^2)
 ```
-
 
 ### lapply example
 
@@ -614,7 +672,7 @@ names(df) <- letters[1:6]
 df
 ```
 
-You want to replace all the -99s with NAs.
+모든 -99를 NA로 대체하려고 한다면
 
 ```{r}
 fix_missing <- function(x) {
@@ -629,16 +687,15 @@ df
 sapply(df, fix_missing)
 ```
 
-
-More about apply : http://adv-r.had.co.nz/Functional-programming.html
+More about apply : <http://adv-r.had.co.nz/Functional-programming.html>
 
 ### three dots ellipsis ... in function argument
 
-The three dots ellipsis ```...``` in function argument is used to get a variable-length argument list.
+함수 인수에서 세 개의 점으로 이루어진 생략 기호 `...`는 가변 길이 인수 목록을 받는 데 사용된다.
 
- * One example is ```paste```, where you can put a variable numbers of arguments. Check ```?paste```.
+-   예를 들어, `paste` 함수에서는 가변 개수의 인수를 넣을 수 있다. `?paste`를 통해 확인할 수 있다.
 
-To handle ```...```, first convert it to a list inside the function.
+`...`를 처리하기 위해서는, 함수 내에서 이를 리스트로 변환하여 사용한다.
 
 ```{r}
 addemup <- function(x, ...){
@@ -656,6 +713,7 @@ addemup(1, 1)
 addemup(1, 2, 3, 4, 5)
 ```
 
+`reverse_paste0` 함수는 입력된 인수를 반대 순서로 결합하는 함수이다.
 
 ```{r}
 reverse_paste0 <- function(...){
@@ -668,6 +726,7 @@ reverse_paste0 <- function(...){
   result
 }
 ```
+
 ```{r}
 reverse_paste0("a", "b", "c")
 ```

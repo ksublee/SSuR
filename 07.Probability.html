@@ -11,7 +11,7 @@
 
 
 
-<title>Introduction to R</title>
+<title>Probability</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -348,1144 +348,137 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Introduction to R</h1>
+<h1 class="title toc-ignore">Probability</h1>
 
 </div>
 
 
-<div id="r-as-a-calculating-environment" class="section level3">
-<h3>R as a calculating environment</h3>
-<p>모든 프로그래밍 언어가 그렇듯, R 또한 계산기로 사용할 수 있다. 다음의
-산술 계산들을 살펴보라.</p>
-<pre class="r"><code>5^2 # Same as 5**2.</code></pre>
-<pre><code>## [1] 25</code></pre>
-<pre class="r"><code>(1 + 1 / 100) ^ 100</code></pre>
-<pre><code>## [1] 2.704814</code></pre>
-<pre class="r"><code>17 %% 5</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>17 %/% 5</code></pre>
-<pre><code>## [1] 3</code></pre>
-<p>위 출력에서 <code>[1]</code>은 계산 결과가 vector로서 vector의 첫
-번째 아이템임을 뜻한다.</p>
-<table>
-<thead>
-<tr class="header">
-<th>symbol</th>
-<th>meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>+</td>
-<td>더하기 (addition)</td>
-</tr>
-<tr class="even">
-<td>-</td>
-<td>빼기 (subtraction)</td>
-</tr>
-<tr class="odd">
-<td>*</td>
-<td>곱하기 (multiplication)</td>
-</tr>
-<tr class="even">
-<td>/</td>
-<td>나누기 (division)</td>
-</tr>
-<tr class="odd">
-<td>^</td>
-<td>거듭제곱 (exponential)</td>
-</tr>
-<tr class="even">
-<td>%%</td>
-<td>나머지 (modulus)</td>
-</tr>
-<tr class="odd">
-<td>%/%</td>
-<td>정수 나누기 (integer division)</td>
-</tr>
-</tbody>
-</table>
-<p>위 계산 기호를 이용하여 다양한 계산을 실습해 보라.</p>
-</div>
-<div id="built-in-function-in-r" class="section level3">
-<h3>Built-in function in R</h3>
-<p>R에서는 이미 만들어져 있는 built-in 함수들이 있어, 활용할 수
-있다.<br />
-우리가 잘 아는 많은 수학 함수들도 built-in 함수들로 구현되어 있다.<br />
-<code>sin(x), cos(x), tan(x), exp(x), log(x), sqrt(x), floor(x), ceiling(x), round(x)</code><br />
-기본적인 함수 사용법은 함수 이름을 입력하고, 이 후의 괄호 안에 필요한
-값을 전달하여 사용한다.<br />
-함수에 대한 자세한 내용은 추후에 공부해 보기로 한다.</p>
-<pre class="r"><code>exp(1)</code></pre>
-<pre><code>## [1] 2.718282</code></pre>
-<pre class="r"><code>options(digits = 16) # 보여주는 소수점 자리 조정정
-exp(1)</code></pre>
-<pre><code>## [1] 2.718281828459045</code></pre>
-<pre class="r"><code>pi</code></pre>
-<pre><code>## [1] 3.141592653589793</code></pre>
-<pre class="r"><code>sin(pi/6)</code></pre>
-<pre><code>## [1] 0.4999999999999999</code></pre>
-<pre class="r"><code>sqrt(4)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>floor(2.3)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>ceiling(2.3)</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>round(2.3)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>options(digits = 7)</code></pre>
-</div>
-<div id="variable" class="section level3">
-<h3>Variable</h3>
-<p>변수를 생성하여 값을 할당하고 이를 사용할 수 있다.</p>
+<div id="sample-space" class="section level2">
+<h2>Sample space</h2>
 <ul>
-<li>변수 할당을 위해 <code>&lt;-</code> 명령을 사용한다.
-<ul>
-<li>영어로는 “gets”라고 표현한다.</li>
-<li>다른 언어에서처럼 <code>=</code>을 이용할 수도 있다.</li>
-</ul></li>
-<li>변수 이름은 영어 문자, 숫자, <code>.</code>, <code>_</code>를
-이용하여 만든다.
-<ul>
-<li>이름의 시작은 문자 혹은 <code>.</code>와 바로 문자를 이어서
-만든다.</li>
-<li>이름은 대소문자 구분함.</li>
-<li>예: <code>x</code>, <code>y</code>, <code>my_variable</code>,
-<code>a1</code>, <code>a2</code>, <code>.important_variable</code>,
-<code>x.input</code></li>
-<li>잘못된 예: <code>2016_income</code>, <code>.1grade</code>,
-<code>_x</code>, <code>y@gmail.com</code></li>
-</ul></li>
+<li><p>표본 공간 <span class="math inline">\(\Omega\)</span>: 가능한
+모든 결과의 집합</p></li>
+<li><p>사건은 <span class="math inline">\(\Omega\)</span>의 모든
+부분집합으로 정의된다.</p></li>
+<li><p>예를 들어, 주사위를 굴릴 때 <span class="math inline">\(\Omega =
+\{1, 2, 3, 4, 5, 6\}\)</span>이다.</p></li>
+<li><p>‘짝수’ 사건은 <span class="math inline">\(\{2, 4,
+6\}\)</span>이다.</p></li>
 </ul>
-<p>변수의 값을 출력하기 위해 변수 이름을 콘솔에 입력하여 엔터를 치면
-된다.</p>
-<p>아니면 <code>print</code>나 <code>show</code> 함수를 이용한다.</p>
+<div id="notations-and-useful-results" class="section level3">
+<h3>Notations and useful results</h3>
 <ul>
-<li>예: <code>print(x)</code> or <code>show(x)</code>.</li>
-</ul>
-<pre class="r"><code>x &lt;- 100  # assignment
-x         # display</code></pre>
-<pre><code>## [1] 100</code></pre>
-<pre class="r"><code>print(x)</code></pre>
-<pre><code>## [1] 100</code></pre>
-<pre class="r"><code>show(x)</code></pre>
-<pre><code>## [1] 100</code></pre>
-<pre class="r"><code>My.Weight &lt;- 65; My.Height &lt;- 1.75   # 한 줄에 여러 명령을 작성할 때 ;로 구분함
-My.BMI &lt;- My.Weight / My.Height^2
-My.BMI</code></pre>
-<pre><code>## [1] 21.22449</code></pre>
-<p>괄호를 사용하면 대입과 출력을 동시에 할 수 있다.</p>
-<pre class="r"><code>(y &lt;- (1 + 1 / x) ^ x)</code></pre>
-<pre><code>## [1] 2.704814</code></pre>
-<p>대입 연산시, 우변이 먼저 계산되고 계산된 값이 좌변으로 전달된다.</p>
-<pre class="r"><code>n &lt;- 1
-n &lt;- n + 1
-n</code></pre>
-<pre><code>## [1] 2</code></pre>
-<p>다음의 명령문 또한 작동한다.</p>
-<pre class="r"><code>3 -&gt; three
-three</code></pre>
-<pre><code>## [1] 3</code></pre>
-<p>여러 대입을 한 번에 할 수도 있다.</p>
-<pre class="r"><code>v &lt;- w &lt;- z &lt;- 1
-v</code></pre>
-<pre><code>## [1] 1</code></pre>
-<pre class="r"><code>w</code></pre>
-<pre><code>## [1] 1</code></pre>
-<pre class="r"><code>z</code></pre>
-<pre><code>## [1] 1</code></pre>
-</div>
-<div id="functions" class="section level3">
-<h3>Functions</h3>
-<p>함수는 하나 혹은 여러 개의 입력을 인자(argument)로 받아 계산 결과
-(return value)를 반환한다.</p>
-<pre class="r"><code>seq(from = 1, to = 9, by = 2)</code></pre>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
-<pre class="r"><code>seq(from = 1, to = 9)</code></pre>
-<pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
-<p>내장된 도움말에 접근하려면 <code>help(function name)</code> 또는
-<code>?function name</code>을 사용하라.</p>
-<p>모든 함수에는 인자에 대한 기본 순서가 있다.</p>
-<p>이 순서대로 인자들을 제공하면 이름을 지정할 필요가 없다.</p>
-<p>반대로, 이름을 지정하여 인자들을 제공한다면 순서를 지킬 필요가
-없다.</p>
-<pre class="r"><code>seq(1, 9, 2)</code></pre>
-<pre><code>## [1] 1 3 5 7 9</code></pre>
-<pre class="r"><code>seq(to = 9, from = 1)</code></pre>
-<pre><code>## [1] 1 2 3 4 5 6 7 8 9</code></pre>
-<pre class="r"><code>seq(by = -2, 9, 1)</code></pre>
-<pre><code>## [1] 9 7 5 3 1</code></pre>
-<p>More examples:</p>
-<pre class="r"><code>seq(1, 5, 0.5)</code></pre>
-<pre><code>## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
-<pre class="r"><code>seq(0.5, 0.1, -0.1)</code></pre>
-<pre><code>## [1] 0.5 0.4 0.3 0.2 0.1</code></pre>
-<pre class="r"><code>seq(1, 10, 4)</code></pre>
-<pre><code>## [1] 1 5 9</code></pre>
-<pre class="r"><code>x &lt;- 9
-seq(1, x, x/3)</code></pre>
-<pre><code>## [1] 1 4 7</code></pre>
-<p>Chapter 4에서 함수에 대해 더 자세히 공부한다.</p>
-</div>
-<div id="vectors" class="section level3">
-<h3>Vectors</h3>
-<ul>
-<li><p>벡터(vector)는 R의 기본 데이터 구조이다.</p>
-<ul>
-<li>원자 벡터(atomic vector)라고도 불림</li>
-<li>인덱싱된 변수 집합</li>
-</ul></li>
-<li><p>벡터 x의 i번째 요소는 x[i]로 표시됨</p></li>
-<li><p>벡터의 모든 요소의 타입은 동일해야 함</p>
-<ul>
-<li>논리형(logical), 정수형(integer), 더블형(double, 종종
-numeric이라고도 함), 문자형(character)</li>
-</ul></li>
-<li><p>벡터를 생생성하는 세 가지 기본 함수</p>
-<ul>
-<li><code>seq</code> : 숫자의 일정한 간격을 갖는 시퀀스를 생성하는
-함수</li>
-<li><code>rep</code> : 주어진 벡터의 요소를 반복하여 새로운 벡터를
-생성하는 함수</li>
-<li><code>c</code> : 여러 요소를 하나의 벡터로 결합하는 함수</li>
-</ul></li>
-<li><p>기본 세 가지 속성:</p>
-<ul>
-<li>타입, <code>typeof()</code>, 무슨 타입인지.</li>
-<li>길이, <code>length()</code>, 몇 개의 요소를 포함하는지.</li>
-<li>속성, <code>attributes()</code>, 추가적인 임의의 메타데이터.</li>
-</ul></li>
-</ul>
-<pre class="r"><code># short for sequence
-(x &lt;- seq(1, 20, by = 2))</code></pre>
-<pre><code>##  [1]  1  3  5  7  9 11 13 15 17 19</code></pre>
-<pre class="r"><code>(x2 &lt;- seq(1.1, 2, by = 0.1))</code></pre>
-<pre><code>##  [1] 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2.0</code></pre>
-<pre class="r"><code># short for repeat
-(y &lt;- rep(3, 4))</code></pre>
-<pre><code>## [1] 3 3 3 3</code></pre>
-<pre class="r"><code># short for combine
-(z &lt;- c(y, x))</code></pre>
-<pre><code>##  [1]  3  3  3  3  1  3  5  7  9 11 13 15 17 19</code></pre>
-<ul>
-<li>another method for sequence</li>
-</ul>
-<pre class="r"><code>(x &lt;- 100:110)</code></pre>
-<pre><code>##  [1] 100 101 102 103 104 105 106 107 108 109 110</code></pre>
-<pre class="r"><code>(y &lt;- 110:100)</code></pre>
-<pre><code>##  [1] 110 109 108 107 106 105 104 103 102 101 100</code></pre>
-<pre class="r"><code>length(x)  # 길이</code></pre>
-<pre><code>## [1] 11</code></pre>
-<pre class="r"><code>sum(x)  # 합계계   </code></pre>
-<pre><code>## [1] 1155</code></pre>
-<ul>
-<li><code>letters, LETTERS</code></li>
-</ul>
-<pre class="r"><code># the 26 lower-case letters of the Roman alphabet
-letters</code></pre>
-<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
-## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
-<pre class="r"><code># the 26 upper-case letters of the Roman alphabet;
-LETTERS</code></pre>
-<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
-## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
-<ul>
-<li><code>seq_along()</code></li>
-</ul>
-<p><code>seq_along(x)</code> 는 <code>1:length(x)</code>와 같다.</p>
-<pre class="r"><code>x &lt;- letters[1:5]  # a b c d e
-y &lt;- seq_along(x)
-print(y)</code></pre>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<ul>
-<li>vector and index</li>
-</ul>
-<pre class="r"><code>(x &lt;- 100:110)</code></pre>
-<pre><code>##  [1] 100 101 102 103 104 105 106 107 108 109 110</code></pre>
-<pre class="r"><code># second element
-x[2]</code></pre>
-<pre><code>## [1] 101</code></pre>
-<pre class="r"><code># last element
-x[length(x)]</code></pre>
-<pre><code>## [1] 110</code></pre>
-<pre class="r"><code>i &lt;- c(1, 3, 2)
-
-x[i]</code></pre>
-<pre><code>## [1] 100 102 101</code></pre>
-<pre class="r"><code>x[1:5]</code></pre>
-<pre><code>## [1] 100 101 102 103 104</code></pre>
-<p>minus index:</p>
-<pre class="r"><code>j &lt;- c(-1, -2, -3)
-x[j]</code></pre>
-<pre><code>## [1] 103 104 105 106 107 108 109 110</code></pre>
-<p>하지만 양수 인덱스와 음수 인덱스를 혼합할 수는 없으며, 다음 코드는
-오류가 발생</p>
-<pre class="r"><code>x[c(-1, 2)]</code></pre>
-<p>empty vector:</p>
-<pre class="r"><code>x &lt;- c()</code></pre>
-<p>원소별 연산:</p>
-<pre class="r"><code>x &lt;- c(1, 2, 3)
-y &lt;- c(4, 5, 6)
-x * y</code></pre>
-<pre><code>## [1]  4 10 18</code></pre>
-<pre class="r"><code>y ^ x</code></pre>
-<pre><code>## [1]   4  25 216</code></pre>
-<p>길이가 같지 않은 벡터끼리의 연산</p>
-<pre class="r"><code>c(1, 2, 3, 4) + c(1, 2)</code></pre>
-<pre><code>## [1] 2 4 4 6</code></pre>
-<pre class="r"><code>2 * c(1, 2, 3)</code></pre>
-<pre><code>## [1] 2 4 6</code></pre>
-<pre class="r"><code>(1:3)^2</code></pre>
-<pre><code>## [1] 1 4 9</code></pre>
-<p>다음은 작동하나 경고 발생</p>
-<pre class="r"><code>c(1, 2, 3) + c(1, 2)</code></pre>
-<p>벡터를 입력으로 받는 함수들</p>
-<pre class="r"><code>sqrt(1:3)</code></pre>
-<pre><code>## [1] 1.000000 1.414214 1.732051</code></pre>
-<pre class="r"><code>mean(1:6)</code></pre>
-<pre><code>## [1] 3.5</code></pre>
-<pre class="r"><code>sort(c(5, 1, 3, 4, 2))</code></pre>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<p>논리 벡터</p>
-<pre class="r"><code>logi &lt;- c(TRUE, FALSE, T, F)
-typeof(logi)</code></pre>
-<pre><code>## [1] &quot;logical&quot;</code></pre>
-<p>문자 벡터</p>
-<pre class="r"><code>char &lt;- c(&quot;a&quot;, &quot;vector&quot;, &quot;of&quot;, &quot;characters&quot;)
-typeof(char)</code></pre>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<p>정수 벡터</p>
-<pre class="r"><code>integ &lt;- c(1L, 2L, 3L, 4L)
-typeof(integ)</code></pre>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
-<p>실수 벡터</p>
-<pre class="r"><code>doub &lt;- c(1, 2, 3, 4)
-typeof(doub)</code></pre>
-<pre><code>## [1] &quot;double&quot;</code></pre>
-<p>실수 벡터를 문자 벡터로로</p>
-<pre class="r"><code>as.character(doub)</code></pre>
-<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot;</code></pre>
-<p>문자 벡터를 실수 벡터로</p>
-<pre class="r"><code>as.numeric(c(&quot;1.2&quot;, &quot;3&quot;, &quot;-0.001&quot;))</code></pre>
-<pre><code>## [1]  1.200  3.000 -0.001</code></pre>
-<p>정수 벡터로 변환</p>
-<pre class="r"><code>as.integer(c(&quot;23.2&quot;, &quot;-2.001&quot;))</code></pre>
-<pre><code>## [1] 23 -2</code></pre>
-<div id="typeof" class="section level4">
-<h4><code>typeof()</code></h4>
-<p><code>typeof()</code>는 (내부) 객체 타입을 반환한다.</p>
-<ul>
-<li>logical - logical vector</li>
-<li>double - double vector</li>
-<li>integer - integer vector</li>
-<li>character - character vector</li>
-<li>list - see Ch.5</li>
-<li>builtin : R built-in function</li>
-<li>closure : user defined function</li>
-<li>and so on.</li>
-</ul>
-<p>간단히 말해, R의 객체는 C 언어를 통해 구현되며, 내부 타입은 C 수준의
-데이터 타입을 의미한다.</p>
-</div>
-<div id="coercion" class="section level4">
-<h4>Coercion</h4>
-<p>벡터에서 서로 다른 유형의 요소를 결합하려고 하면, 이 요소들은 가장
-유연한 유형으로 강제 변환된다.</p>
-<p>다음에서 오른쪽으로 갈수록 더 유연한 유형이다.</p>
-<ul>
-<li>logical, integer, double, character</li>
-</ul>
-<pre class="r"><code>c(&quot;a&quot;, 1)</code></pre>
-<pre><code>## [1] &quot;a&quot; &quot;1&quot;</code></pre>
-<pre class="r"><code>c(TRUE, FALSE, 0)</code></pre>
-<pre><code>## [1] 1 0 0</code></pre>
-</div>
-<div id="example-mean-and-variance" class="section level4">
-<h4>Example : mean and variance</h4>
-<p>직접 계산한 평균과 분산을 내장 함수의 결과와 비교해 보자.</p>
-<ul>
-<li><code>mean()</code> : 평균을 계산하는 built-in 함수</li>
-<li><code>var()</code> : 분산을 계산하는 built-in 함수</li>
-</ul>
-<pre class="r"><code>x &lt;- c(1.2, 0.9, 0.8, 1, 1.2)
-
-x.mean &lt;- sum(x)/length(x)
-
-x.mean - mean(x) </code></pre>
-<pre><code>## [1] 0</code></pre>
-<pre class="r"><code>x.var &lt;- sum((x-x.mean)^2)/(length(x)-1)
-x.var - var(x)</code></pre>
-<pre><code>## [1] 0</code></pre>
-</div>
-<div id="example-simple-numerical-integration" class="section level4">
-<h4>Example : simple numerical integration</h4>
-<p>수치적분의 기본 문제는 정적분에 대한 근사 해를 계산하는 것이다.</p>
-<p><img role="img" src="data:image/png;base64,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" width="480" /></p>
-<pre class="r"><code>dt &lt;- 0.005
-t &lt;- seq(0, pi/6, by = dt)
-ft &lt;- cos(t)
-(I &lt;- sum(ft) * dt)  # 적분의 근사값</code></pre>
-<pre><code>## [1] 0.5015487</code></pre>
-<p><code>t</code>가 벡터이며 <code>ft</code> 또한 벡터가 된다.</p>
-<p><code>sin(pi/6)</code>가 적분의 실제값이므로 아래 값이 0에 가까울수록
-좋은 근사이다.</p>
-<pre class="r"><code>I - sin(pi/6)</code></pre>
-<pre><code>## [1] 0.001548651</code></pre>
-</div>
-<div id="example-exponential-limit" class="section level4">
-<h4>Example : exponential limit</h4>
-<p><span class="math inline">\(e\)</span>의 근사값 수열을 계산하여
-극한을 살펴보자.</p>
-<p><span class="math display">\[ e = \lim_{n \to \infty} \left( 1 +
-\frac{1}{n} \right)^n \]</span></p>
-<pre class="r"><code>n &lt;- seq(10, 200, by = 10)
-
-y &lt;- (1 + 1/n)^n
-
-exp(1) - y</code></pre>
-<pre><code>##  [1] 0.124539368 0.064984123 0.043963053 0.033217990 0.026693799 0.022311689
-##  [7] 0.019165457 0.016796888 0.014949367 0.013467999 0.012253747 0.011240338
-## [13] 0.010381747 0.009645015 0.009005917 0.008446252 0.007952077 0.007512533
-## [19] 0.007119034 0.006764706</code></pre>
-<pre class="r"><code>plot(n, y)</code></pre>
-<p><img role="img" src="data:image/png;base64,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" width="480" /></p>
-</div>
-</div>
-<div id="missing-data" class="section level3">
-<h3>Missing data</h3>
-<p>R에서 결측 데이터는 <code>NA</code>로 표현된다.</p>
-<ul>
-<li><code>is.na</code>는 R 객체의 요소들이 결측값(NA)인지 여부를
-논리값으로 반환한다.</li>
-</ul>
-<pre class="r"><code>a &lt;- NA   # assign NA to variable A
-is.na(a)     # is it missing?</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>a &lt;- c(11, NA, 13)
-is.na(a)</code></pre>
-<pre><code>## [1] FALSE  TRUE FALSE</code></pre>
-<pre class="r"><code>mean(a)</code></pre>
-<pre><code>## [1] NA</code></pre>
-<pre class="r"><code>mean(a, na.rm = TRUE) #NAs can be removed</code></pre>
-<pre><code>## [1] 12</code></pre>
-<p><code>NA</code>는 logical 데이터로 설정되지만,</p>
-<pre class="r"><code>typeof(NA)</code></pre>
-<pre><code>## [1] &quot;logical&quot;</code></pre>
-<p>numeric, integer, charactor로 상황에 따라 강제 변환될 수 있다.</p>
-<pre class="r"><code>x &lt;- c(NA, 10)
-typeof(x[1])</code></pre>
-<pre><code>## [1] &quot;double&quot;</code></pre>
-<pre class="r"><code>y &lt;- c(NA, &quot;abc&quot;)
-typeof(y[1])</code></pre>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-</div>
-<div id="inf-and--inf" class="section level3">
-<h3>Inf and -Inf</h3>
-<p>계산 결과가 너무 크면, R은 <code>Inf</code>를 반환한다.</p>
-<pre class="r"><code>2 ^ 1024</code></pre>
-<pre><code>## [1] Inf</code></pre>
-<pre class="r"><code>- 2 ^ 1024</code></pre>
-<pre><code>## [1] -Inf</code></pre>
-<pre class="r"><code>1 / 0</code></pre>
-<pre><code>## [1] Inf</code></pre>
-</div>
-<div id="nan" class="section level3">
-<h3>NaN</h3>
-<p>계산 결과가 의미가 없으면, R은 숫자가 아님을 나타내는
-<code>NaN</code>을 반환한다.</p>
-<pre class="r"><code>Inf - Inf</code></pre>
-<pre><code>## [1] NaN</code></pre>
-<pre class="r"><code>0 / 0</code></pre>
-<pre><code>## [1] NaN</code></pre>
-</div>
-<div id="expression-and-assignment" class="section level3">
-<h3>Expression and assignment</h3>
-<p>표현식(expression)은 실행 가능한 코드 구문을 의미한다.</p>
-<pre class="r"><code>seq(10, 20, by=3)</code></pre>
-<pre><code>## [1] 10 13 16 19</code></pre>
-<pre class="r"><code>4</code></pre>
-<pre><code>## [1] 4</code></pre>
-<pre class="r"><code>mean(c(1,2,3))</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>1 &gt; 2</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<p>표현식의 계산 결과를 <code>&lt;-</code>를 사용하여 저장하면, 이를
-할당이라고 한다.</p>
-<pre class="r"><code>x1 &lt;- seq(10, 20, by=3)</code></pre>
-<pre class="r"><code>x2 &lt;- 1&gt;2</code></pre>
-<p>논리 표현식은 다음을 사용하여 형성된다.</p>
-<ul>
-<li>비교 연산자
-<ul>
-<li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>,
-<code>&gt;=</code>, <code>==</code>, <code>!=</code> (같지 않다)</li>
-</ul></li>
-<li>논리 연산자
-<ul>
-<li><code>&amp;</code> (and), <code>|</code> (or), <code>!</code>
-(not)</li>
-</ul></li>
-<li>논리 표현식의 값은 <code>TRUE</code> 또는 <code>FALSE</code>이다.
-<ul>
-<li>정수 <code>1</code>과 <code>0</code>도 <code>TRUE</code> 또는
-<code>FALSE</code>로 사용할 수 있다.</li>
-</ul></li>
-</ul>
-<pre class="r"><code>c(0, 0, 1, 1) | c(0, 1, 0, 1)</code></pre>
-<pre><code>## [1] FALSE  TRUE  TRUE  TRUE</code></pre>
-<div id="example-rounding-error" class="section level4">
-<h4>Example : rounding error</h4>
-<p>많은 소수점 숫자는 컴퓨터에서 반올림 오류가 발생한다.</p>
-<pre class="r"><code>2 * 2 == 4</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>sqrt(2) * sqrt(2) == 2</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<p>해결책은 <code>all.equal(x, y)</code>를 사용하는 것으로,
-<code>x</code>와 <code>y</code>의 차이가 특정 허용 오차보다 작으면
-TRUE를 반환한다.</p>
-<pre class="r"><code>all.equal(sqrt(2) * sqrt(2), 2)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-</div>
-</div>
-<div id="subsetting" class="section level3">
-<h3>Subsetting</h3>
-<p>R의 subsetting 연산자는 강력하고 빠르다.</p>
-<p>subsetting 연산은 처음에는 배우기 어려울 수 있지만, 익히면
-편리하다.</p>
-<p>TRUE/FALSE 벡터를 사용하여 부분 벡터를 추출할 수 있다.</p>
-<p><code>x[subset]</code></p>
-<ul>
-<li><code>x</code>: 벡터, 리스트, 데이터 프레임 등에서 요소를 추출하려는
-객체이다.<br />
+<li><span class="math inline">\(\emptyset\)</span> = 공집합<br />
 </li>
-<li><code>subset</code>: 선택할 요소의 인덱스 값을 지정하는 벡터, 논리
-벡터, 또는 조건식이다.</li>
-</ul>
-<pre class="r"><code>vec &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)
-sub_vec &lt;- vec[c(1, 3, 5)]
-print(sub_vec)  # 출력: &quot;a&quot; &quot;c&quot; &quot;e&quot;</code></pre>
-<pre><code>## [1] &quot;a&quot; &quot;c&quot; &quot;e&quot;</code></pre>
-<pre class="r"><code>vec &lt;- c(10, 20, 30, 40, 50)
-sub_vec &lt;- vec[c(TRUE, FALSE, TRUE, FALSE, TRUE)]
-print(sub_vec)  # 출력: 10 30 50</code></pre>
-<pre><code>## [1] 10 30 50</code></pre>
-<pre class="r"><code>x &lt;- 1:10
-x %% 4 == 0</code></pre>
-<pre><code>##  [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
-<pre class="r"><code>( y &lt;- x[ x %% 4 == 0 ] )</code></pre>
-<pre><code>## [1] 4 8</code></pre>
-<p>R은 또한 <code>subset()</code> 함수를 제공하며, 이는
-<code>NA</code>를 무시한다.</p>
-<ul>
-<li>반면에 <code>x[subset]</code>형태의 expression은 <code>NA</code>를
-유지한다.</li>
-</ul>
-<pre class="r"><code>x &lt;- c(1, NA, 3, 4)
-x[x &gt; 2]</code></pre>
-<pre><code>## [1] NA  3  4</code></pre>
-<pre class="r"><code>subset(x, subset = x &gt; 2 )</code></pre>
-<pre><code>## [1] 3 4</code></pre>
-<p>TRUE 요소의 인덱스 위치를 얻으려면 <code>which(v)</code>를
-사용한다.</p>
-<ul>
-<li>여기서 <code>v</code>는 TRUE/FALSE로 표현되는 논리 벡터.</li>
-</ul>
-<pre class="r"><code>x &lt;- c(1, 1, 2, 3, 5, 8, 13)
-which(x %% 2 == 0)</code></pre>
-<pre><code>## [1] 3 6</code></pre>
-<p>더 많은 subsetting 예제들:</p>
-<pre class="r"><code>x &lt;- c(2.1, 4.2, 3.3, 5.4)</code></pre>
-<pre class="r"><code>x[c(TRUE,FALSE,TRUE,FALSE)]</code></pre>
-<pre><code>## [1] 2.1 3.3</code></pre>
-<pre class="r"><code>x[x &gt; 3]</code></pre>
-<pre><code>## [1] 4.2 3.3 5.4</code></pre>
-<pre class="r"><code>x[order(x)]</code></pre>
-<pre><code>## [1] 2.1 3.3 4.2 5.4</code></pre>
-</div>
-<div id="sequential-and" class="section level3">
-<h3>Sequential <code>&amp;&amp;</code> and <code>||</code></h3>
-<p><code>x &amp;&amp; y</code>를 계산할 때, R은 먼저 <code>x</code>를
-계산한다.</p>
-<ul>
-<li>만약 <code>x</code>가 FALSE라면, R은 <code>y</code>를 평가하지 않고
-즉시 FALSE를 반환한다.</li>
-</ul>
-<p><code>x || y</code>를 평가할 때, R은 먼저 <code>x</code>를
-평가한다.</p>
-<ul>
-<li>만약 <code>x</code>가 TRUE라면, R은 <code>y</code>를 평가하지 않고
-즉시 TRUE를 반환한다.</li>
-</ul>
-<p>즉, 불필요한 평가를 피하기 위해 첫 번째 조건이 결과를 결정할 수 있을
-때 두 번째 조건을 평가하지 않는 방식이다.</p>
-<p>이렇게 <code>x</code>와 <code>y</code>를 순차적으로 평가하는 방식은
-<code>y</code>가 정의되지 않을 수도 있을 때 유용하다.</p>
-<pre class="r"><code>x &lt;- 0
-sin(1/x)  # NaN</code></pre>
-<pre><code>## Warning in sin(1/x): NaN이 생성되었습니다</code></pre>
-<pre><code>## [1] NaN</code></pre>
-<pre class="r"><code>x == 0 || sin(1/x) == 0</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p>아래에서는 <code>|</code>를 사용했기 때문에 <code>sin(1/x)</code>도
-계산되며, 경고가 발생한다.</p>
-<pre class="r"><code>x == 0 | sin(1/x) == 0</code></pre>
-<pre><code>## Warning in sin(1/x): NaN이 생성되었습니다</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<p><code>&amp;&amp;</code> 및 <code>||</code> 연산자는 스칼라에 대해서만
-작동하는 반면, <code>&amp;</code> 및 <code>|</code> 연산자는 벡터의 각
-요소에 대해 요소별로 작동한다.</p>
-<pre class="r"><code>c(TRUE, FALSE) &amp; c(TRUE, TRUE)</code></pre>
-<pre><code>## [1]  TRUE FALSE</code></pre>
-<pre class="r"><code># 에러 발생
-c(TRUE, FALSE) &amp;&amp; c(TRUE, TRUE)</code></pre>
-</div>
-<div id="subsetting-and-assignment" class="section level3">
-<h3>subsetting and assignment</h3>
-<p>Subsetting셋 연산자는 할당 연산자와 결합하여 사용할 수 있다. 이를
-통해 특정 요소를 선택하여 값을 변경하거나 업데이트할 수 있다.</p>
-<pre class="r"><code>x &lt;- 1:5
-x[c(1, 2)] &lt;- 2:3
-x</code></pre>
-<pre><code>## [1] 2 3 3 4 5</code></pre>
-<pre class="r"><code>x[-1] &lt;- 4:1
-x</code></pre>
-<pre><code>## [1] 2 4 3 2 1</code></pre>
-<pre class="r"><code>x[x %% 2 == 0] &lt;- 0
-x</code></pre>
-<pre><code>## [1] 0 0 3 0 1</code></pre>
-<pre class="r"><code>x[which(x == max(x))] &lt;- 100
-x</code></pre>
-<pre><code>## [1]   0   0 100   0   1</code></pre>
-</div>
-<div id="names" class="section level3">
-<h3>Names</h3>
-<p>벡터의 각 요소들에 이름을 지정할 수 있다.</p>
-<pre class="r"><code>(x &lt;- c(a = 1, b = 2, c = 3))</code></pre>
-<pre><code>## a b c 
-## 1 2 3</code></pre>
-<p><code>names</code> 함수는 character 벡터로 이름들을 반환한다.</p>
-<pre class="r"><code>names(x)</code></pre>
-<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
-<p><code>names</code> 함수로 원소들의 이름을 지정할 수도 있다.</p>
-<pre class="r"><code>y &lt;- 1:3
-names(y) &lt;- c(&quot;first&quot;, &quot;second&quot;, &quot;third&quot;)
-y</code></pre>
-<pre><code>##  first second  third 
-##      1      2      3</code></pre>
-<p>이름을 통해 원소를 선택할 수 있다.</p>
-<pre class="r"><code>y[&quot;first&quot;]</code></pre>
-<pre><code>## first 
-##     1</code></pre>
-<pre class="r"><code>y[c(&quot;first&quot;, &quot;third&quot;)]</code></pre>
-<pre><code>## first third 
-##     1     3</code></pre>
-</div>
-<div id="matrix" class="section level3">
-<h3>Matrix</h3>
-<p>행렬은 벡터로부터 <code>matrix</code> 함수를 사용하여 생성할 수
-있다:</p>
-<ul>
-<li><p><code>matrix(data, nrow = 1, ncol = 1, byrow = FALSE)</code></p>
-<ul>
-<li><code>data</code>: 최대 <code>nrow*ncol</code> 길이의 벡터</li>
-<li>벡터의 길이가 <code>nrow*ncol</code>보다 작으면 데이터가 필요한 만큼
-재사용된다.</li>
-<li><code>nrow</code>: 행의 수</li>
-<li><code>ncol</code>: 열의 수</li>
-<li><code>byrow = TRUE</code>: 행 단위로 행렬을 채운다.</li>
-<li><code>byrow = FALSE</code>: 열 단위로 행렬을 채운다.
-기본값이다.</li>
-</ul></li>
-<li><p><code>diag(x)</code>: 대각 행렬을 생성한다.</p></li>
-<li><p><code>rbind(...)</code> : 같은 길이의 행을 가진 행렬들을 행
-기준으로 결합한다.</p></li>
-<li><p><code>cbind(...)</code> : 같은 길이의 열을 가진 행렬들을 열
-기준으로 결합한다.</p></li>
-</ul>
-<p>이러한 함수들을 통해 R에서 행렬을 생성하고 조작할 수 있다.</p>
-<p>Example:</p>
-<pre class="r"><code>(A &lt;- matrix(1:6, nrow = 2, ncol = 3))</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    3    5
-## [2,]    2    4    6</code></pre>
-<pre class="r"><code>(A &lt;- matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE))</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    2    3
-## [2,]    4    5    6</code></pre>
-<p>행렬의 원소를 선택할 때, <code>[ , ]</code>를 이용하며,
-<code>,</code>를 기준으로 왼쪽은 행, 오른쪽은 열을 의미</p>
-<pre class="r"><code>A[1, 3] &lt;- 0  # 행 번호 1, 열 번호 3
-A</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    2    0
-## [2,]    4    5    6</code></pre>
-<pre class="r"><code># 모든 행과 2번째부터 3번째까지의 열을 선택
-A[, 2:3]</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    2    0
-## [2,]    5    6</code></pre>
-<p>대각 행렬</p>
-<pre class="r"><code>(B &lt;- diag(c(1, 2, 3)))</code></pre>
-<pre><code>##      [,1] [,2] [,3]
-## [1,]    1    0    0
-## [2,]    0    2    0
-## [3,]    0    0    3</code></pre>
-<p>유용한 행렬 연산</p>
-<ul>
-<li><p>일반적인 대수 연산, 예를 들어 <code>*</code>, <code>+</code>,
-<code>-</code>, <code>/</code> 등은은 요소별로 작동한다.</p></li>
-<li><p>행렬곱 연산을 수행하기 위해서는 <code>%*%</code>를
-사용한다.</p></li>
-<li><p><code>nrow(x)</code>: 행의 개수를 반환</p></li>
-<li><p><code>ncol(x)</code>: 열의 개수를 반환</p></li>
-<li><p><code>det(x)</code>: 행렬 <code>x</code>의 행렬식을 계산</p></li>
-<li><p><code>t(x)</code>: 행렬 <code>x</code>의 전치 행렬을
-반환</p></li>
-<li><p><code>solve(A, B)</code>: <code>A %*% x = B</code>를 만족하는
-<code>x</code>를 반환</p></li>
-<li><p><code>A</code>가 가역 행렬일 경우, <code>solve(A)</code>는
-<code>A</code>의 역행렬을 반환한다.</p></li>
-</ul>
-<pre class="r"><code>A &lt;- matrix(c(3, 5, 2, 3), nrow=2, ncol=2)
-B &lt;- matrix(c(1, 1, 0, 1), nrow=2, ncol=2)</code></pre>
-<pre class="r"><code>A %*% B</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    5    2
-## [2,]    8    3</code></pre>
-<pre class="r"><code>A.inv &lt;- solve(A)
-A %*% A.inv   # we observe rounding error</code></pre>
-<pre><code>##      [,1]          [,2]
-## [1,]    1 -8.881784e-16
-## [2,]    0  1.000000e+00</code></pre>
-<pre class="r"><code>A^(-1)   #This is not an inverse. ^(-1) applies elementwise.</code></pre>
-<pre><code>##           [,1]      [,2]
-## [1,] 0.3333333 0.5000000
-## [2,] 0.2000000 0.3333333</code></pre>
-<p><code>cbind()</code> : R 객체들을 열 단위로 결합</p>
-<p><code>rbind()</code> : R 객체들을 행 단위로 결합</p>
-<pre class="r"><code>(M &lt;- cbind(A,B))</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4]
-## [1,]    3    2    1    0
-## [2,]    5    3    1    1</code></pre>
-<pre class="r"><code>(N &lt;- rbind(A,B))</code></pre>
-<pre><code>##      [,1] [,2]
-## [1,]    3    2
-## [2,]    5    3
-## [3,]    1    0
-## [4,]    1    1</code></pre>
-<p>행과 열의 이름을 지정할 수 있다.</p>
-<pre class="r"><code>colnames(M) &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;)
-M</code></pre>
-<pre><code>##      a b c d
-## [1,] 3 2 1 0
-## [2,] 5 3 1 1</code></pre>
-<pre class="r"><code>rownames(M) &lt;- c(&quot;first&quot;, &quot;second&quot;)
-M</code></pre>
-<pre><code>##        a b c d
-## first  3 2 1 0
-## second 5 3 1 1</code></pre>
-<pre class="r"><code># number of rows
-nrow(M)</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code># number of columns
-ncol(M)</code></pre>
-<pre><code>## [1] 4</code></pre>
-<div id="subsetting-of-matrix" class="section level4">
-<h4>Subsetting of matrix</h4>
-<p>열의 선택:</p>
-<pre class="r"><code>(partM1 &lt;- M[, c(1, 2)])</code></pre>
-<pre><code>##        a b
-## first  3 2
-## second 5 3</code></pre>
-<p>열을 이름을 이용하여 선택:</p>
-<pre class="r"><code>(partM1 &lt;- M[, c(&quot;a&quot;, &quot;b&quot;)])</code></pre>
-<pre><code>##        a b
-## first  3 2
-## second 5 3</code></pre>
-<p><code>partM1</code>는 matrix이다.</p>
-<ul>
-<li><code>class</code>는 객체의 클래스를 확인하거나 설정하는 데
-사용된다.</li>
-</ul>
-<pre class="r"><code>class(partM1)</code></pre>
-<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
-<p>Matrix에서서 하나의 열을 선택할 때, 결과는 행렬이 아닌 벡터가
-된다.</p>
-<pre class="r"><code>this_is_vector_now &lt;- M[, &quot;a&quot;]
-class(this_is_vector_now)</code></pre>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-<p>Matrix 클래스를 유지하고 싶다면 <code>drop = FALSE</code>를
-이용한다.</p>
-<pre class="r"><code>still_matrix &lt;- M[, &quot;a&quot;, drop = FALSE]
-class(still_matrix)</code></pre>
-<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
-<p>행의 선택</p>
-<pre class="r"><code>(partM2 &lt;- M[1,])</code></pre>
-<pre><code>## a b c d 
-## 3 2 1 0</code></pre>
-<p>다음은 행과 열을 모두 선택한다.</p>
-<pre class="r"><code>(partM2 &lt;- M[1, c(2, 3)])</code></pre>
-<pre><code>## b c 
-## 2 1</code></pre>
-<pre class="r"><code>class(partM2)</code></pre>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-<p>R에서 행렬열에 단일 인덱스를 사용할 경우, R은 인덱스를 열 기준으로
-세어 나간다. 즉, 첫 번째 열의 모든 요소를 먼저 세고, 다음 열로 넘어가서
-다시 세는 방식이다.</p>
-<pre class="r"><code>M[1]</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>M[2]</code></pre>
-<pre><code>## [1] 5</code></pre>
-<pre class="r"><code>M[3]</code></pre>
-<pre><code>## [1] 2</code></pre>
-<pre class="r"><code>M[4]</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>is.vector(partM2)</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>is.matrix(partM2)</code></pre>
-<pre><code>## [1] FALSE</code></pre>
-<pre class="r"><code>(Mm &lt;- as.matrix(partM2))</code></pre>
-<pre><code>##   [,1]
-## b    2
-## c    1</code></pre>
-<pre class="r"><code>class(Mm)</code></pre>
-<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
-<pre class="r"><code>(Mv &lt;- as.vector(Mm))</code></pre>
-<pre><code>## [1] 2 1</code></pre>
-<pre class="r"><code>class(Mv)</code></pre>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-</div>
-</div>
-<div id="objects-and-classes" class="section level3">
-<h3>Objects and classes</h3>
-<p>R은 객체 지향 언어이며, R의 모든 객체는 어떤 클래스의 멤버이다.</p>
-<p><code>class</code> 함수를 사용해서 객체의 클래스를 확인할 수
-있다.</p>
-<pre class="r"><code># numeric vector
-class(c(1, 2, 3))</code></pre>
-<pre><code>## [1] &quot;numeric&quot;</code></pre>
-<pre class="r"><code># character vector
-class(c(&quot;c&quot;, &quot;B&quot;, &quot;z&quot;))</code></pre>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<pre class="r"><code># function
-class(sin)</code></pre>
-<pre><code>## [1] &quot;function&quot;</code></pre>
-<pre class="r"><code>class(matrix(c(1,2)))</code></pre>
-<pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
-</div>
-<div id="workspace" class="section level3">
-<h3>Workspace</h3>
-<p>R에서 생성한 객체는 명시적으로 삭제할 때까지 존재한다.</p>
-<ul>
-<li><code>rm(x)</code> : 객체 <code>x</code>를 삭제</li>
-<li><code>rm(list=ls())</code> : 모든 객체를 삭제</li>
+<li><span class="math inline">\(A \setminus B = \{x : x \in A \text{
+그리고 } x \notin B\}\)</span><br />
+</li>
+<li><span class="math inline">\(A^c = \Omega \setminus A\)</span>, <span class="math inline">\(A\)</span>의 여집합<br />
+</li>
+<li><span class="math inline">\(A \cup B = \{x : x \in A \text{ 또는 } x
+\in B\}\)</span><br />
+</li>
+<li><span class="math inline">\(A \cap B = \{x : x \in A \text{ 그리고 }
+x \in B\}\)</span><br />
+</li>
+<li><span class="math inline">\((A \cup B)^c = A^c \cap
+B^c\)</span><br />
+</li>
+<li><span class="math inline">\((A \cap B)^c = A^c \cup
+B^c\)</span><br />
+</li>
+<li><span class="math inline">\(|A| = A\)</span>의 크기 (즉, <span class="math inline">\(A\)</span>가 포함하는 원소의 수)<br />
+</li>
+<li><span class="math inline">\(A\)</span>와 <span class="math inline">\(B\)</span>는 서로소 집합일 때 <span class="math inline">\(A \cap B = \emptyset\)</span><br />
+</li>
+<li><span class="math inline">\(\Omega\)</span>의 partition은 합집합이
+<span class="math inline">\(\Omega\)</span>가 되는 서로소 집합들의
+모임이다.</li>
 </ul>
 </div>
-<div id="working-directory" class="section level3">
-<h3>Working directory</h3>
-<p>R을 실행할 때, R은 드라이브의 디렉토리 중 하나를 작업 디렉토리로
-사용한다.<br />
-- 기본적으로 이 디렉토리에서 사용자 작성 프로그램과 데이터 파일을
-찾는다.<br />
-작업 디렉토리를 확인하려면, 다음 명령어를 사용한다:</p>
-<pre class="r"><code>getwd()</code></pre>
-<p>작업 디렉토리를 “dir”로 변경하려면 다음 명령어를 사용한다: - 여기서
-“dir”은 변경하고자 하는 디렉토리의 경로를 의미한다. 경로를 지정할 때는
-시스템에 맞는 경로 형식을 사용해야 한다.</p>
-<pre class="r"><code>setwd(&quot;dir&quot;)</code></pre>
-<p><code>/</code>를 이용하여 디렉토리 및 파일 경로를 나타내며,
-<code>.</code>는 현재 디렉토리를, <code>..</code>는 상위 디렉토리를
-나타낸다.</p>
+<div id="probability-measure-and-axioms" class="section level3">
+<h3>Probability measure and axioms</h3>
+<p>확률 측도 <span class="math inline">\(\mathbb{P}\)</span>는 사건을
+받아들여 [0, 1] 범위의 값을 반환하는 함수이다. 확률 측도는 다음과 같은
+성질을 가져야 한다: - <span class="math inline">\(\mathbb{P}(\Omega) =
+1\)</span> - <span class="math inline">\(\mathbb{P}(A) \geq 0\)</span> -
+<span class="math inline">\(\mathbb{P}(A \cup B) = \mathbb{P}(A) +
+\mathbb{P}(B)\)</span> 이때 <span class="math inline">\(A\)</span>와
+<span class="math inline">\(B\)</span>는 서로소 집합이다.</p>
+<p>이 세 가지 조건은 확률 공리로 공식적으로 채택된다.</p>
 </div>
-<div id="writing-script" class="section level3">
-<h3>Writing script</h3>
-<p>R 프롬프트에서 모든 가능한 R 표현식을 입력하고 실행할 수 있지만,
-스크립트를 작성하는 것이 훨씬 더 편리하다.</p>
+<div id="basic-property" class="section level3">
+<h3>Basic property</h3>
+<p>다음 결과는 확률 공리에서 비롯된다.</p>
+<p>임의의 사건 <span class="math inline">\(A\)</span>와 <span class="math inline">\(B\)</span>에 대하여:</p>
 <ul>
-<li>스크립트는 단순히 R 표현식의 모음으로 구성된다.</li>
-<li>프로그램 및 코드라는 용어를 스크립트와 동일하게 사용한다.</li>
-<li>Rgui나 Rstudio의 내장 편집기를 사용할 수 있다.</li>
+<li><span class="math inline">\(\mathbb{P}(\emptyset) = 0\)</span></li>
+<li><span class="math inline">\(\mathbb{P}(A^c) = 1 -
+\mathbb{P}(A)\)</span></li>
+<li><span class="math inline">\(\mathbb{P}(A) \leq 1\)</span></li>
+<li><span class="math inline">\(\mathbb{P}(A) \leq
+\mathbb{P}(B)\)</span> 이때 <span class="math inline">\(A \subset
+B\)</span></li>
+<li><span class="math inline">\(\mathbb{P}(A \cup B) = \mathbb{P}(A) +
+\mathbb{P}(B) - \mathbb{P}(A \cap B)\)</span></li>
 </ul>
 </div>
-<div id="help" class="section level3">
-<h3>Help</h3>
-<p>R 명령어나 함수 <code>x</code>에 대해 더 알고 싶다면
-<code>help(x)</code> 또는 <code>?x</code>를 입력할 수 있다.</p>
-<p>정확한 이름이 기억나지 않는다면, <code>help.search(&quot;x&quot;)</code>를
-사용할 수 있다.</p>
-<p>HTML 도움말 명령어: <code>help.start()</code></p>
-</div>
-<div id="package" class="section level3">
-<h3>package</h3>
-<p>R은 다양한 유용한 패키지를 제공한다.</p>
-<p><a href="https://cran.r-project.org/web/packages/" class="uri">https://cran.r-project.org/web/packages/</a></p>
-<p>패키지를 설치하려면 다음 명령어를 사용한다:</p>
-<p><code>install.packages(&quot;packagename&quot;)</code></p>
-<p>또는 패키지 메뉴를 사용할 수 있다.</p>
-<p>패키지를 사용하려면 다음과 같이 접근한다:</p>
-<p><code>library(&quot;packagename&quot;)</code></p>
-<p>R 문서: <a href="https://www.rdocumentation.org/" class="uri">https://www.rdocumentation.org/</a></p>
-</div>
-<div id="유용한-built-in-함수들" class="section level3">
-<h3>유용한 built-in 함수들</h3>
+<div id="probability-measures-on-a-sample-sapce" class="section level3">
+<h3>Probability measures on a sample sapce</h3>
+<p>주어진 표본 공간에는 하나 이상의 확률 측도가 정의될 수 있다. 예를
+들어, 주사위를 굴리는 실험을 생각해보자. 주사위가 공정하다면, 다음과
+같은 확률을 사용할 것이다:</p>
 <table>
-<colgroup>
-<col width="12%" />
-<col width="60%" />
-<col width="16%" />
-<col width="11%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>R 함수</th>
-<th>설명</th>
-<th>예제</th>
-<th>결과</th>
+<th><span class="math inline">\(x\)</span></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>x%%y</code></td>
-<td>x를 y로 나눈 나머지</td>
-<td><code>10%%3</code></td>
-<td><code>1</code></td>
-</tr>
-<tr class="even">
-<td><code>ceiling()</code></td>
-<td>x보다 크거나 같은 최소 정수</td>
-<td><code>ceiling(2.3)</code></td>
-<td><code>3</code></td>
-</tr>
-<tr class="odd">
-<td><code>floor()</code></td>
-<td>x보다 작거나 같은 최대 정수</td>
-<td><code>floor(2.3)</code></td>
-<td><code>2</code></td>
-</tr>
-<tr class="even">
-<td><code>round()</code></td>
-<td>첫 번째 인수를 두 번째 인수로 지정된 자릿수로 반올림</td>
-<td><code>round(2.375,2)</code></td>
-<td><code>2.38</code></td>
-</tr>
-<tr class="odd">
-<td><code>signif()</code></td>
-<td>주어진 유효 자릿수로 첫 번째 인수를 반올림</td>
-<td><code>signif(2.375,2)</code></td>
-<td><code>2.4</code></td>
-</tr>
-<tr class="even">
-<td><code>trunc()</code></td>
-<td>소수점 이하를 제거한 x의 정수 부분</td>
-<td><code>trunc(1.37)</code></td>
-<td><code>1</code></td>
-</tr>
-<tr class="odd">
-<td><code>sign()</code></td>
-<td>부호 (1 또는 -1)</td>
-<td><code>sign(-2)</code></td>
-<td><code>-1</code></td>
-</tr>
-<tr class="even">
-<td><code>abs()</code></td>
-<td>절대값</td>
-<td><code>abs(-2)</code></td>
-<td><code>2</code></td>
-</tr>
-<tr class="odd">
-<td><code>exp()</code></td>
-<td>지수 함수 e^x</td>
-<td><code>exp(0)</code></td>
-<td><code>1</code></td>
-</tr>
-<tr class="even">
-<td><code>log()</code></td>
-<td>자연 로그</td>
-<td><code>log(1)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>sqrt()</code></td>
-<td>제곱근</td>
-<td><code>sqrt(4)</code></td>
-<td><code>2</code></td>
-</tr>
-<tr class="even">
-<td><code>range()</code></td>
-<td>범위</td>
-<td><code>range(2,5,1)</code></td>
-<td><code>1 5</code></td>
-</tr>
-<tr class="odd">
-<td><code>max()</code></td>
-<td>최대값</td>
-<td><code>max(2,3)</code></td>
-<td><code>3</code></td>
-</tr>
-<tr class="even">
-<td><code>min()</code></td>
-<td>최소값</td>
-<td><code>min(2,3)</code></td>
-<td><code>2</code></td>
-</tr>
-<tr class="odd">
-<td><code>sum()</code></td>
-<td>인수들의 합</td>
-<td><code>sum(2,3,4)</code></td>
-<td><code>9</code></td>
-</tr>
-<tr class="even">
-<td><code>prod()</code></td>
-<td>인수들의 곱</td>
-<td><code>prod(2,4,2)</code></td>
-<td><code>16</code></td>
-</tr>
-<tr class="odd">
-<td><code>cummax()</code></td>
-<td>누적 최대값</td>
-<td><code>cummax(c(2,4,3))</code></td>
-<td><code>2 4 4</code></td>
-</tr>
-<tr class="even">
-<td><code>cummin()</code></td>
-<td>누적 최소값</td>
-<td><code>cummin(c(2,4,1))</code></td>
-<td><code>2 2 1</code></td>
-</tr>
-<tr class="odd">
-<td><code>cumsum()</code></td>
-<td>누적 합</td>
-<td><code>cumsum(c(2,3,4))</code></td>
-<td><code>2 5 9</code></td>
-</tr>
-<tr class="even">
-<td><code>cumprod()</code></td>
-<td>누적 곱</td>
-<td><code>cumprod(c(2,4,3))</code></td>
-<td><code>2 8 24</code></td>
-</tr>
-<tr class="odd">
-<td><code>cos()</code></td>
-<td>코사인</td>
-<td><code>cos(pi)</code></td>
-<td><code>-1</code></td>
-</tr>
-<tr class="even">
-<td><code>sin()</code></td>
-<td>사인</td>
-<td><code>sin(pi/2)</code></td>
-<td><code>1</code></td>
-</tr>
-<tr class="odd">
-<td><code>tan()</code></td>
-<td>탄젠트</td>
-<td><code>tan(pi/4)</code></td>
-<td><code>1</code></td>
-</tr>
-<tr class="even">
-<td><code>acos()</code></td>
-<td>아크코사인</td>
-<td><code>acos(1)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>asin()</code></td>
-<td>아크사인</td>
-<td><code>asin(0)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="even">
-<td><code>atan()</code></td>
-<td>아크탄젠트</td>
-<td><code>atan(0)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>cosh()</code></td>
-<td>쌍곡 코사인</td>
-<td><code>cosh(0)</code></td>
-<td><code>1</code></td>
-</tr>
-<tr class="even">
-<td><code>sinh()</code></td>
-<td>쌍곡 사인</td>
-<td><code>sinh(0)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>tanh()</code></td>
-<td>쌍곡 탄젠트</td>
-<td><code>tanh(0)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="even">
-<td><code>acosh()</code></td>
-<td>역쌍곡 코사인</td>
-<td><code>acosh(1)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>asinh()</code></td>
-<td>역쌍곡 사인</td>
-<td><code>asinh(0)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="even">
-<td><code>atanh()</code></td>
-<td>역쌍곡 탄젠트</td>
-<td><code>atanh(0)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>beta()</code></td>
-<td>베타 함수</td>
-<td><code>beta(1,2)</code></td>
-<td><code>0.5</code></td>
-</tr>
-<tr class="even">
-<td><code>lbeta()</code></td>
-<td>베타 함수의 로그</td>
-<td><code>lbeta(1,1)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>factorial()</code></td>
-<td>팩토리얼</td>
-<td><code>factorial(6)</code></td>
-<td><code>720</code></td>
-</tr>
-<tr class="even">
-<td><code>choose()</code></td>
-<td>이항 계수</td>
-<td><code>choose(5,2)</code></td>
-<td><code>10</code></td>
-</tr>
-<tr class="odd">
-<td><code>gamma()</code></td>
-<td>감마 함수</td>
-<td><code>gamma(4)</code></td>
-<td><code>6</code></td>
-</tr>
-<tr class="even">
-<td><code>lgamma()</code></td>
-<td>감마 함수의 로그</td>
-<td><code>lgamma(2)</code></td>
-<td><code>0</code></td>
-</tr>
-<tr class="odd">
-<td><code>digamma()</code></td>
-<td>감마 함수의 1차 미분</td>
-<td><code>digamma(2)</code></td>
-<td><code>0.4227843</code></td>
-</tr>
-<tr class="even">
-<td><code>trigamma()</code></td>
-<td>감마 함수의 2차 미분</td>
-<td><code>trigamma(2)</code></td>
-<td><code>0.6449341</code></td>
+<td><span class="math inline">\(\mathbb{P}_{\mathrm{fair}}\)</span></td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
+<td>1/6</td>
 </tr>
 </tbody>
 </table>
+<p>주사위가 불공정하여 숫자 6이 나타날 확률이 두 배로 높다면, 다음과
+같은 확률을 사용할 수 있다:</p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mathbb{P}_{\mathrm{unfair}}\)</span></td>
+<td>1/7</td>
+<td>1/7</td>
+<td>1/7</td>
+<td>1/7</td>
+<td>1/7</td>
+<td>2/7</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
