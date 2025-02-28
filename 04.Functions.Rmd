@@ -1,8 +1,8 @@
 ---
 title: "Programming with functions"
 output:
-  github_document: default
   html_document: default
+  github_document: default
   pdf_document: default
 ---
 
@@ -130,9 +130,10 @@ Winsorised mean (윈저화 평균)은 데이터의 극단적인 값(특이치 �
 일반적인 평균(산술 평균)은 모든 데이터 포인트를 동일하게 반영하는 반면, 윈저화 평균은 극단적으로 크거나 작은 값을 더 온건한 값으로 대체함으로써 평균을 계산하는 방식이다. 
 
 
-정렬된 데이터터 $x=\{ x_1, ..., x_n \}$의 k-th Winsorised mean은 다음과 같다.  
+정렬된 데이터 $x=\{ x_1, ..., x_n \}$의 k-th Winsorised mean은 다음과 같다.  
 
-$$ w_k = \frac{(k+1)x_{k+1} + x_{k+2} + \cdots + x_{n-k-1} + (k+1) x_{n-k} }{n} $$
+$$ w_k = \frac{(k+1)x_{k+1} + x_{k+2} + \cdots + x_{n-k-1} + (k+1) x_{n-k} }{n} $$.
+
 상위와 하위에서 각각 $k$개의 값이 절단되며, 절단된 값들은 그 다음에 위치한 값들로 대체된다.
 
 ```{r}
