@@ -1,9 +1,9 @@
 ---
 title: "Sophisticated data structures"
 output: 
-  github_document: default
-  pdf_document: default
   html_document: default
+  pdf_document: default
+  github_document: default
 ---
 
 <!-- #region -->
